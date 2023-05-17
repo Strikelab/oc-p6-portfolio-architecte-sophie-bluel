@@ -15,20 +15,11 @@ const CATEGORIES_PATH = "/api/categories/";
 const works = await fetch(`${API_URL}${WORKS_PATH}`).then((works) =>
   works.json()
 );
-// alternate way to write this API call :
-// const worksRequest = await fetch(`${API_URL}${WORKS_PATH}`);
-// let works = await worksRequest.json();
 
 //categories
 const categories = await fetch(`${API_URL}${CATEGORIES_PATH}`).then(
   (categories) => categories.json()
 );
-console.log(works);
-console.log(categories);
-
-// alternate way to write this API call :
-// const categoriesRequest = await fetch(`${API_URL}${CATEGORIES_PATH}`);
-// let categories = await categoriesRequest.json();
 
 //--------------------------------//
 //          DOM ELEMENTS          //
@@ -51,10 +42,18 @@ for (const categorie of categories) {
   categorieButton.innerText = categorie.name;
   divButtonsContainer.appendChild(categorieButton);
 }
+let buttonFilterActive = document.querySelector(
+  ".filters-container button:nth-child(1)"
+);
+buttonFilterActive.setAttribute("class", "btn-filter-selected");
+
 /**
+ * 
  * This function takes an array of object as argument and add elements to DOM.
  * @param {array} works
+ * 
  */
+
 function generateWorks(works) {
   divGallery.innerHTML = "";
   // Add works to DOM
@@ -91,6 +90,12 @@ for (let i = 0; i < buttonsFilter.length; i++) {
   //define action for each filter button
   buttonFilter.addEventListener("click", function () {
     let worksFiltered;
+
+    //deselect and select button to change its style if selected
+    let buttonFilterActive = document.querySelector(".btn-filter-selected");
+    buttonFilterActive.classList.remove("btn-filter-selected");
+    buttonFilter.classList.add("btn-filter-selected");
+
     //first button must return works in all categories
     if (i === 0) {
       worksFiltered = works;
@@ -101,7 +106,22 @@ for (let i = 0; i < buttonsFilter.length; i++) {
         return work.categoryId === i;
       });
     }
-    //and finally call function
+    //and finally refresh gallery by calling function.
     generateWorks(worksFiltered);
   });
 }
+
+//--------------------------------//
+//           TESTS SECTION        //
+//--------------------------------//
+
+// console.log(works);
+// console.log(categories);
+
+// alternate way to write this API call :
+// const worksRequest = await fetch(`${API_URL}${WORKS_PATH}`);
+// let works = await worksRequest.json();
+
+// alternate way to write this API call :
+// const categoriesRequest = await fetch(`${API_URL}${CATEGORIES_PATH}`);
+// let categories = await categoriesRequest.json();

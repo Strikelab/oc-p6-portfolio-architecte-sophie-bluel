@@ -1,7 +1,7 @@
 button {
   height: 37px;
   min-width: 100px;
-//   max-width: 198px;
+  //   max-width: 198px;
   border: 1px solid $primary_color;
   color: $primary_color;
   background: white;
@@ -9,15 +9,14 @@ button {
   font-family: "Syne";
   font-size: 16px;
   font-weight: 700;
-//   padding:0 .58em;
+  //   padding:0 .58em;
   margin: 0 auto;
 
   text-align: center;
   border-radius: 60px;
-  &:hover {
+  &:hover,
+  &.btn-filter-selected {
     background-color: $primary_color;
     color: white;
   }
-  
-  
 }
