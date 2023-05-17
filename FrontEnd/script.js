@@ -56,8 +56,31 @@ figure.appendChild(workPicture);
 figure.appendChild(workFigCaption);
 };
 
+ 
+//--------------------------------//
+//             FILTERS            //
+//--------------------------------//
 
+// get the list of filter buttons
+const buttonsFilter = document.querySelectorAll(".filters-container button");
 
+// add an event listener for each button
+for(let i = 0; i < buttonsFilter.length; i++){
+    const buttonFilter = document.querySelector(`.filters-container button:nth-child(${i+1})`)
 
+    buttonFilter.addEventListener("click", function(){
+        //first button must return works in all categories
+        if(i===0){
+            console.log(works);
+        }
+        //other buttons must return specific works according to categorie
+        else{
+            const worksFiltered = works.filter(function (work) {
+            return work.categoryId === i;
+        });
+        console.log(worksFiltered);
+         }
+    });
+};
 
 
