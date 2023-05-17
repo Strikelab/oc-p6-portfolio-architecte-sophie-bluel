@@ -1,0 +1,13 @@
+// Flexbox
+@mixin flex(
+  $direction: initial,//row
+  $justify: initial,  //flex-start
+  $align: initial,    //flex-start
+  $gap: initial       //0
+) {
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $justify;
+  align-items: $align;
+  gap: $gap;
+}
