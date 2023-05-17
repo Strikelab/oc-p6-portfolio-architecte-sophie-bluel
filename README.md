@@ -2,7 +2,7 @@
  Projet N°6 parcours intégrateur web OpenClassrooms
 ## Lien GitHub
 
-https://github.com/Strikelab/OC-P5-Print-It.git
+https://github.com/Strikelab/OC-P6-Portfolio-architecte-sophie-bluel
 
 ## Technologies
 
