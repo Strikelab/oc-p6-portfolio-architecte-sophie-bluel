@@ -4,7 +4,7 @@ button {
   //   max-width: 198px;
   border: 1px solid $primary_color;
   color: $primary_color;
-  background: white;
+  background-color:#FFFEF8;
 
   font-family: "Syne";
   font-size: 16px;
@@ -17,6 +17,6 @@ button {
   &:hover,
   &.btn-filter-selected {
     background-color: $primary_color;
-    color: white;
+  color:#FFFEF8;
   }
 }
