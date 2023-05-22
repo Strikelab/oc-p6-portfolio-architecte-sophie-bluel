@@ -12,7 +12,16 @@ const LOGIN_PATH = "/api/users/login";
 const currentPage = window.location.href;
 let currentPageIsIndex = currentPage.includes("index.html");
 let currentPageIsLogin = currentPage.includes("login.html");
+const currentUserId = window.localStorage.getItem("userId");
+const currentToken = window.localStorage.getItem("token");
+// console.log(currentUserId);
+// console.log(currentToken);
+const loggedIn = (currentUserId && currentToken)?true:false;
+const loggedOut = !loggedIn;
+// console.log("connecté : " + loggedIn);
+// console.log("déconnecté : " + loggedOut);
 
+//how reverse a 
 //let userDatas;
 //--------------------------------//
 //          API REQUESTS          //
@@ -69,10 +78,15 @@ function generateWorks(works) {
 const divGallery = document.querySelector(".gallery");
 const divButtonsContainer = document.querySelector(".filters-container");
 const sectionPortFolio = document.querySelector("#portfolio");
+const navLogin = document.querySelector("nav li:nth-child(3) a");
+
 
 //--------------------------------//
 // FIRST INDEX PAGE GENERATION    //
 //--------------------------------//
+if(loggedIn){
+  navLogin.innerText = "logout";
+}
 if (currentPageIsIndex) {
   //generate buttons
   // button "Tous"
@@ -134,52 +148,59 @@ if (currentPageIsIndex) {
 //--------------------------------//
 //             LOGIN              //
 //--------------------------------//
+if (currentPageIsLogin) {
+  const loginForm = document.getElementById("login__form");
+  const emailField = loginForm.elements["login__email"];
+  const passwordField = loginForm.elements["login__password"];
+  let email;
+  let password;
 
-const loginForm = document.getElementById("login__form");
-const emailField = loginForm.elements["login__email"];
-const passwordField = loginForm.elements["login__password"];
-let email;
-let password;
-
-loginForm.addEventListener("submit", (e) => {
-  e.preventDefault();
-  let email = emailField.value;
-  let password = passwordField.value;
-  console.log(
-    `
+  loginForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    let email = emailField.value;
+    let password = passwordField.value;
+    console.log(
+      `
     email :  ${email}
     password : ${password}
     `
-  );
-  let user = {
-    email: `${email}`,
-    password: `${password}`,
-  };
-  //define request for fetch
-  let request = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Accept: "application/json",
-    },
-    body: JSON.stringify(user),
-  };
-  
-  fetch(API_URL + LOGIN_PATH, request)
-    //handle promise
-    .then((response) => {
-      //call to the json method to get body in json format
-      return response.json();
-    })
-    //json() method is also async and return promise so
-    // we need to chain it
-    .then((userDatas) => {
-      //destructuring
-      let { userId, token } = userDatas;
-      console.log("userId: " + userId);
-      console.log("token: " + token);
-    });
-});
+    );
+    let user = {
+      email: `${email}`,
+      password: `${password}`,
+    };
+    //define request for fetch
+    let request = {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(user),
+    };
+
+    fetch(API_URL + LOGIN_PATH, request)
+      //handle promise
+      .then((response) => {
+        //call to the json method to get body in json format
+        return response.json();
+      })
+      //json() method is also async and return promise so
+      // we need to chain it
+      .then((userDatas) => {
+        //destructuring
+        let { userId, token } = userDatas;
+        console.log("userId: " + userId);
+        console.log("token: " + token);
+        //put userID and token in user's local storage
+        window.localStorage.setItem("token", token);
+        window.localStorage.setItem("userId", userId);
+
+        //redirection
+        window.location.replace("../index.html");
+      });
+  });
+};
 
 //--------------------------------//
 //           TESTS SECTION        //
