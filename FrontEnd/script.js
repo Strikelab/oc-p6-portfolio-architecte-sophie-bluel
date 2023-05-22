@@ -8,21 +8,19 @@ const WORKS_PATH = "/api/works/";
 const CATEGORIES_PATH = "/api/categories/";
 const LOGIN_PATH = "/api/users/login";
 
-//others
+//pages
 const currentPage = window.location.href;
 let currentPageIsIndex = currentPage.includes("index.html");
 let currentPageIsLogin = currentPage.includes("login.html");
+
+//login user
 const currentUserId = window.localStorage.getItem("userId");
 const currentToken = window.localStorage.getItem("token");
-// console.log(currentUserId);
-// console.log(currentToken);
 const loggedIn = (currentUserId && currentToken)?true:false;
 const loggedOut = !loggedIn;
-// console.log("connecté : " + loggedIn);
-// console.log("déconnecté : " + loggedOut);
+console.log(loggedIn);
+console.log(loggedOut);
 
-//how reverse a 
-//let userDatas;
 //--------------------------------//
 //          API REQUESTS          //
 //--------------------------------//
@@ -80,13 +78,26 @@ const divButtonsContainer = document.querySelector(".filters-container");
 const sectionPortFolio = document.querySelector("#portfolio");
 const navLogin = document.querySelector("nav li:nth-child(3) a");
 
+//--------------------------------//
+//         EVENT LISTENER         //
+//--------------------------------//
+// navLogin.addEventListener("click", () =>{
+// window.location.href = "login.html";
+// })
 
 //--------------------------------//
 // FIRST INDEX PAGE GENERATION    //
 //--------------------------------//
 if(loggedIn){
   navLogin.innerText = "logout";
+  navLogin.preventDefault();
+  
 }
+else{
+  navLogin.innerText = "login";
+}
+
+
 if (currentPageIsIndex) {
   //generate buttons
   // button "Tous"
