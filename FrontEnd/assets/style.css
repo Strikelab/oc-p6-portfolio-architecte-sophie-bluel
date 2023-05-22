@@ -66,9 +66,15 @@ button {
   text-align: center;
   border-radius: 60px;
 }
-button:hover, button.btn-filter-selected {
+button:hover {
+  background-color: #0E2F28;
+  color: #FFFEF8;
+  cursor: pointer;
+}
+button.btn-filter-selected {
   background-color: #1D6154;
   color: #FFFEF8;
+  cursor: default;
 }
 
 body {
@@ -80,7 +86,7 @@ body {
 }
 
 main {
-  background-color: #fffef8;
+  background-color: #FFFEF8;
   padding: 0 150px;
 }
 
@@ -94,7 +100,7 @@ h1 {
   font-family: "Syne";
   font-size: 22px;
   font-weight: 800;
-  color: #b1663c;
+  color: #B1663C;
 }
 h1 > span {
   margin-top: 4px;
@@ -110,11 +116,11 @@ h2 {
   font-family: "Syne";
   font-weight: 700;
   font-size: 30px;
-  color: #1d6154;
+  color: #1D6154;
 }
 
 header {
-  background-color: #fffef8;
+  background-color: #FFFEF8;
   display: flex;
   justify-content: space-between;
   padding: 50px 150px;
@@ -135,16 +141,16 @@ header nav li img {
   height: 22px;
 }
 header nav li:hover {
-  color: #b1663c;
+  color: #B1663C;
 }
 header nav a {
-  color: #3d3d3d;
+  color: black;
   font-size: 1rem;
   font-weight: 400;
   text-decoration: none;
 }
 header nav a:hover {
-  color: #b1663c;
+  color: #B1663C;
 }
 header nav a.active {
   font-weight: 600;
@@ -238,6 +244,7 @@ header nav a.active {
 }
 #contact form input[type=submit]:hover, #login form input[type=submit]:hover {
   cursor: pointer;
+  background-color: #0E2F28;
 }
 #contact label, #login label {
   margin: 2em 0 1em 0;
@@ -264,6 +271,12 @@ footer nav ul {
   display: block;
   text-decoration: underline;
 }
+#login a:hover {
+  color: #93532F;
+}
 #login h2 {
   padding-top: 100px;
+}
+#login label {
+  color: #3D3D3D;
 }

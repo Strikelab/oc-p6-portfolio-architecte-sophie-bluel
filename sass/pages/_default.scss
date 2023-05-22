@@ -8,7 +8,7 @@ body {
 }
 
 main {
-  background-color: #fffef8;
+  background-color: $background-color;
   padding: 0 150px;
 }
 
@@ -22,7 +22,7 @@ h1 {
   font-family: "Syne";
   font-size: 22px;
   font-weight: 800;
-  color: #b1663c;
+  color: $secondary_color;
 
   > span {
     margin-top: 4px;
@@ -39,11 +39,11 @@ h2 {
   font-family: "Syne";
   font-weight: 700;
   font-size: 30px;
-  color: #1d6154;
+  color: $primary_color;
 }
 
 header {
-  background-color: #fffef8;
+  background-color:$background-color;
   display: flex;
   justify-content: space-between;
   padding: 50px 150px;
@@ -66,18 +66,18 @@ header {
       }
 
       &:hover {
-        color: #b1663c;
+        color: $secondary_color;
       }
     }
 
     a {
-      color: #3d3d3d;
+      color: black;
       font-size: 1rem;
       font-weight: 400;
       text-decoration: none;
 
       &:hover {
-        color: #b1663c;
+        color: $secondary_color;
       }
 
       &.active {
@@ -182,6 +182,7 @@ header {
 
         &:hover {
           cursor: pointer;
+          background-color:$btn-hover_color;
         }
       }
     }

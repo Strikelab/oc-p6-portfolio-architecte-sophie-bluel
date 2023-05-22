@@ -4,12 +4,18 @@
     height:872px;
     @extend #contact;
    a{
-   color:#3D3D3D;
+   color:$login-page-text_color;
    font-weight:500;
     display:block;
     text-decoration: underline;
+    &:hover{
+        color:$tertiary_color;
+    }
    }
    h2{
     padding-top:100px;
+   }
+   label{
+    color:$login-page-text_color
    }
 }

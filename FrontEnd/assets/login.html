@@ -12,6 +12,7 @@
 	<meta name="description" content="">
 	<link rel="stylesheet" href="./style.css">
 	<link rel="icon" type="image/x-icon" href="./favicon.ico">
+	<script type="module" src="../script.js"></script>
 
 </head>
 
@@ -30,11 +31,11 @@
 	<main>
 		<div id="login">
 			<h2>Log in</h2>
-			<form>
-				<label for="user-mail">E-mail</label>
-				<input type="email" name="login-mail" required>
-				<label for="user-password">Mot de passe</label>
-				<input type="password" name="login-password" required>
+			<form id="login__form">
+				<label for="login__mail">E-mail</label>
+				<input type="text" name="login__email" autocomplete="username">
+				<label for="login__password">Mot de passe</label>
+				<input type="password" name="login__password" autocomplete="current-password">
 				<input type="submit" value="Se connecter" required></input>
 			</form>
 			<a href="#">Mot de passe oublié</a>
