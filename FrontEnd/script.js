@@ -16,7 +16,7 @@ let currentPageIsLogin = currentPage.includes("login.html");
 //login user
 const currentUserId = window.localStorage.getItem("userId");
 const currentToken = window.localStorage.getItem("token");
-const loggedIn = (currentUserId && currentToken)?true:false;
+const loggedIn = currentUserId && currentToken ? true : false;
 const loggedOut = !loggedIn;
 console.log(loggedIn);
 console.log(loggedOut);
@@ -73,6 +73,7 @@ function generateWorks(works) {
 //--------------------------------//
 
 // DOM parent select
+const myHeader = document.querySelector("header");
 const divGallery = document.querySelector(".gallery");
 const divButtonsContainer = document.querySelector(".filters-container");
 const sectionPortFolio = document.querySelector("#portfolio");
@@ -81,22 +82,34 @@ const navLogin = document.querySelector("nav li:nth-child(3) a");
 //--------------------------------//
 //         EVENT LISTENER         //
 //--------------------------------//
-// navLogin.addEventListener("click", () =>{
-// window.location.href = "login.html";
-// })
+navLogin.addEventListener("click", (e) =>{
+if(loggedIn){
+e.preventDefault();
+window.localStorage.removeItem("userId");
+window.localStorage.removeItem("token");
+window.location.href = "./index.html";
+}
+})
 
 //--------------------------------//
 // FIRST INDEX PAGE GENERATION    //
 //--------------------------------//
-if(loggedIn){
+//edition menu
+if (loggedIn) {
   navLogin.innerText = "logout";
-  navLogin.preventDefault();
-  
-}
-else{
+  const divEdition = document.createElement("div");
+  divEdition.id = "edition-menu";
+  myHeader.parentNode.insertBefore(divEdition, myHeader);
+  const editionParagraph = document.createElement("p");
+  editionParagraph.innerHTML =
+    '<i class="fa-regular fa-pen-to-square"></i>Mode édition';
+  const editionButton = document.createElement("button");
+  editionButton.innerText = "publier les changements";
+  divEdition.appendChild(editionParagraph);
+  divEdition.appendChild(editionButton);
+} else {
   navLogin.innerText = "login";
 }
-
 
 if (currentPageIsIndex) {
   //generate buttons
@@ -211,7 +224,7 @@ if (currentPageIsLogin) {
         window.location.replace("../index.html");
       });
   });
-};
+}
 
 //--------------------------------//
 //           TESTS SECTION        //

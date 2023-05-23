@@ -1,0 +1,24 @@
+#edition-menu {
+  @include flex($justify: center, $align: center, $gap: 21px);
+  height: 59px;
+  background-color: black;
+  color: white;
+
+  i {
+    padding-right: 9px;
+  }
+
+  button {
+    height: 38px;
+    margin: 0;
+    background-color: white;
+    color: black;
+    font-family: "work sans";
+    padding: 0 23px;
+    border: none;
+
+    &:hover {
+      background-color: rgb(240, 240, 240);
+    }
+  }
+}
