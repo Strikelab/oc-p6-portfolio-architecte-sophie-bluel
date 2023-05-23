@@ -1,21 +1,49 @@
+#login,
+.login {
+  height: 872px;
+  @extend #contact;
 
+  &__message {
+    text-align: center;
+    height: 30px;
+  }
+  &__mail-message {
+    @include flex($align:center, $gap:10px);
+    height: 30px;
+    
+  }
+  &__password-message {
+    @include flex($align:center, $gap:10px);
+    height: 2em;
+  }
 
-#login{
-    height:872px;
-    @extend #contact;
-   a{
-   color:$login-page-text_color;
-   font-weight:500;
-    display:block;
+  a {
+    color: $login-page-text_color;
+    font-weight: 500;
+    display: block;
     text-decoration: underline;
-    &:hover{
-        color:$tertiary_color;
+    &:hover {
+      color: $tertiary_color;
     }
-   }
-   h2{
-    padding-top:100px;
-   }
-   label{
-    color:$login-page-text_color
-   }
+  }
+  h2 {
+    padding-top: 100px;
+  }
+  label {
+    color: $login-page-text_color;
+    margin-top: 0;
+  }
+
+  &__message {
+    @include flex($align: center, $justify: center);
+    &--alert {
+      background-color: orange;
+    }
+    &--valid {
+      background-color: green;
+    }
+  }
+  #login__button {
+    margin-top:0px;
+  }
 }
