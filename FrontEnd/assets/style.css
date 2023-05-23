@@ -236,30 +236,36 @@ header nav a.active {
   width: 100%;
 }
 
-#contact, #login {
+#contact, #login,
+.login {
   width: 50%;
   margin: auto;
 }
-#contact > *, #login > * {
+#contact > *, #login > *,
+.login > * {
   text-align: center;
 }
-#contact h2, #login h2 {
+#contact h2, #login h2,
+.login h2 {
   margin-bottom: 20px;
 }
-#contact form, #login form {
+#contact form, #login form,
+.login form {
   text-align: left;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
 }
-#contact form input, #login form input {
+#contact form input, #login form input,
+.login form input {
   height: 50px;
   font-size: 1.2em;
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
   background-color: white;
 }
-#contact form input[type=submit], #login form input[type=submit] {
+#contact form input[type=submit], #login form input[type=submit],
+.login form input[type=submit] {
   font-family: "Syne";
   font-weight: 700;
   color: white;
@@ -269,15 +275,18 @@ header nav a.active {
   text-align: center;
   border-radius: 60px;
 }
-#contact form input[type=submit]:hover, #login form input[type=submit]:hover {
+#contact form input[type=submit]:hover, #login form input[type=submit]:hover,
+.login form input[type=submit]:hover {
   cursor: pointer;
   background-color: #0E2F28;
 }
-#contact label, #login label {
+#contact label, #login label,
+.login label {
   margin: 2em 0 1em 0;
   font-weight: 500;
 }
-#contact textarea, #login textarea {
+#contact textarea, #login textarea,
+.login textarea {
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
   background-color: white;
@@ -289,21 +298,70 @@ footer nav ul {
   margin: 2em;
 }
 
-#login {
+#login,
+.login {
   height: 872px;
 }
-#login a {
+#login__message,
+.login__message {
+  text-align: center;
+  height: 30px;
+}
+#login__mail-message,
+.login__mail-message {
+  display: flex;
+  flex-direction: initial;
+  justify-content: initial;
+  align-items: center;
+  gap: 10px;
+  height: 30px;
+}
+#login__password-message,
+.login__password-message {
+  display: flex;
+  flex-direction: initial;
+  justify-content: initial;
+  align-items: center;
+  gap: 10px;
+  height: 2em;
+}
+#login a,
+.login a {
   color: #3D3D3D;
   font-weight: 500;
   display: block;
   text-decoration: underline;
 }
-#login a:hover {
+#login a:hover,
+.login a:hover {
   color: #93532F;
 }
-#login h2 {
+#login h2,
+.login h2 {
   padding-top: 100px;
 }
-#login label {
+#login label,
+.login label {
   color: #3D3D3D;
+  margin-top: 0;
+}
+#login__message,
+.login__message {
+  display: flex;
+  flex-direction: initial;
+  justify-content: center;
+  align-items: center;
+  gap: initial;
+}
+#login__message--alert,
+.login__message--alert {
+  background-color: orange;
+}
+#login__message--valid,
+.login__message--valid {
+  background-color: green;
+}
+#login #login__button,
+.login #login__button {
+  margin-top: 0px;
 }
