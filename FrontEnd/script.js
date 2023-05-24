@@ -19,15 +19,16 @@ const currentUserId = window.localStorage.getItem("userId");
 const currentToken = window.localStorage.getItem("token");
 const loggedIn = currentUserId && currentToken ? true : false;
 const loggedOut = !loggedIn;
-
-
+const primaryColor = "#1D6154";
+const secondaryColor = "#B1663C";
+const alertColor = "#F8C471";
+const errorColor = "red";
 //others
 let categories;
 let works;
 
-
 //--------------------------------//
-//          FUNCTIONS              //
+//          FUNCTIONS             //
 //--------------------------------//
 
 /**
@@ -40,7 +41,9 @@ let works;
  * myConstant will be an array of objetcs in JSON format
  *
  * @param {url} works
+ *
  */
+
 async function callAPI(url) {
   return fetch(url)
     .then((response) => {
@@ -137,10 +140,12 @@ const divLoginPasswordMessage = document.querySelector(
   "#login__password-message"
 );
 const loginButton = document.querySelector("#login__button");
-
+const recoveryPassword = document.querySelector("#login a ");
+console.log(recoveryPassword);
 //--------------------------------//
 //         EVENT LISTENER         //
 //--------------------------------//
+// clear local storage on exit
 navLogin.addEventListener("click", (e) => {
   if (loggedIn) {
     e.preventDefault();
@@ -153,6 +158,7 @@ navLogin.addEventListener("click", (e) => {
 //--------------------------------//
 // FIRST INDEX PAGE GENERATION    //
 //--------------------------------//
+
 //edition menu
 if (loggedIn) {
   navLogin.innerText = "logout";
@@ -181,21 +187,21 @@ if (currentPageIsIndex) {
   //--------------------------------//
 
   // get the list of filter buttons
-  const buttonsFilter = document.querySelectorAll(".filters-container button");
+  const filterButtons = document.querySelectorAll(".filters-container button");
 
   // add an event listener for each button
-  for (let i = 0; i < buttonsFilter.length; i++) {
-    const buttonFilter = document.querySelector(
+  for (let i = 0; i < filterButtons.length; i++) {
+    const filterButton = document.querySelector(
       `.filters-container button:nth-child(${i + 1})`
     );
     //define action for each filter button
-    buttonFilter.addEventListener("click", function () {
+    filterButton.addEventListener("click", function () {
       let worksFiltered;
 
       //deselect and select button to change its style if selected
-      let buttonFilterActive = document.querySelector(".btn-filter-selected");
-      buttonFilterActive.classList.remove("btn-filter-selected");
-      buttonFilter.classList.add("btn-filter-selected");
+      let filterButtonActive = document.querySelector(".btn-filter-selected");
+      filterButtonActive.classList.remove("btn-filter-selected");
+      filterButton.classList.add("btn-filter-selected");
 
       //first button must return works in all categories
       if (i === 0) {
@@ -227,28 +233,32 @@ if (currentPageIsLogin) {
   let emailIsValid = false;
   let passwordIsEmpty = true;
   let message;
-  // add events listener to the form
+  // add events listener to the form and live information user
   //email field
   emailField.addEventListener("input", (e) => {
     let userInput = e.target.value;
     //email format verification
     if (userInput.match(mailFormat)) {
-      e.preventDefault();
-      divLoginMailMessage.style.color = "green";
+      // e.preventDefault();
+      emailField.style.outlineColor = primaryColor;
+      divLoginMailMessage.style.color = primaryColor;
+
       message = '<i class="fa-solid fa-check"></i>';
       emailIsValid = true;
     } else {
-      divLoginMailMessage.style.color = "red";
+      emailField.style.outlineColor = secondaryColor;
+      divLoginMailMessage.style.color = errorColor;
       message = `<p>Veuillez entrer une adresse email valide.</p>`;
+      emailIsValid = false;
     }
     divLoginMailMessage.innerHTML = `${message}`;
   });
-  //password field
+  //password field fill control
   passwordField.addEventListener("input", (e) => {
     let userInput = e.target.value;
     // password length verification
     if (userInput.length <= 0) {
-      divLoginPasswordMessage.style.color = "red";
+      divLoginPasswordMessage.style.color = errorColor;
       message = "<p>Veuillez saisir un mot de passe</p>";
       divLoginPasswordMessage.innerHTML = message;
     } else {
@@ -256,16 +266,17 @@ if (currentPageIsLogin) {
       divLoginPasswordMessage.innerHTML = "";
     }
   });
-  //On submit
+  //form submit
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
     divLoginMessage.innerHTML = "";
     let email = emailField.value;
     let password = passwordField.value;
+    // submit need a valid email and a password with lenght  > 0
     if (email === "" || !emailIsValid || password === "" || passwordIsEmpty) {
-      divLoginMessage.style.background = "#F8C471 ";
+      divLoginMessage.style.background = alertColor;
       divLoginMessage.innerHTML =
-        "<p>Veuillez compléter tous les champs du formulaire.</p>";
+        '<i class="fas fa-triangle-exclamation"></i><p>Veuillez compléter tous les champs du formulaire.</p>';
     } else {
       // body object for API request
       let user = {
@@ -291,14 +302,16 @@ if (currentPageIsLogin) {
             return response.json();
             //deal with user 404 not found
           } else if (response.status === 404) {
+            emailField.style.outlineColor = errorColor;
             emailField.focus();
-
-            throw "<p>Utilisateur inconnu, veuillez vérifier votre e-mail.</p>";
+            throw '<i class="fas fa-triangle-exclamation"></i><p>Utilisateur inconnu, veuillez vérifier votre E-mail.</p>';
             //deal with user 401 unauthorized access user exist but password is wrong
           } else if (response.status === 401) {
+            passwordField.style.outlineColor = errorColor;
             passwordField.focus();
-            throw "<p>Accès non autorisé, veuillez vérifier votre mot de passe.</p>";
-
+            recoveryPassword.innerHTML =
+              'Mot de passe oublié <i class="fa-solid fa-unlock"></i>';
+            throw '<i class="fas fa-triangle-exclamation"></i><p>Accès non autorisé, veuillez vérifier votre mot de passe.</p>';
           } else {
             //deal with other status codes
             throw new Error(
@@ -315,12 +328,13 @@ if (currentPageIsLogin) {
             //put userID and token in user's local storage
             window.localStorage.setItem("token", token);
             window.localStorage.setItem("userId", userId);
+
             //redirection
             window.location.replace("../index.html");
           }
         })
         .catch((error) => {
-          divLoginMessage.style.background = "#F8C471 ";
+          divLoginMessage.style.background = alertColor;
           divLoginMessage.innerHTML = error;
         });
     }
@@ -330,102 +344,3 @@ if (currentPageIsLogin) {
 //--------------------------------//
 //           TESTS SECTION        //
 //--------------------------------//
-
-// console.log(works);
-// console.log(categories);
-
-// alternate way to write this API call :
-// const worksRequest = await fetch(`${API_URL}${WORKS_PATH}`);
-// let works = await worksRequest.json();
-
-// alternate way to write this API call :
-// const categoriesRequest = await fetch(`${API_URL}${CATEGORIES_PATH}`);
-// let categories = await categoriesRequest.json();
-
-//############################//
-//#       fetch login        #//
-//############################//
-// if (currentPageIsLogin) {
-//   let user = {
-//     email: "sophie.bluel@test.tld",
-//     password: "S0phie",
-//   };
-//   //define request for fetch
-//   let request = {
-//     method: "POST",
-//     headers: {
-//       "Content-Type": "application/json",
-//       Accept: "application/json",
-//     },
-//     body: JSON.stringify(user),
-//   };
-
-//   let login = fetch(API_URL + LOGIN_PATH, request)
-//     //handle promise
-//     .then((response) => {
-//       //call to the json method to get body in json format
-//       return response.json();
-//     })
-//     //json() method is also async and return promise so
-//     // we need to chain it
-//     .then((userDatas) => {
-//       //destructuring
-//       let { userId, token } = userDatas;
-//       console.log("userId: " + userId);
-//       console.log("token: " + token);
-//     });
-// }
-//##############################################
-//--------------------------------//
-//     CONTROLE DE FORMULAIRE     //
-//--------------------------------//
-<<<<<<< HEAD
-
-// async function makeRequest(url) {
-//   await fetch(url).then((response) => {
-//     // Shorthand to check for an HTTP 2xx response status.
-//     // See https://fetch.spec.whatwg.org/#dom-response-ok
-//     if (response.ok) {
-//       return response.json();
-//     }
-//     // Raise an exception to reject the promise and trigger the outer .catch() handler.
-//     // By default, an error response status (4xx, 5xx) does NOT cause the promise to reject!
-//     throw Error(response.statusText);
-
-//   })
-//   .then((json)=>{
-
-//     return json;
-//   })
-//   .catch(function(error) {
-//     console.log('Request failed:', error.message);
-//   });
-// }
-// let montest;
-// const test = makeRequest(API_URL + CATEGORIES_PATH,  montest)
-// await console.log(test)
-
-// //works list
-// const works = await fetch(API_URL + WORKS_PATH)
-//   .then((response) => {
-//     if (response.ok) {
-//       return response.json();
-//     }
-//     throw Error(response.statusText);
-//   })
-//   .catch((error) => {
-//     console.log(`Une erreur est survenue : ${error.message}`);
-//   });
-// // categories list
-// const categories = await fetch(API_URL + CATEGORIES_PATH)
-//   .then((response) => {
-//     if (response.ok) {
-//       return response.json();
-//     }
-//     throw Error(response.statusText);
-//   })
-//   .catch((error) => {
-//     console.log(`Une erreur est survenue : ${error.message}`);
-//   });
-=======
->>>>>>> d6386a328c8686fea966e4bd21e681c7e1b40ff2

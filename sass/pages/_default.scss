@@ -43,7 +43,7 @@ h2 {
 }
 
 header {
-  background-color:$background-color;
+  background-color: $background-color;
   display: flex;
   justify-content: space-between;
   padding: 50px 150px;
@@ -169,7 +169,11 @@ header {
       border: none;
       box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
       background-color: white;
-
+      &[type="text"]:focus,
+      &[type="email"]:focus,
+      &[type="password"]:focus {
+        outline: 1px solid $secondary-color;
+      }
       &[type="submit"] {
         font-family: "Syne";
         font-weight: 700;
@@ -182,7 +186,7 @@ header {
 
         &:hover {
           cursor: pointer;
-          background-color:$btn-hover_color;
+          background-color: $btn-hover_color;
         }
       }
     }
@@ -197,6 +201,9 @@ header {
     border: none;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
     background-color: white;
+    &:focus {
+      outline: 1px solid $secondary-color;
+    }
   }
 }
 
