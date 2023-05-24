@@ -19,15 +19,12 @@ const currentUserId = window.localStorage.getItem("userId");
 const currentToken = window.localStorage.getItem("token");
 const loggedIn = currentUserId && currentToken ? true : false;
 const loggedOut = !loggedIn;
-<<<<<<< HEAD
+
 
 //others
 let categories;
 let works;
-=======
-// console.log(loggedIn);
-// console.log(loggedOut);
->>>>>>> d6386a328c8686fea966e4bd21e681c7e1b40ff2
+
 
 //--------------------------------//
 //          FUNCTIONS              //
@@ -268,11 +265,7 @@ if (currentPageIsLogin) {
     if (email === "" || !emailIsValid || password === "" || passwordIsEmpty) {
       divLoginMessage.style.background = "#F8C471 ";
       divLoginMessage.innerHTML =
-<<<<<<< HEAD
         "<p>Veuillez compléter tous les champs du formulaire.</p>";
-=======
-        "<p>Veuillez enter un email et un mot de passe</p>";
->>>>>>> d6386a328c8686fea966e4bd21e681c7e1b40ff2
     } else {
       // body object for API request
       let user = {
@@ -299,19 +292,13 @@ if (currentPageIsLogin) {
             //deal with user 404 not found
           } else if (response.status === 404) {
             emailField.focus();
-<<<<<<< HEAD
+
             throw "<p>Utilisateur inconnu, veuillez vérifier votre e-mail.</p>";
             //deal with user 401 unauthorized access user exist but password is wrong
           } else if (response.status === 401) {
             passwordField.focus();
             throw "<p>Accès non autorisé, veuillez vérifier votre mot de passe.</p>";
-=======
-            throw "<p>Utilisateur inconnu, veuillez vérifier votre e-mail</p>";
-            //deal with user 401 unauthorized access user exist but password is wrong
-          } else if (response.status === 401) {
-            passwordField.focus();
-            throw "<p>Accès non autorisé, veuillez vérifier votre mot de passe</p>";
->>>>>>> d6386a328c8686fea966e4bd21e681c7e1b40ff2
+
           } else {
             //deal with other status codes
             throw new Error(
