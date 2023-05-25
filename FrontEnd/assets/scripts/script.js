@@ -178,7 +178,7 @@ if (loggedIn) {
   divEdition.appendChild(editionButton);
   //buttons modifier
   const buttonModifier =
-    '<span><i class="modifier fa-regular fa-pen-to-square"></i>modifier</span>';
+    '<span class = "modifier-button">modifier</span>';
   //button "modifier introduction"
   introductionFigure.innerHTML += buttonModifier;
   //button "modifier portFolio"

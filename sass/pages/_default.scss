@@ -1,21 +1,17 @@
 body {
   width: 100%;
-
   max-width: 1440px;
   margin: auto;
   font-family: "Work Sans";
   font-size: 14px;
 }
-
 main {
   background-color: $background-color;
   padding: 0 150px;
 }
-
 section {
   padding: 50px 0;
 }
-
 h1 {
   display: flex;
   flex-direction: column;
@@ -23,21 +19,7 @@ h1 {
   font-size: 22px;
   font-weight: 800;
   color: $secondary_color;
-}
-
-h2 {
-  font-family: "Syne";
-  font-weight: 700;
-  font-size: 30px;
-  color: $primary_color;
-}
-
-header {
-  background-color: $background-color;
-  display: flex;
-  justify-content: space-between;
-  padding: 50px 150px;
-  h1 > span {
+  > span {
     margin-top: 4px;
     font-family: "Work Sans";
     font-size: 10px;
@@ -46,6 +28,18 @@ header {
     letter-spacing: 0.1em;
     text-transform: Uppercase;
   }
+}
+h2 {
+  font-family: "Syne";
+  font-weight: 700;
+  font-size: 30px;
+  color: $primary_color;
+}
+header {
+  background-color: $background-color;
+  display: flex;
+  justify-content: space-between;
+  padding: 50px 150px;
   nav {
     ul {
       height: 42px;
@@ -54,7 +48,6 @@ header {
       list-style-type: none;
       gap: 32px;
     }
-
     li {
       padding: 0 10px;
       font-size: 1.2em;
@@ -62,57 +55,44 @@ header {
         width: 22px;
         height: 22px;
       }
-
       &:hover {
         color: $secondary_color;
       }
     }
-
     a {
       color: black;
       font-size: 1rem;
       font-weight: 400;
       text-decoration: none;
-
       &:hover {
         color: $secondary_color;
       }
-
       &.active {
         font-weight: 600;
       }
     }
   }
 }
-
+// Introduction
 #introduction {
   display: flex;
   align-items: center;
-
   figure {
     flex: 1;
-    span {
-      margin-top: 13px;
-      i {
-        margin-right: 8px;
-      }
-    }
   }
   img,
-  span {
+  //button modifier introduction
+  .modifier-button {
     display: block;
     margin: auto;
     width: 80%;
   }
-
   article {
     flex: 1;
   }
-
   h2 {
     margin-bottom: 1em;
   }
-
   p {
     margin-bottom: 0.5em;
   }
@@ -124,22 +104,10 @@ header {
     text-align: center;
     margin-bottom: 1em;
     //button modifier portFolio
-    span {
-      position: absolute;
-      height: 30px;
-      padding-left: 31px;
-      font-family: "work sans";
-      font-weight: 400;
-      font-size: 14px;
-      line-height: 38px;
-      text-align: left;
-      color: black;
-      i {
-        padding-right: 8px;
-      }
+    .modifier-button {
+      margin-left: 31px;
     }
   }
-
   .filters-container {
     margin: 51px auto;
     width: 585px;
@@ -152,38 +120,31 @@ header {
     }
   }
 }
-
 .gallery {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   grid-column-gap: 20px;
   grid-row-gap: 20px;
-
   img {
     width: 100%;
   }
 }
-
 //Contact form
 #contact {
   width: 50%;
   margin: auto;
-
   > * {
     text-align: center;
   }
-
   h2 {
     margin-bottom: 20px;
   }
-
   form {
     text-align: left;
     margin-top: 30px;
     display: flex;
     flex-direction: column;
-
     input {
       height: 50px;
       font-size: 1.2em;
@@ -204,7 +165,6 @@ header {
         width: 180px;
         text-align: center;
         border-radius: 60px;
-
         &:hover {
           cursor: pointer;
           background-color: $btn-hover_color;
@@ -212,12 +172,10 @@ header {
       }
     }
   }
-
   label {
     margin: 2em 0 1em 0;
     font-weight: 500;
   }
-
   textarea {
     border: none;
     box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);

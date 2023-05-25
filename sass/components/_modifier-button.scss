@@ -1,0 +1,17 @@
+.modifier-button {
+  font-family: "work sans";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 38px;
+  text-align: left;
+  color: black;
+  &::before {
+    font-family: "fontAwesome";
+    content: "\f044";
+    padding-right: 8px;
+  }
+  &:hover{
+    color:$secondary-color;
+    cursor:pointer;
+  }
+}

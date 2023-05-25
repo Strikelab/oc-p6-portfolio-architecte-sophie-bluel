@@ -79,6 +79,24 @@ table {
   background-color: rgb(240, 240, 240);
 }
 
+.modifier-button {
+  font-family: "work sans";
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 38px;
+  text-align: left;
+  color: black;
+}
+.modifier-button::before {
+  font-family: "fontAwesome";
+  content: "\f044";
+  padding-right: 8px;
+}
+.modifier-button:hover {
+  color: #B1663C;
+  cursor: pointer;
+}
+
 button {
   height: 37px;
   min-width: 100px;
@@ -129,6 +147,15 @@ h1 {
   font-weight: 800;
   color: #B1663C;
 }
+h1 > span {
+  margin-top: 4px;
+  font-family: "Work Sans";
+  font-size: 10px;
+  font-weight: 400;
+  line-height: 16px;
+  letter-spacing: 0.1em;
+  text-transform: Uppercase;
+}
 
 h2 {
   font-family: "Syne";
@@ -142,15 +169,6 @@ header {
   display: flex;
   justify-content: space-between;
   padding: 50px 150px;
-}
-header h1 > span {
-  margin-top: 4px;
-  font-family: "Work Sans";
-  font-size: 10px;
-  font-weight: 400;
-  line-height: 16px;
-  letter-spacing: 0.1em;
-  text-transform: Uppercase;
 }
 header nav ul {
   height: 42px;
@@ -190,14 +208,8 @@ header nav a.active {
 #introduction figure {
   flex: 1;
 }
-#introduction figure span {
-  margin-top: 13px;
-}
-#introduction figure span i {
-  margin-right: 8px;
-}
 #introduction img,
-#introduction span {
+#introduction .modifier-button {
   display: block;
   margin: auto;
   width: 80%;
@@ -217,19 +229,8 @@ header nav a.active {
   text-align: center;
   margin-bottom: 1em;
 }
-#portfolio h2 span {
-  position: absolute;
-  height: 30px;
-  padding-left: 31px;
-  font-family: "work sans";
-  font-weight: 400;
-  font-size: 14px;
-  line-height: 38px;
-  text-align: left;
-  color: black;
-}
-#portfolio h2 span i {
-  padding-right: 8px;
+#portfolio h2 .modifier-button {
+  margin-left: 31px;
 }
 #portfolio .filters-container {
   margin: 51px auto;
