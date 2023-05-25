@@ -91,9 +91,15 @@ header {
 
   figure {
     flex: 1;
+    span {
+      margin-top: 13px;
+      i {
+        margin-right: 8px;
+      }
+    }
   }
-
-  img {
+  img,
+  span {
     display: block;
     margin: auto;
     width: 80%;
@@ -123,6 +129,7 @@ header {
       height: 30px;
       padding-left: 31px;
       font-family: "work sans";
+      font-weight: 400;
       font-size: 14px;
       line-height: 38px;
       text-align: left;

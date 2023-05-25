@@ -131,6 +131,8 @@ if (currentPageIsIndex) {
 
 // DOM parent select
 const myHeader = document.querySelector("header");
+const introductionFigure = document.querySelector("#introduction figure");
+console.log(introductionFigure);
 const divGallery = document.querySelector(".gallery");
 const divButtonsContainer = document.querySelector(".filters-container");
 const sectionPortFolio = document.querySelector("#portfolio");
@@ -161,7 +163,6 @@ navLogin.addEventListener("click", (e) => {
 // FIRST INDEX PAGE GENERATION    //
 //--------------------------------//
 
-
 if (loggedIn) {
   //edition menu
   navLogin.innerText = "logout";
@@ -175,9 +176,13 @@ if (loggedIn) {
   editionButton.innerText = "publier les changements";
   divEdition.appendChild(editionParagraph);
   divEdition.appendChild(editionButton);
+  //buttons modifier
+  const buttonModifier =
+    '<span><i class="modifier fa-regular fa-pen-to-square"></i>modifier</span>';
+  //button "modifier introduction"
+  introductionFigure.innerHTML += buttonModifier;
   //button "modifier portFolio"
-  portFolioTitle.innerHTML +=
-  '<span><i class="modifier fa-regular fa-pen-to-square"></i>modifier</span>';
+  portFolioTitle.innerHTML += buttonModifier;
 } else {
   navLogin.innerText = "login";
 }

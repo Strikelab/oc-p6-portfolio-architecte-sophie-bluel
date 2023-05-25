@@ -190,7 +190,14 @@ header nav a.active {
 #introduction figure {
   flex: 1;
 }
-#introduction img {
+#introduction figure span {
+  margin-top: 13px;
+}
+#introduction figure span i {
+  margin-right: 8px;
+}
+#introduction img,
+#introduction span {
   display: block;
   margin: auto;
   width: 80%;
@@ -215,6 +222,7 @@ header nav a.active {
   height: 30px;
   padding-left: 31px;
   font-family: "work sans";
+  font-weight: 400;
   font-size: 14px;
   line-height: 38px;
   text-align: left;
