@@ -230,6 +230,7 @@ header nav a.active {
   margin-bottom: 1em;
 }
 #portfolio h2 .modifier-button {
+  position: absolute;
   margin-left: 31px;
 }
 #portfolio .filters-container {

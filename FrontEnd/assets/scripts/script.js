@@ -28,6 +28,7 @@ const errorColor = "red";
 let categories;
 let works;
 let serverDown = true;
+
 //--------------------------------//
 //          FUNCTIONS             //
 //--------------------------------//
@@ -116,6 +117,7 @@ function generateWorks(datas) {
     }
   }
 }
+
 //--------------------------------//
 //          API REQUESTS          //
 //--------------------------------//
@@ -132,7 +134,6 @@ if (currentPageIsIndex) {
 // DOM parent select
 const myHeader = document.querySelector("header");
 const introductionFigure = document.querySelector("#introduction figure");
-console.log(introductionFigure);
 const divGallery = document.querySelector(".gallery");
 const divButtonsContainer = document.querySelector(".filters-container");
 const sectionPortFolio = document.querySelector("#portfolio");
@@ -146,21 +147,9 @@ const divLoginPasswordMessage = document.querySelector(
 const loginButton = document.querySelector("#login__button");
 const recoveryPassword = document.querySelector("#login a ");
 
-//--------------------------------//
-//         EVENT LISTENER         //
-//--------------------------------//
-// clear local storage on exit
-navLogin.addEventListener("click", (e) => {
-  if (loggedIn) {
-    e.preventDefault();
-    window.localStorage.removeItem("userId");
-    window.localStorage.removeItem("token");
-    window.location.href = "./index.html";
-  }
-});
 
 //--------------------------------//
-// FIRST INDEX PAGE GENERATION    //
+//  FIRST INDEX PAGE GENERATION   //
 //--------------------------------//
 
 if (loggedIn) {
@@ -177,10 +166,10 @@ if (loggedIn) {
   divEdition.appendChild(editionParagraph);
   divEdition.appendChild(editionButton);
   //buttons modifier
-  const buttonModifier =
-    '<span class = "modifier-button">modifier</span>';
+  const buttonModifier = '<span class = "modifier-button">modifier</span>';
   //button "modifier introduction"
   introductionFigure.innerHTML += buttonModifier;
+
   //button "modifier portFolio"
   portFolioTitle.innerHTML += buttonModifier;
 } else {
@@ -280,9 +269,8 @@ if (currentPageIsLogin) {
   //form submit
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
-
     const newLocal = (divLoginMessage.innerHTML =
-      '<p class="brown">A few moment later...</p><i class="brown fa-solid fa-hourglass-start">');
+      '<p class="brown">A few moments later...</p><i class="brown fa-solid fa-hourglass-start">');
     divLoginMessage.style.backgroundColor = "transparent";
     let email = emailField.value;
     let password = passwordField.value;
@@ -363,6 +351,51 @@ if (currentPageIsLogin) {
   });
 }
 
+//function to log the user out
+
+navLogin.addEventListener("click", (e) => {
+  if (loggedIn) {
+    e.preventDefault();
+    window.localStorage.removeItem("userId");
+    window.localStorage.removeItem("token");
+    window.location.href = "./index.html";
+  }
+});
+
+//--------------------------------//
+//       INTRO MODIFICTION        //
+//--------------------------------//
+
+//
+// TO DO
+//
+// - implement intro edition
+
+const introductionButtonModifier =
+  introductionFigure.querySelector(".modifier-button");
+introductionButtonModifier.addEventListener("click", (e) => {
+  alert("///-0_0-\\\\\\  Sorry, this functionnality isn't implented yet\nChanging intro coming soon... ");
+});
+
+//--------------------------------//
+//          CALL MODALE           //
+//--------------------------------//
+
+//
+// TO DO
+//
+// - create modale
+
+const portFolioButtonModifier =
+  portFolioTitle.querySelector(".modifier-button");
+portFolioButtonModifier.addEventListener("click", (e) => {
+  alert("///-0_0-\\\\\\  Sorry, this functionnality isn't implented yet\nChanging gallery coming soon... ");
+});
+
+
+
 //--------------------------------//
 //           TESTS SECTION        //
 //--------------------------------//
+
+
