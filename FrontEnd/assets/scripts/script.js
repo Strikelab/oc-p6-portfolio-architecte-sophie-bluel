@@ -134,6 +134,7 @@ const myHeader = document.querySelector("header");
 const divGallery = document.querySelector(".gallery");
 const divButtonsContainer = document.querySelector(".filters-container");
 const sectionPortFolio = document.querySelector("#portfolio");
+const portFolioTitle = document.querySelector("#portfolio > h2");
 const navLogin = document.querySelector("nav li:nth-child(3) a");
 const divLoginMessage = document.querySelector("#login__message");
 const divLoginMailMessage = document.querySelector("#login__mail-message");
@@ -160,8 +161,9 @@ navLogin.addEventListener("click", (e) => {
 // FIRST INDEX PAGE GENERATION    //
 //--------------------------------//
 
-//edition menu
+
 if (loggedIn) {
+  //edition menu
   navLogin.innerText = "logout";
   const divEdition = document.createElement("div");
   divEdition.id = "edition-menu";
@@ -173,6 +175,9 @@ if (loggedIn) {
   editionButton.innerText = "publier les changements";
   divEdition.appendChild(editionParagraph);
   divEdition.appendChild(editionButton);
+  //button "modifier portFolio"
+  portFolioTitle.innerHTML +=
+  '<span><i class="modifier fa-regular fa-pen-to-square"></i>modifier</span>';
 } else {
   navLogin.innerText = "login";
 }
