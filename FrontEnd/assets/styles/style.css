@@ -1,4 +1,4 @@
-/* http://meyerweb.com/eric/tools/css/reset/
+/*test*/ /* http://meyerweb.com/eric/tools/css/reset/
    v2.0 | 20110126
    License: none (public domain)
 */
@@ -315,19 +315,29 @@ footer nav ul {
 #login__message,
 .login__message {
   display: flex;
-  flex-direction: initial;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 10px;
   height: 30px;
 }
-#login__message--alert,
-.login__message--alert {
-  background-color: orange;
+#login__message .brown,
+.login__message .brown {
+  color: #B1663C;
 }
-#login__message--valid,
-.login__message--valid {
-  background-color: green;
+#login__message .fa-info,
+.login__message .fa-info {
+  display: flex;
+  flex-direction: initial;
+  justify-content: center;
+  align-items: center;
+  gap: initial;
+  padding-bottom: 0.5px;
+  font-size: 9px;
+  border: 1px solid;
+  width: 14.5px;
+  height: 14px;
+  border-radius: 50%;
 }
 #login__mail-message,
 .login__mail-message {

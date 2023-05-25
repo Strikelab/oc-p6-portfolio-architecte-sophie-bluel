@@ -21,12 +21,13 @@ const loggedIn = currentUserId && currentToken ? true : false;
 const loggedOut = !loggedIn;
 const primaryColor = "#1D6154";
 const secondaryColor = "#B1663C";
+const infoColor = "lightblue";
 const alertColor = "#F8C471";
 const errorColor = "red";
 //others
 let categories;
 let works;
-
+let serverDown = true;
 //--------------------------------//
 //          FUNCTIONS             //
 //--------------------------------//
@@ -141,7 +142,7 @@ const divLoginPasswordMessage = document.querySelector(
 );
 const loginButton = document.querySelector("#login__button");
 const recoveryPassword = document.querySelector("#login a ");
-console.log(recoveryPassword);
+
 //--------------------------------//
 //         EVENT LISTENER         //
 //--------------------------------//
@@ -269,12 +270,17 @@ if (currentPageIsLogin) {
   //form submit
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    divLoginMessage.innerHTML = "";
+
+    const newLocal = (divLoginMessage.innerHTML =
+      '<p class="brown">A few moment later...</p><i class="brown fa-solid fa-hourglass-start">');
+    divLoginMessage.style.backgroundColor = "transparent";
     let email = emailField.value;
     let password = passwordField.value;
     // submit need a valid email and a password with lenght  > 0
     if (email === "" || !emailIsValid || password === "" || passwordIsEmpty) {
       divLoginMessage.style.background = alertColor;
+      emailField.value = "";
+      emailField.focus();
       divLoginMessage.innerHTML =
         '<i class="fas fa-triangle-exclamation"></i><p>Veuillez compléter tous les champs du formulaire.</p>';
     } else {
@@ -297,6 +303,8 @@ if (currentPageIsLogin) {
       fetch(API_URL + LOGIN_PATH, request)
         //handle promise
         .then((response) => {
+          //deal with net::R_CONNECTION_REFUSED
+          serverDown = false;
           if (response.status === 200) {
             //call to the json method to get body in json format
             return response.json();
@@ -314,9 +322,7 @@ if (currentPageIsLogin) {
             throw '<i class="fas fa-triangle-exclamation"></i><p>Accès non autorisé, veuillez vérifier votre mot de passe.</p>';
           } else {
             //deal with other status codes
-            throw new Error(
-              "Ooops ! une erreur est survenue, veuillez réessayer."
-            );
+            throw Error("Ooops ! une erreur est survenue, veuillez réessayer.");
           }
         })
         //json() method is also async and return promise so
@@ -330,11 +336,17 @@ if (currentPageIsLogin) {
             window.localStorage.setItem("userId", userId);
 
             //redirection
-            window.location.replace("../index.html");
+            window.location.replace("../../index.html");
           }
         })
         .catch((error) => {
           divLoginMessage.style.background = alertColor;
+          if (serverDown) {
+            //server is down
+            divLoginMessage.style.background = infoColor;
+            error =
+              '<i class="rounded fa-solid fa-info"></i><p>Serveur injoignable, veuillez réessayer ultérieurement</p>';
+          }
           divLoginMessage.innerHTML = error;
         });
     }

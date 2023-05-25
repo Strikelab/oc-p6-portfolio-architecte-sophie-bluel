@@ -4,35 +4,44 @@
   @extend #contact;
 
   &__message {
-    @include flex($align: center, $justify: center, $gap:10px);
-    height:30px;
-    &--alert {
-      background-color: orange;
-    }
-    &--valid {
-      background-color: green;
-    }
+    @include flex($direction:row, $align: center, $justify: center, $gap: 10px);
+    height: 30px;
+     .brown {
+    color: $secondary_color;
+  }
+  .fa-info {
+    @include flex($align: center, $justify: center);
+    padding-bottom: 0.5px;
+    // padding-left:1px;
+    font-size: 9px;
+
+    border: 1px solid;
+    width: 14.5px;
+    height: 14px;
+    border-radius: 50%;
+  }
+   
   }
   &__mail-message {
-    @include flex($align:center, $gap:10px);
+    @include flex($align: center, $gap: 10px);
     height: 30px;
-    
   }
   &__password-message {
-    @include flex($align:center, $gap:10px);
+    @include flex($align: center, $gap: 10px);
     height: 2em;
   }
-
+  //for waiting message
+ 
   a {
-
     color: $login-page-text_color;
     font-weight: 500;
     display: block;
     text-decoration: underline;
-    i{
-      margin-left:10px;
-      color:$primary_color;
+    i {
+      margin-left: 10px;
+      color: $primary_color;
     }
+
     &:hover {
       color: $tertiary_color;
     }
@@ -45,8 +54,7 @@
     margin-top: 0;
   }
 
-
   #login__button {
-    margin-top:0px;
+    margin-top: 0px;
   }
 }
