@@ -147,7 +147,6 @@ const divLoginPasswordMessage = document.querySelector(
 const loginButton = document.querySelector("#login__button");
 const recoveryPassword = document.querySelector("#login a ");
 
-
 //--------------------------------//
 //  FIRST INDEX PAGE GENERATION   //
 //--------------------------------//
@@ -301,33 +300,47 @@ if (currentPageIsLogin) {
       fetch(API_URL + LOGIN_PATH, request)
         //handle promise
         .then((response) => {
-          //deal with net::R_CONNECTION_REFUSED
-          serverDown = false;
+          serverDown = false; //net::R_CONNECTION_REFUSED if true --> .catch()
           if (response.status === 200) {
             //call to the json method to get body in json format
             return response.json();
-            //deal with user 404 not found
+            //API answer :user 404 not found
           } else if (response.status === 404) {
             emailField.style.outlineColor = errorColor;
             emailField.focus();
-            throw '<i class="fas fa-triangle-exclamation"></i><p>Utilisateur inconnu, veuillez vérifier votre E-mail.</p>';
-            //deal with user 401 unauthorized access user exist but password is wrong
+            let e = new Error(
+              '<i class="fas fa-triangle-exclamation"></i><p>Utilisateur inconnu, veuillez vérifier votre E-mail.</p>'
+            );
+            throw e;
+            //API answer: user 401 unauthorized access user exist but password is wrong
           } else if (response.status === 401) {
             passwordField.style.outlineColor = errorColor;
             passwordField.focus();
             recoveryPassword.innerHTML =
               'Mot de passe oublié <i class="fa-solid fa-unlock"></i>';
-            throw '<i class="fas fa-triangle-exclamation"></i><p>Accès non autorisé, veuillez vérifier votre mot de passe.</p>';
+            let e = new Error(
+              '<i class="fas fa-triangle-exclamation"></i><p>Accès non autorisé, veuillez vérifier votre mot de passe.</p>'
+            );
+            throw e;
+            // 503 service unavailable, API is probably down.
+          } else if (response.status === 503) {
+            let e = new Error(); //e.message is define in catch()
+            e.status = 503;
+            throw e;
           } else {
             //deal with other status codes
-            throw Error("Ooops ! une erreur est survenue, veuillez réessayer.");
+            serverDown = true;
+            let e = new Error(
+              '<i class="fas fa-triangle-exclamation"></i>Service Indisponible actuellement , veuillez réessayer ultérieurement;'
+            );
+            throw e;
           }
         })
         //json() method is also async and return promise so
         // we need to chain it
         .then((userDatas) => {
           //destructuring
-          let { userId, token, message, error } = userDatas;
+          let { userId, token, message } = userDatas;
           if (!message && userId && token) {
             //put userID and token in user's local storage
             window.localStorage.setItem("token", token);
@@ -339,13 +352,13 @@ if (currentPageIsLogin) {
         })
         .catch((error) => {
           divLoginMessage.style.background = alertColor;
-          if (serverDown) {
-            //server is down
+          // server unreachable or service unavailable API is down
+          if (serverDown || error.status === 503) {
             divLoginMessage.style.background = infoColor;
-            error =
+            error.message =
               '<i class="rounded fa-solid fa-info"></i><p>Serveur injoignable, veuillez réessayer ultérieurement</p>';
           }
-          divLoginMessage.innerHTML = error;
+          divLoginMessage.innerHTML = error.message;
         });
     }
   });
@@ -370,12 +383,15 @@ navLogin.addEventListener("click", (e) => {
 // TO DO
 //
 // - implement intro edition
-
-const introductionButtonModifier =
-  introductionFigure.querySelector(".modifier-button");
-introductionButtonModifier.addEventListener("click", (e) => {
-  alert("///-0_0-\\\\\\  Sorry, this functionnality isn't implented yet\nChanging intro coming soon... ");
-});
+if (loggedIn) {
+  const introductionButtonModifier =
+    introductionFigure.querySelector(".modifier-button");
+  introductionButtonModifier.addEventListener("click", (e) => {
+    alert(
+      "///-0_0-\\\\\\  Sorry, this functionnality isn't implented yet\nChanging intro coming soon... "
+    );
+  });
+}
 
 //--------------------------------//
 //          CALL MODALE           //
@@ -385,17 +401,16 @@ introductionButtonModifier.addEventListener("click", (e) => {
 // TO DO
 //
 // - create modale
-
-const portFolioButtonModifier =
-  portFolioTitle.querySelector(".modifier-button");
-portFolioButtonModifier.addEventListener("click", (e) => {
-  alert("///-0_0-\\\\\\  Sorry, this functionnality isn't implented yet\nChanging gallery coming soon... ");
-});
-
-
+if (loggedIn) {
+  const portFolioButtonModifier =
+    portFolioTitle.querySelector(".modifier-button");
+  portFolioButtonModifier.addEventListener("click", (e) => {
+    alert(
+      "///-0_0-\\\\\\  Sorry, this functionnality isn't implented yet\nChanging gallery coming soon... "
+    );
+  });
+}
 
 //--------------------------------//
 //           TESTS SECTION        //
 //--------------------------------//
-
-
