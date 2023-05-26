@@ -3,7 +3,7 @@
 //--------------------------------//
 
 //environment
-const API_URL = "http://localhost:5678";
+const API_URL = 'http://localhost:5678';
 const WORKS_PATH = "/api/works/";
 const CATEGORIES_PATH = "/api/categories/";
 const LOGIN_PATH = "/api/users/login";
@@ -39,7 +39,7 @@ let serverDown = true;
  * it makes API call and return a promise if no error occured
  * it throw and catch errors if needed
  * example :
- * cont myConstant = await callAPI(http://myurl.tld)
+ * cont myConstant = await callAPI('http://myurl.tld')
  * myConstant will be an array of objetcs in JSON format
  *
  * @param {url} works
@@ -106,7 +106,10 @@ function generateWorks(datas) {
       const figure = document.createElement("figure");
       const workPicture = document.createElement("img");
       const workFigCaption = document.createElement("figcaption");
-      // Childs Attributes
+      //test if API is deployed somewhere else than localhost.
+      if (API_URL !== 'http://localhost:5678') {
+        data.imageUrl = data.imageUrl.replace("http://localhost:5678", API_URL);
+      }
       workPicture.src = data.imageUrl;
       workPicture.setAttribute("alt", `${data.title}`);
       workFigCaption.innerText = `${data.title}`;
