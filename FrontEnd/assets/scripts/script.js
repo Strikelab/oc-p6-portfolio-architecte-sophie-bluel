@@ -21,7 +21,6 @@ let currentUserId = window.localStorage.getItem("userId");
 currentUserId ? (currentUserId = parseInt(currentUserId)) : (currentUserId = 1);
 const currentToken = window.localStorage.getItem("token");
 const loggedIn = currentUserId && currentToken ? true : false;
-const loggedOut = !loggedIn;
 const primaryColor = "#1D6154";
 const secondaryColor = "#B1663C";
 const infoColor = "lightblue";
