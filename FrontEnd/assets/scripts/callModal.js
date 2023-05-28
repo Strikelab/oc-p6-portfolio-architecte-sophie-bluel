@@ -5,7 +5,7 @@
  *
  */
 
-function callModal() {
+function callModal(modalTitleContent = "you must enter a title") {
   let body = document.querySelector("body");
 
   //The Modal
@@ -23,9 +23,10 @@ function callModal() {
   modalCloseButton.innerHTML = "&times;";
   let modalTitle = document.createElement("h2");
   modalTitle.classList.add("modal__title");
-  modalTitle.innerText = "My pretty title";
-  let someContent = document.createElement("p");
-  someContent.innerText = "Some Content";
+  modalTitle.innerText = modalTitleContent;
+  let modalContentContainer = document.createElement("div");
+  modalContentContainer.classList.add("modal__content__container");
+  
 
   //create fragment and add modal to DOM
   const fragment = document.createDocumentFragment();
@@ -33,7 +34,7 @@ function callModal() {
   modal.appendChild(modalContent);
   modalContent.appendChild(modalCloseButton);
   modalContent.appendChild(modalTitle);
-  modalContent.appendChild(someContent);
+  modalContent.appendChild(modalContentContainer);
   body.appendChild(fragment);
 
   // When the user clicks on <span> (x), remove the modal

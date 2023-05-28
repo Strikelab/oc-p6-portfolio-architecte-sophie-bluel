@@ -24,3 +24,19 @@ button {
     cursor: default;
   }
 }
+
+%submit-input {
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  margin: 2em auto;
+  width: 180px;
+  text-align: center;
+  border-radius: 60px;
+  transition: 0.2s;
+  &:hover {
+    cursor: pointer;
+    background-color: $btn-hover_color;
+  }
+}

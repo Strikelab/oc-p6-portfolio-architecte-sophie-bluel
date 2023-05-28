@@ -11,28 +11,6 @@
   overflow: auto; // Enable scroll if needed
   // background-color: rgb(0, 0, 0); // Fallback color
   background-color: rgba(0, 0, 0, 0.4); // Black w/ opacity
-  // Modal Content/Box
-  &__content {
-    position: relative; // for animation
-    @include flex($direction: column, $gap:10px);
-    background-color: #fefefe;
-    margin: 18vh auto; // 15% from the top and centered
-    padding: 26px 30px 55px 30px;
-    border: 1px solid #888;
-    width: 50%; // Could be more or less, depending on screen size
-    max-width: 630px;
-    animation-name: animatetop;
-    animation-duration: 0.5s;
-  }
-  &__title{
-    font-family:"Work Sans";
-    font-size:1.64rem;
-    font-weight:400;
-    line-height:30.5px;
-    color:black;
-    text-align:center;
-  }
-
   // The Close Button
   &__close-btn {
     @include flex($direction: column, $justify: center, $align: center);
@@ -47,6 +25,118 @@
       text-decoration: none;
       cursor: pointer;
     }
+  }
+  // Modal Content/Box
+  &__content {
+    position: relative; // for animation
+    @include flex($direction: column);
+    width: 50%; // Could be more or less, depending on screen size
+    max-width: 630px;
+    margin: 18vh auto; // 15% from the top and centered
+    padding: 26px 30px 55px 30px;
+    border-radius: 10px;
+    background-color: $modal-background-color;
+    animation-name: animatetop;
+    animation-duration: 0.5s;
+
+    &__container {
+      border-bottom: 1px solid $modal-border_color;
+      padding: 4.2vh 0;
+      margin-bottom: 2rem;
+      align-self: center;
+      width: calc((2 / 3) * 100%);
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-column-gap: 9px;
+      grid-row-gap: 9px;
+    }
+    &__move-btn {
+      opacity: 0;
+      // display: none;
+      position: absolute;
+      top: 6px;
+      right: 25px;
+      width: 17px;
+      height: 17px;
+      background-size: 100%;
+      background-image: url(../icons/move.svg);
+      transition: all 0.1s;
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    figure {
+      position: relative;
+      // &:hover > .modal__content__move-btn {
+      //   display: inline-block;
+      //   opacity: 100%;
+      // }
+    }
+
+    &__trash-btn {
+      display: inline-block;
+      position: absolute;
+      top: 6px;
+      right: 5px;
+      width: 17px;
+      height: 17px;
+      background-image: url(../icons/trash.svg);
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    &__picture {
+      width: 100%;
+      &:hover {
+        cursor: pointer;
+      }
+      &:hover + span {
+        cursor: pointer;
+        display: inline-block;
+        opacity: 100%;
+      }
+    }
+    &__edit-btn {
+      height: 14px;
+      line-height: 14px;
+      font-size: 0.84vw;
+      &:hover {
+        color: $secondary_color;
+        cursor: pointer;
+      }
+    }
+  }
+  &__title {
+    font-family: "Work Sans";
+    font-size: 2vw;
+    font-weight: 400;
+    line-height: 30.5px;
+    color: black;
+    text-align: center;
+  }
+}
+.modal__add-picture-btn {
+  @extend %submit-input;
+  border: none;
+  height: 37px;
+  margin: 0 auto;
+  width: 237px;
+}
+.modal__remove-gallery-btn {
+  background-color: $modal-background-color;
+  border: none;
+  color: $danger_color;
+  font-family: "Syne";
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 23px;
+  width: 230px;
+  align-self: center;
+  transition: all 0.2s;
+  &:hover {
+    color: $danger-hover_color;
+
+    cursor: pointer;
   }
 }
 /* Add Animation */

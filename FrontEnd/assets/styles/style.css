@@ -53,70 +53,6 @@ table {
 }
 
 /** end reset css**/
-/* --- Modal --- */
-.modal {
-  position: fixed;
-  z-index: 1;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4);
-}
-.modal__content {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: initial;
-  align-items: initial;
-  gap: 10px;
-  background-color: #fefefe;
-  margin: 18vh auto;
-  padding: 26px 30px 55px 30px;
-  border: 1px solid #888;
-  width: 50%;
-  max-width: 630px;
-  animation-name: animatetop;
-  animation-duration: 0.5s;
-}
-.modal__title {
-  font-family: "Work Sans";
-  font-size: 1.64rem;
-  font-weight: 400;
-  line-height: 30.5px;
-  color: black;
-  text-align: center;
-}
-.modal__close-btn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: initial;
-  align-self: flex-end;
-  width: 24px;
-  height: 24px;
-  font-size: 1.5rem;
-  font-weight: bold;
-}
-.modal__close-btn:hover, .modal__close-btn:focus {
-  color: black;
-  text-decoration: none;
-  cursor: pointer;
-}
-
-/* Add Animation */
-@keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
-  }
-  to {
-    top: 0;
-    opacity: 1;
-  }
-}
 #edition-menu {
   display: flex;
   flex-direction: initial;
@@ -157,16 +93,16 @@ table {
   padding-right: 8px;
 }
 .modifier-button:hover {
-  color: #B1663C;
+  color: #b1663c;
   cursor: pointer;
 }
 
 button {
   height: 37px;
   min-width: 100px;
-  border: 1px solid #1D6154;
-  color: #1D6154;
-  background-color: #FFFEF8;
+  border: 1px solid #1d6154;
+  color: #1d6154;
+  background-color: #fffef8;
   font-family: "Syne";
   font-size: 16px;
   font-weight: 700;
@@ -176,16 +112,182 @@ button {
   transition: 0.2s;
 }
 button:hover {
-  background-color: #0E2F28;
-  color: #FFFEF8;
+  background-color: #0e2f28;
+  color: #fffef8;
   cursor: pointer;
 }
 button.btn-filter-selected {
-  background-color: #1D6154;
-  color: #FFFEF8;
+  background-color: #1d6154;
+  color: #fffef8;
   cursor: default;
 }
 
+#contact form input[type=submit], #login form input[type=submit],
+.login form input[type=submit], .modal__add-picture-btn {
+  font-family: "Syne";
+  font-weight: 700;
+  color: white;
+  background-color: #1d6154;
+  margin: 2em auto;
+  width: 180px;
+  text-align: center;
+  border-radius: 60px;
+  transition: 0.2s;
+}
+#contact form input[type=submit]:hover, #login form input[type=submit]:hover,
+.login form input[type=submit]:hover, .modal__add-picture-btn:hover {
+  cursor: pointer;
+  background-color: #0e2f28;
+}
+
+/* --- Modal --- */
+.modal {
+  position: fixed;
+  z-index: 1;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+.modal__close-btn {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: initial;
+  align-self: flex-end;
+  width: 24px;
+  height: 24px;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+.modal__close-btn:hover, .modal__close-btn:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+.modal__content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: initial;
+  align-items: initial;
+  gap: initial;
+  width: 50%;
+  max-width: 630px;
+  margin: 18vh auto;
+  padding: 26px 30px 55px 30px;
+  border-radius: 10px;
+  background-color: #fefefe;
+  animation-name: animatetop;
+  animation-duration: 0.5s;
+}
+.modal__content__container {
+  border-bottom: 1px solid #b3b3b3;
+  padding: 4.2vh 0;
+  margin-bottom: 2rem;
+  align-self: center;
+  width: 66.6666666667%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-column-gap: 9px;
+  grid-row-gap: 9px;
+}
+.modal__content__move-btn {
+  opacity: 0;
+  position: absolute;
+  top: 6px;
+  right: 25px;
+  width: 17px;
+  height: 17px;
+  background-size: 100%;
+  background-image: url(../icons/move.svg);
+  transition: all 0.1s;
+}
+.modal__content__move-btn:hover {
+  cursor: pointer;
+}
+.modal__content figure {
+  position: relative;
+}
+.modal__content__trash-btn {
+  display: inline-block;
+  position: absolute;
+  top: 6px;
+  right: 5px;
+  width: 17px;
+  height: 17px;
+  background-image: url(../icons/trash.svg);
+}
+.modal__content__trash-btn:hover {
+  cursor: pointer;
+}
+.modal__content__picture {
+  width: 100%;
+}
+.modal__content__picture:hover {
+  cursor: pointer;
+}
+.modal__content__picture:hover + span {
+  cursor: pointer;
+  display: inline-block;
+  opacity: 100%;
+}
+.modal__content__edit-btn {
+  height: 14px;
+  line-height: 14px;
+  font-size: 0.84vw;
+}
+.modal__content__edit-btn:hover {
+  color: #b1663c;
+  cursor: pointer;
+}
+.modal__title {
+  font-family: "Work Sans";
+  font-size: 2vw;
+  font-weight: 400;
+  line-height: 30.5px;
+  color: black;
+  text-align: center;
+}
+
+.modal__add-picture-btn {
+  border: none;
+  height: 37px;
+  margin: 0 auto;
+  width: 237px;
+}
+
+.modal__remove-gallery-btn {
+  background-color: #fefefe;
+  border: none;
+  color: #d65353;
+  font-family: "Syne";
+  font-size: 14px;
+  font-weight: 400;
+  margin-top: 23px;
+  width: 230px;
+  align-self: center;
+  transition: all 0.2s;
+}
+.modal__remove-gallery-btn:hover {
+  color: #ff5353;
+  cursor: pointer;
+}
+
+/* Add Animation */
+@keyframes animatetop {
+  from {
+    top: -300px;
+    opacity: 0;
+  }
+  to {
+    top: 0;
+    opacity: 1;
+  }
+}
 body {
   width: 100%;
   max-width: 1440px;
@@ -195,7 +297,7 @@ body {
 }
 
 main {
-  background-color: #FFFEF8;
+  background-color: #fffef8;
   padding: 0 150px;
 }
 
@@ -209,7 +311,7 @@ h1 {
   font-family: "Syne";
   font-size: 22px;
   font-weight: 800;
-  color: #B1663C;
+  color: #b1663c;
 }
 h1 > span {
   margin-top: 4px;
@@ -225,11 +327,11 @@ h2 {
   font-family: "Syne";
   font-weight: 700;
   font-size: 30px;
-  color: #1D6154;
+  color: #1d6154;
 }
 
 header {
-  background-color: #FFFEF8;
+  background-color: #fffef8;
   display: flex;
   justify-content: space-between;
   padding: 50px 150px;
@@ -250,7 +352,7 @@ header nav li img {
   height: 22px;
 }
 header nav li:hover {
-  color: #B1663C;
+  color: #b1663c;
 }
 header nav a {
   color: black;
@@ -259,7 +361,7 @@ header nav a {
   text-decoration: none;
 }
 header nav a:hover {
-  color: #B1663C;
+  color: #b1663c;
 }
 header nav a.active {
   font-weight: 600;
@@ -356,23 +458,7 @@ header nav a.active {
 .login form input[type=text]:focus, #contact form input[type=email]:focus, #login form input[type=email]:focus,
 .login form input[type=email]:focus, #contact form input[type=password]:focus, #login form input[type=password]:focus,
 .login form input[type=password]:focus {
-  outline: 1px solid #B1663C;
-}
-#contact form input[type=submit], #login form input[type=submit],
-.login form input[type=submit] {
-  font-family: "Syne";
-  font-weight: 700;
-  color: white;
-  background-color: #1d6154;
-  margin: 2em auto;
-  width: 180px;
-  text-align: center;
-  border-radius: 60px;
-}
-#contact form input[type=submit]:hover, #login form input[type=submit]:hover,
-.login form input[type=submit]:hover {
-  cursor: pointer;
-  background-color: #0E2F28;
+  outline: 1px solid #b1663c;
 }
 #contact label, #login label,
 .login label {
@@ -387,7 +473,7 @@ header nav a.active {
 }
 #contact textarea:focus, #login textarea:focus,
 .login textarea:focus {
-  outline: 1px solid #B1663C;
+  outline: 1px solid #b1663c;
 }
 
 footer nav ul {
@@ -411,7 +497,7 @@ footer nav ul {
 }
 #login__message .brown,
 .login__message .brown {
-  color: #B1663C;
+  color: #b1663c;
 }
 #login__message .fa-info,
 .login__message .fa-info {
@@ -447,7 +533,7 @@ footer nav ul {
 }
 #login a,
 .login a {
-  color: #3D3D3D;
+  color: #3d3d3d;
   font-weight: 500;
   display: block;
   text-decoration: underline;
@@ -455,11 +541,11 @@ footer nav ul {
 #login a i,
 .login a i {
   margin-left: 10px;
-  color: #1D6154;
+  color: #1d6154;
 }
 #login a:hover,
 .login a:hover {
-  color: #93532F;
+  color: #93532f;
 }
 #login h2,
 .login h2 {
@@ -467,7 +553,7 @@ footer nav ul {
 }
 #login label,
 .login label {
-  color: #3D3D3D;
+  color: #3d3d3d;
   margin-top: 0;
 }
 #login #login__button,

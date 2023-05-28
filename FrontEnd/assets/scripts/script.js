@@ -136,13 +136,10 @@ function generateWorks(datas) {
 //--------------------------------//
 
 if (currentPageIsIndex) {
-  categories = await callAPI(API_URL + CATEGORIES_PATH).catch((err) => {
-    // cross-origin problem
-    // uncaught (in promise) Error: A listener indicated an asynchronous response by returning true,
-    // but the message channel closed before a response was received
-    console.error(`unexpected error :  ${err}`);
-  });
+  //list of categories
+  categories = await callAPI(API_URL + CATEGORIES_PATH);
 
+  //list of works
   works = await callAPI(API_URL + WORKS_PATH);
 }
 
@@ -406,10 +403,9 @@ if (loggedIn) {
     introductionFigure.querySelector(".modifier-button");
   // When the user clicks the button, open the modal
   introButtonModifier.addEventListener("click", () => {
-    callModal();
-    document.querySelector(".modal__title").innerText = "Introduction";
-    document.querySelector(".modal__content p").innerHTML =
-      "Not implented yet: TO DO";
+    callModal("Introduction");
+    document.querySelector(".modal__content__container").innerHTML =
+      "<p>Not implented yet: TO DO</p>";
   });
 }
 //--- GALLERY
@@ -419,14 +415,31 @@ if (loggedIn) {
     portFolioTitle.querySelector(".modifier-button");
   // When the user clicks the button, open the modal
   portFolioButtonModifier.addEventListener("click", () => {
-    callModal();
-    document.querySelector(".modal__title").innerText = "Galerie photo";
-    document.querySelector(".modal__content p").innerHTML =
-      "This modal has been called by Gallery";
-    let modalContent = document.querySelector(".modal__content");
-    const myNewP = document.createElement("p");
-    myNewP.innerHTML = "TO DO : call the gallery for user connected";
-    modalContent.appendChild(myNewP);
+    callModal("Galerie photo");
+    const modalContent = document.querySelector(".modal__content");
+    const modalContentContainer = document.querySelector(
+      ".modal__content__container"
+    );
+    works.forEach((data) => {
+      modalContentContainer.innerHTML += `<figure>
+      
+    <img class = modal__content__picture src=${data.imageUrl} alt =${data.title}>
+    <span class = modal__content__move-btn></span>
+    <span class = modal__content__trash-btn></span>
+    <p class = modal__content__edit-btn>éditer</p>
+    </figure>`;
+    });
+    const modalButtonAjouterPhoto = document.createElement("input");
+    modalButtonAjouterPhoto.type = "submit";
+    modalButtonAjouterPhoto.classList.add("modal__add-picture-btn");
+
+    modalButtonAjouterPhoto.value = "Ajouter une photo";
+    modalContent.appendChild(modalButtonAjouterPhoto);
+    const modalSupprimerGallerie = document.createElement("input");
+    modalSupprimerGallerie.type = "submit";
+    modalSupprimerGallerie.classList.add("modal__remove-gallery-btn");
+    modalSupprimerGallerie.value = "Supprimer la galerie";
+    modalContent.appendChild(modalSupprimerGallerie);
   });
 }
 //--------------------------------//
