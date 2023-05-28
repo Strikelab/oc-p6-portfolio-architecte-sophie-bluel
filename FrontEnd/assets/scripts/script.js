@@ -1,3 +1,4 @@
+import callModal from "./callModal.js";
 //--------------------------------//
 //    CONSTANTS & VARIABLES       //
 //--------------------------------//
@@ -58,7 +59,7 @@ async function callAPI(url) {
       throw Error(response.statusText);
     })
     .catch((error) => {
-      console.log(`Une erreur est survenue : ${error.message}`);
+      console.error(`Une erreur est survenue : ${error.message}`);
     });
 }
 
@@ -104,10 +105,6 @@ function generateWorks(datas) {
   if (datas && datas.length > 0) {
     divGallery.innerHTML = "";
     // Add works to DOM
-    console.log(
-      "currentUserId: " + currentUserId + " type: " + typeof currentUserId
-    );
-
     datas.forEach((data) => {
       if (currentUserId === data.userId) {
         // DOM Childs
@@ -140,7 +137,13 @@ function generateWorks(datas) {
 //--------------------------------//
 
 if (currentPageIsIndex) {
-  categories = await callAPI(API_URL + CATEGORIES_PATH);
+  categories = await callAPI(API_URL + CATEGORIES_PATH).catch((err) => {
+    // cross-origin problem
+    // uncaught (in promise) Error: A listener indicated an asynchronous response by returning true,
+    // but the message channel closed before a response was received
+    console.error(`unexpected error :  ${err}`);
+  });
+
   works = await callAPI(API_URL + WORKS_PATH);
 }
 
@@ -382,7 +385,7 @@ if (currentPageIsLogin) {
   });
 }
 
-//function to log the user out
+//log the user out and clean local storage
 
 navLogin.addEventListener("click", (e) => {
   if (loggedIn) {
@@ -394,41 +397,40 @@ navLogin.addEventListener("click", (e) => {
 });
 
 //--------------------------------//
-//       INTRO MODIFICTION        //
-//--------------------------------//
-
-//
-// TO DO
-//
-// - implement intro edition
-if (loggedIn) {
-  const introductionButtonModifier =
-    introductionFigure.querySelector(".modifier-button");
-  introductionButtonModifier.addEventListener("click", (e) => {
-    alert(
-      "///-0_0-\\\\\\  Sorry, this functionnality isn't implented yet\nChanging intro coming soon... "
-    );
-  });
-}
-
-//--------------------------------//
 //          CALL MODALE           //
 //--------------------------------//
 
-//
-// TO DO
-//
-// - create modale
+//--- INTRO
 if (loggedIn) {
-  const portFolioButtonModifier =
-    portFolioTitle.querySelector(".modifier-button");
-  portFolioButtonModifier.addEventListener("click", (e) => {
-    alert(
-      "///-0_0-\\\\\\  Sorry, this functionnality isn't implented yet\nChanging gallery coming soon... "
-    );
+  // Get the button that opens the modal
+  const introButtonModifier =
+    introductionFigure.querySelector(".modifier-button");
+  // When the user clicks the button, open the modal
+  introButtonModifier.addEventListener("click", () => {
+    callModal();
+    document.querySelector(".modal__title").innerText = "Introduction";
+    document.querySelector(".modal__content p").innerHTML =
+      "Not implented yet: TO DO";
   });
 }
-
+//--- GALLERY
+if (loggedIn) {
+  // Get the button that opens the modal
+  const portFolioButtonModifier =
+    portFolioTitle.querySelector(".modifier-button");
+  // When the user clicks the button, open the modal
+  portFolioButtonModifier.addEventListener("click", () => {
+    callModal();
+    document.querySelector(".modal__title").innerText = "Galerie photo";
+    document.querySelector(".modal__content p").innerHTML =
+      "This modal has been called by Gallery";
+    let modalContent = document.querySelector(".modal__content");
+    console.log(modalContent);
+    const myNewP = document.createElement("p");
+    myNewP.innerHTML = "TO DO : call the gallery for user connected";
+    modalContent.appendChild(myNewP);
+  });
+}
 //--------------------------------//
 //           TESTS SECTION        //
 //--------------------------------//
