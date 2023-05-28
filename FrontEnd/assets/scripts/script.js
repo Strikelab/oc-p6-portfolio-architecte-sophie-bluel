@@ -425,7 +425,6 @@ if (loggedIn) {
     document.querySelector(".modal__content p").innerHTML =
       "This modal has been called by Gallery";
     let modalContent = document.querySelector(".modal__content");
-    console.log(modalContent);
     const myNewP = document.createElement("p");
     myNewP.innerHTML = "TO DO : call the gallery for user connected";
     modalContent.appendChild(myNewP);
