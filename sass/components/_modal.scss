@@ -2,7 +2,7 @@
 // credit: https://www.w3schools.com/howto/howto_css_modals.asp
 // The Modal (background)
 .modal {
-  color:black;
+  color: black;
   position: absolute; // Stay in place
   z-index: 1; // Sit on top
   left: 0;
@@ -10,47 +10,102 @@
   width: 100%; // Full parent width
   height: 100vh; // Full height
   overflow: auto; // Enable scroll if needed
-  // background-color: rgb(0, 0, 0); // Fallback color
   background-color: rgba(0, 0, 0, 0.4); // Black w/ opacity
+
   // The Close Button
   &__close-btn {
-    @include flex($direction: column, $justify: center, $align: center);
-    align-self: flex-end;
+    float: right;
     width: 24px;
     height: 24px;
-    font-size: 1.5rem;
-    font-weight: bold;
-    &:hover,
-    &:focus {
-      color: black;
-      text-decoration: none;
+    margin: 26px 30px 0;
+    font-weight: 600;
+    font-size: 24px;
+    text-align: center;
+    line-height: 24px;
+    &:hover {
       cursor: pointer;
     }
   }
-  // Modal Content/Box
+  // The Previous Button
+  &__previous-btn {
+    float: left;
+    width: 21px;
+    height: 21px;
+    margin: 26px 0 0 30px;
+    background-image: url(../icons/back-arrow.svg);
+    &:hover {
+      cursor: pointer;
+    }
+  }
+
   &__content {
+    overflow: hidden;
     position: relative; // for animation
     @include flex($direction: column);
     width: 50%; // Could be more or less, depending on screen size
     max-width: 630px;
-    justify-self:center;
-    margin: 5vh auto; // 15% from the top and centered
-    padding: 26px 30px 55px 30px;
+    position: absolute;
+    height: fit-content;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    // margin: 5% auto; // 15% from the top and centered
+    // padding: 26px 30px 55px 30px;
     border-radius: 10px;
-    background-color: $modal-background-color;
+    background-color: transparent;
     animation-name: animatetop;
     animation-duration: 0.5s;
 
-    &__container {
-      border-bottom: 1px solid $modal-border_color;
-      padding: 4.2vh 0;
-      margin-bottom: 2rem;
-      align-self: center;
-      width: calc((2 / 3) * 100%);
+    &__page-1 {
+      width: 100%;
+      border-radius: 10px;
+      height: fit-content;
+      background-color: $modal-background-color;
+      padding-bottom: 53px;
+    }
+    &__page-2 {
+      position: absolute;
+      height: 0px;
+      width: 100%;
+      border-radius: 10px;
+      background-color: $modal-background-color;
+      height: fit-content;
+      transform: translateX(100%);
+    }
+    &__title1,
+    &__title2 {
+      width: 100%;
+      margin-top: 60px;
+      margin-bottom: 46px;
+      font-family: "Work Sans";
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 30.5px;
+      color: black;
+      text-align: center;
+    }
+    &__container1 {
       display: grid;
+      margin: 0 auto;
       grid-template-columns: 1fr 1fr 1fr 1fr;
       grid-column-gap: 9px;
       grid-row-gap: 9px;
+      width: calc((2 / 3) * 100%);
+      padding-bottom: 47px;
+      border-bottom: 1px solid $modal-border_color;
+    }
+    &__picture {
+      width: 100%;
+      &:hover {
+        cursor: pointer;
+      }
+      &:hover + span {
+        cursor: pointer;
+        display: inline-block;
+        opacity: 100%;
+      }
     }
     &__move-btn {
       opacity: 0;
@@ -65,12 +120,9 @@
       transition: all 0.1s;
       &:hover {
         cursor: pointer;
+        opacity: 1;
       }
     }
-    figure {
-      position: relative;
-    }
-
     &__trash-btn {
       display: inline-block;
       position: absolute;
@@ -83,17 +135,6 @@
         cursor: pointer;
       }
     }
-    &__picture {
-      width: 100%;
-      &:hover {
-        cursor: pointer;
-      }
-      &:hover + span {
-        cursor: pointer;
-        display: inline-block;
-        opacity: 100%;
-      }
-    }
     &__edit-btn {
       height: 14px;
       line-height: 14px;
@@ -103,48 +144,47 @@
         cursor: pointer;
       }
     }
+    figure {
+      position: relative;
+    }
   }
-  &__title {
-    font-family: "Work Sans";
-    font-size: 2vw;
-    font-weight: 400;
-    line-height: 30.5px;
-    color: black;
-    text-align: center;
-  }
-}
-.modal__add-picture-btn {
-  @extend %submit-input;
-  border: none;
-  height: 37px;
-  margin: 0 auto;
-  width: 237px;
-}
-.modal__remove-gallery-btn {
-  background-color: $modal-background-color;
-  border: none;
-  color: $danger_color;
-  font-family: "Syne";
-  font-size: 14px;
-  font-weight: 400;
-  margin-top: 23px;
-  width: 230px;
-  align-self: center;
-  transition: all 0.2s;
-  &:hover {
-    color: $danger-hover_color;
 
-    cursor: pointer;
+  &__add-picture-btn {
+    @extend %submit-input;
+    display: block;
+    border: none;
+    height: 37px;
+    margin: 38px auto 0 auto;
+    width: 237px;
   }
-}
-/* Add Animation */
-@keyframes animatetop {
-  from {
-    top: -300px;
-    opacity: 0;
+
+  &__remove-gallery-btn {
+    display: block;
+    background-color: $modal-background-color;
+    border: none;
+    color: $danger_color;
+    font-family: "Syne";
+    font-size: 14px;
+    font-weight: 400;
+    margin: 23px auto 0 auto;
+    width: 230px;
+    transition: all 0.2s;
+    &:hover {
+      color: $danger-hover_color;
+
+      cursor: pointer;
+    }
   }
-  to {
-    top: 0;
-    opacity: 1;
+
+  //  Add Animation 
+  @keyframes animatetop {
+    from {
+      top: -800px;
+      opacity: 0;
+    }
+    to {
+      top: 0;
+      opacity: 1;
+    }
   }
 }

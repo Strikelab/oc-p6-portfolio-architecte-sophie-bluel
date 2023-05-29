@@ -1,5 +1,6 @@
 #edition-menu {
   z-index: 1;
+  transform: translateY(-1px); //stop flashing top when scrolling
   position: relative;
   @include flex($justify: center, $align: center, $gap: 21px);
   position: sticky;
@@ -11,6 +12,7 @@
     padding-right: 9px;
   }
   button {
+    color:black;
     height: 38px;
     margin: 11px 0 10px 0;
     background-color: white;

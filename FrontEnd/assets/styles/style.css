@@ -55,6 +55,7 @@ table {
 /** end reset css**/
 #edition-menu {
   z-index: 1;
+  transform: translateY(-1px);
   position: relative;
   display: flex;
   flex-direction: initial;
@@ -70,6 +71,7 @@ table {
   padding-right: 9px;
 }
 #edition-menu button {
+  color: black;
   height: 38px;
   margin: 11px 0 10px 0;
   background-color: white;
@@ -155,23 +157,30 @@ button.btn-filter-selected {
   background-color: rgba(0, 0, 0, 0.4);
 }
 .modal__close-btn {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: initial;
-  align-self: flex-end;
+  float: right;
   width: 24px;
   height: 24px;
-  font-size: 1.5rem;
-  font-weight: bold;
+  margin: 26px 30px 0;
+  font-weight: 600;
+  font-size: 24px;
+  text-align: center;
+  line-height: 24px;
 }
-.modal__close-btn:hover, .modal__close-btn:focus {
-  color: black;
-  text-decoration: none;
+.modal__close-btn:hover {
+  cursor: pointer;
+}
+.modal__previous-btn {
+  float: left;
+  width: 21px;
+  height: 21px;
+  margin: 26px 0 0 30px;
+  background-image: url(../icons/back-arrow.svg);
+}
+.modal__previous-btn:hover {
   cursor: pointer;
 }
 .modal__content {
+  overflow: hidden;
   position: relative;
   display: flex;
   flex-direction: column;
@@ -180,24 +189,68 @@ button.btn-filter-selected {
   gap: initial;
   width: 50%;
   max-width: 630px;
-  justify-self: center;
-  margin: 5vh auto;
-  padding: 26px 30px 55px 30px;
+  position: absolute;
+  height: -moz-fit-content;
+  height: fit-content;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: auto;
   border-radius: 10px;
-  background-color: #fefefe;
+  background-color: transparent;
   animation-name: animatetop;
   animation-duration: 0.5s;
 }
-.modal__content__container {
-  border-bottom: 1px solid #b3b3b3;
-  padding: 4.2vh 0;
-  margin-bottom: 2rem;
-  align-self: center;
-  width: 66.6666666667%;
+.modal__content__page-1 {
+  width: 100%;
+  border-radius: 10px;
+  height: -moz-fit-content;
+  height: fit-content;
+  background-color: #fefefe;
+  padding-bottom: 53px;
+}
+.modal__content__page-2 {
+  position: absolute;
+  height: 0px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #fefefe;
+  height: -moz-fit-content;
+  height: fit-content;
+  transform: translateX(100%);
+}
+.modal__content__title1, .modal__content__title2 {
+  width: 100%;
+  margin-top: 60px;
+  margin-bottom: 46px;
+  font-family: "Work Sans";
+  font-size: 26px;
+  font-weight: 400;
+  line-height: 30.5px;
+  color: black;
+  text-align: center;
+}
+.modal__content__container1 {
   display: grid;
+  margin: 0 auto;
   grid-template-columns: 1fr 1fr 1fr 1fr;
   grid-column-gap: 9px;
   grid-row-gap: 9px;
+  width: 66.6666666667%;
+  padding-bottom: 47px;
+  border-bottom: 1px solid #b3b3b3;
+}
+.modal__content__picture {
+  width: 100%;
+}
+.modal__content__picture:hover {
+  cursor: pointer;
+}
+.modal__content__picture:hover + span {
+  cursor: pointer;
+  display: inline-block;
+  opacity: 100%;
 }
 .modal__content__move-btn {
   opacity: 0;
@@ -212,9 +265,7 @@ button.btn-filter-selected {
 }
 .modal__content__move-btn:hover {
   cursor: pointer;
-}
-.modal__content figure {
-  position: relative;
+  opacity: 1;
 }
 .modal__content__trash-btn {
   display: inline-block;
@@ -228,17 +279,6 @@ button.btn-filter-selected {
 .modal__content__trash-btn:hover {
   cursor: pointer;
 }
-.modal__content__picture {
-  width: 100%;
-}
-.modal__content__picture:hover {
-  cursor: pointer;
-}
-.modal__content__picture:hover + span {
-  cursor: pointer;
-  display: inline-block;
-  opacity: 100%;
-}
 .modal__content__edit-btn {
   height: 14px;
   line-height: 14px;
@@ -248,43 +288,35 @@ button.btn-filter-selected {
   color: #b1663c;
   cursor: pointer;
 }
-.modal__title {
-  font-family: "Work Sans";
-  font-size: 2vw;
-  font-weight: 400;
-  line-height: 30.5px;
-  color: black;
-  text-align: center;
+.modal__content figure {
+  position: relative;
 }
-
 .modal__add-picture-btn {
+  display: block;
   border: none;
   height: 37px;
-  margin: 0 auto;
+  margin: 38px auto 0 auto;
   width: 237px;
 }
-
 .modal__remove-gallery-btn {
+  display: block;
   background-color: #fefefe;
   border: none;
   color: #d65353;
   font-family: "Syne";
   font-size: 14px;
   font-weight: 400;
-  margin-top: 23px;
+  margin: 23px auto 0 auto;
   width: 230px;
-  align-self: center;
   transition: all 0.2s;
 }
 .modal__remove-gallery-btn:hover {
   color: #ff5353;
   cursor: pointer;
 }
-
-/* Add Animation */
 @keyframes animatetop {
   from {
-    top: -300px;
+    top: -800px;
     opacity: 0;
   }
   to {
@@ -292,6 +324,7 @@ button.btn-filter-selected {
     opacity: 1;
   }
 }
+
 body {
   width: 100%;
   max-width: 1440px;

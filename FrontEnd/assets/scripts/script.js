@@ -14,7 +14,6 @@ import generateWorks from "./generateWorks.js";
 //    CONSTANTS & VARIABLES       //
 //--------------------------------//
 
-
 //pages
 const currentPage = window.location.href;
 let currentPageIsIndex = currentPage.includes("index.html");
@@ -32,8 +31,6 @@ const errorColor = "red";
 let categories;
 let works;
 let serverDown = true;
-
-
 
 //--------------------------------//
 //          API REQUESTS          //
@@ -54,7 +51,6 @@ if (currentPageIsIndex) {
 // DOM parent select
 const myHeader = document.querySelector("header");
 const introductionFigure = document.querySelector("#introduction figure");
-
 
 const sectionPortFolio = document.querySelector("#portfolio");
 const portFolioTitle = document.querySelector("#portfolio > h2");
@@ -307,12 +303,10 @@ if (loggedIn) {
     introductionFigure.querySelector(".modifier-button");
   // When the user clicks the button, open the modal
   introButtonModifier.addEventListener("click", () => {
-    callModal("Introduction");
-    document.querySelector(".modal__content").innerHTML +=
-      "<p>Not implented yet: TO DO</p>";
+    callModal("Coming soon...");
   });
 }
-//--- GALLERY
+//---GaLLERY
 if (loggedIn) {
   // Get the button that opens the modal
   const portFolioButtonModifier =
@@ -320,13 +314,15 @@ if (loggedIn) {
   // When the user clicks the button, open the modal
   portFolioButtonModifier.addEventListener("click", () => {
     callModal("Galerie photo");
-    const modalContent = document.querySelector(".modal__content");
-    const modalContentContainer = document.querySelector(
-      ".modal__content__container"
+    const modalContentPage1 = document.querySelector(".modal__content__page-1");
+    const modalContentPage2 = document.querySelector(".modal__content__page-2");
+
+    const modalContentContainer1 = document.querySelector(
+      ".modal__content__container1"
     );
     works.forEach((data) => {
-      modalContentContainer.innerHTML += `<figure>
-      
+      modalContentContainer1.innerHTML += `<figure>
+
     <img class = modal__content__picture src=${data.imageUrl} alt =${data.title}>
     <span class = modal__content__move-btn></span>
     <span class = modal__content__trash-btn></span>
@@ -338,14 +334,20 @@ if (loggedIn) {
     modalButtonAjouterPhoto.classList.add("modal__add-picture-btn");
 
     modalButtonAjouterPhoto.value = "Ajouter une photo";
-    modalContent.appendChild(modalButtonAjouterPhoto);
+    modalContentPage1.appendChild(modalButtonAjouterPhoto);
     const modalSupprimerGallerie = document.createElement("input");
     modalSupprimerGallerie.type = "submit";
     modalSupprimerGallerie.classList.add("modal__remove-gallery-btn");
     modalSupprimerGallerie.value = "Supprimer la galerie";
-    modalContent.appendChild(modalSupprimerGallerie);
+    modalContentPage1.appendChild(modalSupprimerGallerie);
+    //events listeners toogle modal pages
+    modalButtonAjouterPhoto.addEventListener("click", () => {
+      modalContentPage1.style.transform = "translateX(-110%)";
+      modalContentPage2.style.transform = "translateX(0)";
+    });
   });
 }
+
 //--------------------------------//
 //           TESTS SECTION        //
 //--------------------------------//
