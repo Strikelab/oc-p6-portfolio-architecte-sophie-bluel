@@ -54,12 +54,15 @@ table {
 
 /** end reset css**/
 #edition-menu {
+  z-index: 1;
+  position: relative;
   display: flex;
   flex-direction: initial;
   justify-content: center;
   align-items: center;
   gap: 21px;
-  height: 59px;
+  position: sticky;
+  top: 0;
   background-color: black;
   color: white;
 }
@@ -68,9 +71,8 @@ table {
 }
 #edition-menu button {
   height: 38px;
-  margin: 0;
+  margin: 11px 0 10px 0;
   background-color: white;
-  color: black;
   font-family: "work sans";
   padding: 0 23px;
   border: none;
@@ -142,12 +144,13 @@ button.btn-filter-selected {
 
 /* --- Modal --- */
 .modal {
-  position: fixed;
+  color: black;
+  position: absolute;
   z-index: 1;
   left: 0;
-  top: 0;
+  top: 59px;
   width: 100%;
-  height: 100%;
+  height: 100vh;
   overflow: auto;
   background-color: rgba(0, 0, 0, 0.4);
 }
@@ -177,7 +180,8 @@ button.btn-filter-selected {
   gap: initial;
   width: 50%;
   max-width: 630px;
-  margin: 18vh auto;
+  justify-self: center;
+  margin: 5vh auto;
   padding: 26px 30px 55px 30px;
   border-radius: 10px;
   background-color: #fefefe;

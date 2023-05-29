@@ -1,13 +1,18 @@
 /**
  *
- * This function call a modal box 
+ * This function call a modal box
  * it takes the Title of the modal as parameter.
  *@param {string} modalTitle
  *
  */
 
 function callModal(modalTitleContent = "you must enter a title") {
-  let body = document.querySelector("body");
+  // let body = document.querySelector("body");
+  let editionMenu = document.querySelector("#edition-menu");
+  // editionMenu.style.width = "100vw";
+  // editionMenu.style.position = "fixed";
+  // editionMenu.style.top = "0";
+  // editionMenu.style.left = "0";
   //The Modal
   let modal = document.createElement("div");
   modal.id = "myModal";
@@ -34,17 +39,19 @@ function callModal(modalTitleContent = "you must enter a title") {
   modalContent.appendChild(modalCloseButton);
   modalContent.appendChild(modalTitle);
   modalContent.appendChild(modalContentContainer);
-  body.appendChild(fragment);
+  editionMenu.appendChild(fragment);
 
-  // When the user clicks on <span> (x), remove the modal
+  // When the user clicks on <span> (x), remove the modal and reset editionMenu
   modalCloseButton.addEventListener("click", () => {
     modal.remove();
+    // editionMenu.removeAttribute("style");
   });
 
-  // When the user clicks anywhere outside of the modal__content, remove the modal
+  // When the user clicks anywhere outside of the modal__content, remove the modal and reset editionMenu
   window.addEventListener("click", (e) => {
     if (e.target == modal) {
       modal.remove();
+      // editionMenu.removeAttribute("style");
     }
   });
 }
