@@ -1,13 +1,13 @@
 /**
  *
- * This function call a modal box
- *
+ * This function call a modal box 
+ * it takes the Title of the modal as parameter.
+ *@param {string} modalTitle
  *
  */
 
 function callModal(modalTitleContent = "you must enter a title") {
   let body = document.querySelector("body");
-
   //The Modal
   let modal = document.createElement("div");
   modal.id = "myModal";
@@ -26,8 +26,7 @@ function callModal(modalTitleContent = "you must enter a title") {
   modalTitle.innerText = modalTitleContent;
   let modalContentContainer = document.createElement("div");
   modalContentContainer.classList.add("modal__content__container");
-  
-
+  modal.innerHTML = "";
   //create fragment and add modal to DOM
   const fragment = document.createDocumentFragment();
   fragment.appendChild(modal);
@@ -49,4 +48,5 @@ function callModal(modalTitleContent = "you must enter a title") {
     }
   });
 }
+
 export default callModal;

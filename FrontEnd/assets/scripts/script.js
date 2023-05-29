@@ -1,13 +1,19 @@
+//env variables
+import { API_URL } from "./env.js";
+import { CATEGORIES_PATH } from "./env.js";
+import { WORKS_PATH } from "./env.js";
+import { LOGIN_PATH } from "./env.js";
+import { loggedIn } from "./env.js";
+//functions
+import callAPI from "./callAPI.js";
 import callModal from "./callModal.js";
+import generateFiltersButtons from "./generateFiltersButtons.js";
+import generateWorks from "./generateWorks.js";
+
 //--------------------------------//
 //    CONSTANTS & VARIABLES       //
 //--------------------------------//
 
-//environment
-const API_URL = "http://localhost:5678";
-const WORKS_PATH = "/api/works/";
-const CATEGORIES_PATH = "/api/categories/";
-const LOGIN_PATH = "/api/users/login";
 
 //pages
 const currentPage = window.location.href;
@@ -16,11 +22,7 @@ let currentPageIsLogin = currentPage.includes("login.html");
 
 //login user
 let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-let currentUserId = window.localStorage.getItem("userId");
-//if currentUserId exists parse it to integer else set default = 1.
-currentUserId ? (currentUserId = parseInt(currentUserId)) : (currentUserId = 1);
-const currentToken = window.localStorage.getItem("token");
-const loggedIn = currentUserId && currentToken ? true : false;
+
 const primaryColor = "#1D6154";
 const secondaryColor = "#B1663C";
 const infoColor = "lightblue";
@@ -31,105 +33,7 @@ let categories;
 let works;
 let serverDown = true;
 
-//--------------------------------//
-//          FUNCTIONS             //
-//--------------------------------//
 
-/**
- *
- * This function takes an url as argument
- * it makes API call and return a promise if no error occured
- * it throw and catch errors if needed
- * example :
- * cont myConstant = await callAPI('http://myurl.tld')
- * myConstant will be an array of objetcs in JSON format
- *
- * @param {url} works
- *
- */
-
-async function callAPI(url) {
-  return fetch(url)
-    .then((response) => {
-      //shorthand for status != 200
-      if (response.ok) {
-        return response.json();
-      }
-      throw Error(response.statusText);
-    })
-    .catch((error) => {
-      console.error(`Une erreur est survenue : ${error.message}`);
-    });
-}
-
-/**
- *
- * This function takes an array of object as argument and add elements to DOM.
- * and generate filters buttons
- *
- * @param {array} datas
- *
- */
-function generateFiltersButtons(datas) {
-  if (categories) {
-    // default button for all categories
-    const categorieButton = document.createElement("button");
-    categorieButton.innerText = "Tous";
-    divButtonsContainer.appendChild(categorieButton);
-
-    //categories buttons
-    for (const data of datas) {
-      const categorieButton = document.createElement("button");
-      categorieButton.innerText = data.name;
-      divButtonsContainer.appendChild(categorieButton);
-    }
-    let buttonFilterActive = document.querySelector(
-      ".filters-container button:nth-child(1)"
-    );
-    buttonFilterActive.setAttribute("class", "btn-filter-selected");
-  }
-}
-
-/**
- *
- * This function takes an array of object as argument.
- * It add elements to DOM, and generate portfolio gallery
- *
- *
- * @param {array} datas
- *
- */
-
-function generateWorks(datas) {
-  if (datas && datas.length > 0) {
-    divGallery.innerHTML = "";
-    // Add works to DOM
-    datas.forEach((data) => {
-      if (currentUserId === data.userId) {
-        // DOM Childs
-        const figure = document.createElement("figure");
-        const workPicture = document.createElement("img");
-        const workFigCaption = document.createElement("figcaption");
-        //test if API is deployed somewhere else than localhost.
-        if (API_URL !== "http://localhost:5678") {
-          data.imageUrl = data.imageUrl.replace(
-            "http://localhost:5678",
-            API_URL
-          );
-        }
-        workPicture.src = data.imageUrl;
-        workPicture.setAttribute("alt", `${data.title}`);
-        workFigCaption.textContent = `${data.title}`;
-        // Use a DocumentFragment to append elements to the DOM in a single operation.
-        const fragment = document.createDocumentFragment();
-        fragment.appendChild(figure);
-        figure.appendChild(workPicture);
-        figure.appendChild(workFigCaption);
-        divGallery.appendChild(fragment);
-      }
-    });
-  }
-}
 
 //--------------------------------//
 //          API REQUESTS          //
@@ -150,8 +54,8 @@ if (currentPageIsIndex) {
 // DOM parent select
 const myHeader = document.querySelector("header");
 const introductionFigure = document.querySelector("#introduction figure");
-const divGallery = document.querySelector(".gallery");
-const divButtonsContainer = document.querySelector(".filters-container");
+
+
 const sectionPortFolio = document.querySelector("#portfolio");
 const portFolioTitle = document.querySelector("#portfolio > h2");
 const navLogin = document.querySelector("nav li:nth-child(3) a");
@@ -404,7 +308,7 @@ if (loggedIn) {
   // When the user clicks the button, open the modal
   introButtonModifier.addEventListener("click", () => {
     callModal("Introduction");
-    document.querySelector(".modal__content__container").innerHTML =
+    document.querySelector(".modal__content").innerHTML +=
       "<p>Not implented yet: TO DO</p>";
   });
 }
