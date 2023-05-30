@@ -44,6 +44,7 @@
     @include flex($direction: column);
     width: 50%; // Could be more or less, depending on screen size
     max-width: 630px;
+    max-width: 630px;
     position: absolute;
     height: fit-content;
     top: 0;
@@ -77,7 +78,7 @@
     &__title1,
     &__title2 {
       width: 100%;
-      margin-top: 60px;
+      margin-top: 55px;
       margin-bottom: 46px;
       font-family: "Work Sans";
       font-size: 26px;
@@ -86,18 +87,95 @@
       color: black;
       text-align: center;
     }
+    &_title2{
+      margin-top:60px;
+    }
     &__container1 {
       display: grid;
       margin: 0 auto;
-      grid-template-columns: 1fr 1fr 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
       grid-column-gap: 9px;
-      grid-row-gap: 9px;
+      grid-row-gap: 12px;
       width: calc((2 / 3) * 100%);
       padding-bottom: 47px;
       border-bottom: 1px solid $modal-border_color;
     }
+
+    //page2
+    &__container2 {
+      width: calc((2 / 3) * 100%);
+      margin: 22px auto 55px auto;
+
+      &__send-pic {
+        @include flex($direction: column, $align: center);
+        background-color: $background-color2;
+        padding: 22px 0 19px 0;
+      }
+      img {
+        width: 58px;
+        height: 58px;
+      }
+      #add-pic-btn {
+        width: 178px;
+        margin: 15px 0 7px 0;
+        border: none;
+        background-color: $background-color3;
+        color: $send-pic-btn_color;
+        &:hover {
+          background-color: darken($background-color3, 5);
+        }
+      }
+      p {
+        font-size: 10px;
+      }
+      .borderline {
+        margin-top: 47px;
+
+        border-top: 1px solid $modal-border_color;
+      }
+      button {
+        display: block;
+        height: 36px;
+        width: 237px;
+        margin-top: 32px;
+        font-size: 14px;
+        border: none;
+        background-color: $background-color4;
+        color: $modal-background-color;
+
+        &:hover {
+          background-color: darken($background-color4, 5);
+        }
+      }
+      form {
+        @extend %form;
+        margin-bottom: 47px;
+        margin-top: 9px;
+      }
+      label {
+        margin: 21px 0 10px 0;
+      }
+      .select-div {
+        position: relative;
+
+        &::after {
+          content: url("../icons/select-arrow.svg");
+          display: inline-block;
+          position: absolute;
+          right: 23px;
+          top: 18px;
+        }
+        select {
+          padding-left: 16px;
+          font-family: "Work Sans";
+          font-size: 1em;
+          width: 100%;
+          appearance: none;
+        }
+      }
+    }
     &__picture {
-      width: 100%;
+      width:100%;
       &:hover {
         cursor: pointer;
       }
@@ -176,14 +254,14 @@
     }
   }
 
-  //  Add Animation 
+  //  Add Animation
   @keyframes animatetop {
     from {
       top: -800px;
       opacity: 0;
     }
     to {
-      top: 0;
+      top: 0px;
       opacity: 1;
     }
   }

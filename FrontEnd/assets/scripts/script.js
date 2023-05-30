@@ -21,12 +21,12 @@ let currentPageIsLogin = currentPage.includes("login.html");
 
 //login user
 let mailFormat = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
 const primaryColor = "#1D6154";
 const secondaryColor = "#B1663C";
 const infoColor = "lightblue";
 const alertColor = "#F8C471";
 const errorColor = "red";
+
 //others
 let categories;
 let works;
@@ -51,8 +51,6 @@ if (currentPageIsIndex) {
 // DOM parent select
 const myHeader = document.querySelector("header");
 const introductionFigure = document.querySelector("#introduction figure");
-
-const sectionPortFolio = document.querySelector("#portfolio");
 const portFolioTitle = document.querySelector("#portfolio > h2");
 const navLogin = document.querySelector("nav li:nth-child(3) a");
 const divLoginMessage = document.querySelector("#login__message");
@@ -60,7 +58,6 @@ const divLoginMailMessage = document.querySelector("#login__mail-message");
 const divLoginPasswordMessage = document.querySelector(
   "#login__password-message"
 );
-const loginButton = document.querySelector("#login__button");
 const recoveryPassword = document.querySelector("#login a ");
 
 //--------------------------------//
@@ -143,7 +140,6 @@ if (currentPageIsLogin) {
   const loginForm = document.getElementById("login__form");
   const emailField = loginForm.elements["login__email"];
   const passwordField = loginForm.elements["login__password"];
-
   let email;
   let password;
   let emailIsValid = false;
@@ -314,6 +310,7 @@ if (loggedIn) {
   // When the user clicks the button, open the modal
   portFolioButtonModifier.addEventListener("click", () => {
     callModal("Galerie photo");
+    const modalContent = document.querySelector(".modal__content");
     const modalContentPage1 = document.querySelector(".modal__content__page-1");
     const modalContentPage2 = document.querySelector(".modal__content__page-2");
 
@@ -342,8 +339,11 @@ if (loggedIn) {
     modalContentPage1.appendChild(modalSupprimerGallerie);
     //events listeners toogle modal pages
     modalButtonAjouterPhoto.addEventListener("click", () => {
-      modalContentPage1.style.transform = "translateX(-110%)";
+      modalContentPage1.style.position = "absolute";
+      modalContentPage1.style.transform = "translateX(-101%)";
       modalContentPage2.style.transform = "translateX(0)";
+      modalContentPage2.style.position = "relative";
+     
     });
   });
 }

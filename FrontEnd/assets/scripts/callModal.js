@@ -46,6 +46,7 @@ function callModal(modalTitleContent = "you must enter a title") {
   let modalContentContainer2 = document.createElement("div");
   modalContentContainer2.classList.add("modal__content__container2");
   //create fragment and add modal to DOM
+  //page1
   const fragment = document.createDocumentFragment();
   fragment.appendChild(modal);
   modal.appendChild(modalContent);
@@ -59,6 +60,29 @@ function callModal(modalTitleContent = "you must enter a title") {
   modalContentPage2.appendChild(modalTitle2);
   modalContentPage2.appendChild(modalContentContainer2);
   editionMenu.appendChild(fragment);
+  modalContentContainer2.innerHTML += ` <div class="modal__content__container2__send-pic">
+                                          <img src="./assets/icons/send-pic.png">
+                                          <button id="add-pic-btn" type="submit">+ Ajouter photo</button>
+                                          <p>jpg, png: 4mo max</p>
+                                        </div> 
+                                        <form>
+                                          <label for "titre">Titre</label>
+                                          <input type="text" id="titre" name="titre">
+                                          <label for "catégorie" id="catégorie" name="catégorie">Catégorie</label>
+                                          <div class="select-div">
+                                            <select id="catégorie" name="catégorie">
+                                              <option value = "1"> Nom catégorie1 </option>
+                                              <option value = "2"> Nom catégorie2 </option>
+                                              <option value = "3"> Nom catégorie3 </option>
+                                            <select>
+                                          </div>
+                                          <div class="borderline">
+                                            <button type="submit" >Valider</button>
+                                          </div>
+                                        </form>
+                                        
+                                  
+  `;
 
   // When the user clicks on <span> (x), remove the modal
   // When the user clicks anywhere outside of the modal__content, remove the modal
@@ -72,7 +96,9 @@ function callModal(modalTitleContent = "you must enter a title") {
     }
     if (e.target == modalPreviousButton) {
       modalContentPage1.style.transform = "translateX(0)";
-      modalContentPage2.style.transform = "translateX(110%)";
+      modalContentPage2.style.transform = "translateX(101%)";
+      modalContentPage1.style.position = "relative";
+      modalContentPage2.style.position = "absolute";
     }
   });
 }

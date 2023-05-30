@@ -2,16 +2,17 @@
 //utils
 @import "./utils/variables";
 @import "./utils/mixins";
+
 // base
 @import "./base/reset";
 
-//components
+// pages
+@import "./pages/default";
+@import "./pages/login";
 
+//components
 @import "./components/edition-mode";
 @import "./components/modifier-button";
 @import "./components/filter-button";
 @import "./components/modal";
 
-// pages
-@import "./pages/default";
-@import "./pages/login";

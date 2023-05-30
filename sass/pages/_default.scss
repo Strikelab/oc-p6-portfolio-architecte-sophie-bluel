@@ -35,6 +35,41 @@ h2 {
   font-size: 30px;
   color: $primary_color;
 }
+%form {
+  text-align: left;
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  input,
+  select {
+    height: 50px;
+    font-size: 1.2em;
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    background-color: white;
+    &[type="text"]:focus,
+    &[type="email"]:focus,
+    &[type="password"]:focus {
+      outline: 1px solid $secondary-color;
+    }
+    &[type="submit"] {
+      @extend %submit-input;
+    }
+    
+  }
+  label {
+    // margin: 2em 0 1em 0;
+    font-weight: 500;
+  }
+  textarea {
+    border: none;
+    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
+    background-color: white;
+    &:focus {
+      outline: 1px solid $secondary-color;
+    }
+  }
+}
 header {
   background-color: $background-color;
   display: flex;
@@ -142,37 +177,12 @@ header {
     margin-bottom: 20px;
   }
   form {
-    text-align: left;
-    margin-top: 30px;
-    display: flex;
-    flex-direction: column;
-    input {
-      height: 50px;
-      font-size: 1.2em;
-      border: none;
-      box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-      background-color: white;
-      &[type="text"]:focus,
-      &[type="email"]:focus,
-      &[type="password"]:focus {
-        outline: 1px solid $secondary-color;
-      }
-      &[type="submit"] {
-        @extend %submit-input;
-      }
-    }
+    @extend %form;
+    
   }
   label {
     margin: 2em 0 1em 0;
     font-weight: 500;
-  }
-  textarea {
-    border: none;
-    box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
-    background-color: white;
-    &:focus {
-      outline: 1px solid $secondary-color;
-    }
   }
 }
 
