@@ -232,6 +232,7 @@
 
       &::after {
         content: url("../icons/select-arrow.svg");
+        pointer-events: none; // can click on arrow to expand menu
         display: inline-block;
         position: absolute;
         right: 23px;

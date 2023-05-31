@@ -2,17 +2,17 @@
  *
  * This function call a modal box
  * it takes the Title of the modal as parameter.
- *@param {string} modalTitle
+ * @param {array} datas
+ * @param {string} modalTitle
  *
  */
 
-function callModal(modalTitleContent = "you must enter a title") {
+function callModal(modalTitleContent = "you must enter a title", datas = {}) {
+  let categories = datas;
   let editionMenu = document.querySelector("#edition-menu");
-
   let modal = document.createElement("div");
   modal.id = "myModal";
   modal.classList.add("modal");
-
   //Modal content
   let modalContent = document.createElement("div");
   modalContent.classList.add("modal__content");
@@ -60,6 +60,8 @@ function callModal(modalTitleContent = "you must enter a title") {
   modalContentPage2.appendChild(modalTitle2);
   modalContentPage2.appendChild(modalContentContainer2);
   editionMenu.appendChild(fragment);
+  // other way to add elements to DOM
+  //page 2
   modalContentContainer2.innerHTML += `<form class ="modal__form">
                                            <div class="modal__form__preview">
                                                 <img class=modal__form__default-picture-preview src="./assets/icons/send-pic.png">
@@ -69,21 +71,24 @@ function callModal(modalTitleContent = "you must enter a title") {
                                             </div> 
                                             <label class="modal__form__label" for "titre">Titre</label>
                                             <input type="text" id="titre" name="titre">
-                                            <label class="modal__form__label" for "catégorie" id="catégorie" name="catégorie">Catégorie</label>
+                                            <label class="modal__form__label" for "categorie" name="categorie">Catégorie</label>
                                             <div class="modal__form__select-container">
-                                                <select id="catégorie" name="catégorie">
-                                                    <option value = "1"> Nom catégorie1 </option>
-                                                    <option value = "2"> Nom catégorie2 </option>
-                                                    <option value = "3"> Nom catégorie3 </option>
+                                                <select id="categorie" name="categorie"> 
                                                 <select>
                                             </div>
                                             <div class="modal__form__submit-btn-container">
                                                 <button class="modal__form__submit-btn" type="submit" >Valider</button>
                                             </div>
-                                        </form>
-                                        
-                                  
+                                        </form>                       
   `;
+
+  //append list of categories.
+  for (let categorie of categories) {
+    let { id, name } = categorie;
+    document.querySelector(
+      "#categorie"
+    ).innerHTML += ` <option value = "${id}">${name}</option>`;
+  }
 
   // When the user clicks on <span> (x), remove the modal
   // When the user clicks anywhere outside of the modal__content, remove the modal

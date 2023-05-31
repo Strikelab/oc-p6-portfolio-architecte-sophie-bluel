@@ -309,7 +309,7 @@ if (loggedIn) {
     portFolioTitle.querySelector(".modifier-button");
   // When the user clicks the button, open the modal
   portFolioButtonModifier.addEventListener("click", () => {
-    callModal("Galerie photo");
+    callModal("Galerie photo", categories);
     const modalContent = document.querySelector(".modal__content");
     const modalContentPage1 = document.querySelector(".modal__content__page1");
     const modalContentPage2 = document.querySelector(".modal__content__page2");
