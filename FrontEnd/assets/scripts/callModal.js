@@ -37,9 +37,9 @@ function callModal(modalTitleContent = "you must enter a title") {
   modalTitle2.innerText = "Ajout photo";
   //pages
   let modalContentPage1 = document.createElement("div");
-  modalContentPage1.classList.add("modal__content__page-1");
+  modalContentPage1.classList.add("modal__content__page1");
   let modalContentPage2 = document.createElement("div");
-  modalContentPage2.classList.add("modal__content__page-2");
+  modalContentPage2.classList.add("modal__content__page2");
   modal.innerHTML = "";
   let modalContentContainer1 = document.createElement("div");
   modalContentContainer1.classList.add("modal__content__container1");
@@ -60,25 +60,26 @@ function callModal(modalTitleContent = "you must enter a title") {
   modalContentPage2.appendChild(modalTitle2);
   modalContentPage2.appendChild(modalContentContainer2);
   editionMenu.appendChild(fragment);
-  modalContentContainer2.innerHTML += ` <div class="modal__content__container2__send-pic">
-                                          <img src="./assets/icons/send-pic.png">
-                                          <button id="add-pic-btn" type="submit">+ Ajouter photo</button>
-                                          <p>jpg, png: 4mo max</p>
-                                        </div> 
-                                        <form>
-                                          <label for "titre">Titre</label>
-                                          <input type="text" id="titre" name="titre">
-                                          <label for "catégorie" id="catégorie" name="catégorie">Catégorie</label>
-                                          <div class="select-div">
-                                            <select id="catégorie" name="catégorie">
-                                              <option value = "1"> Nom catégorie1 </option>
-                                              <option value = "2"> Nom catégorie2 </option>
-                                              <option value = "3"> Nom catégorie3 </option>
-                                            <select>
-                                          </div>
-                                          <div class="borderline">
-                                            <button type="submit" >Valider</button>
-                                          </div>
+  modalContentContainer2.innerHTML += `<form class ="modal__form">
+                                           <div class="modal__form__preview">
+                                                <img class=modal__form__default-picture-preview src="./assets/icons/send-pic.png">
+                                                <label class="modal__form__upload-picture-btn" for="image_uploads">+ Ajouter Photo</label>
+                                                <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple>
+                                                <p class="modal__form__info-format">jpg, png: 4mo max</p>
+                                            </div> 
+                                            <label class="modal__form__label" for "titre">Titre</label>
+                                            <input type="text" id="titre" name="titre">
+                                            <label class="modal__form__label" for "catégorie" id="catégorie" name="catégorie">Catégorie</label>
+                                            <div class="modal__form__select-container">
+                                                <select id="catégorie" name="catégorie">
+                                                    <option value = "1"> Nom catégorie1 </option>
+                                                    <option value = "2"> Nom catégorie2 </option>
+                                                    <option value = "3"> Nom catégorie3 </option>
+                                                <select>
+                                            </div>
+                                            <div class="modal__form__submit-btn-container">
+                                                <button class="modal__form__submit-btn" type="submit" >Valider</button>
+                                            </div>
                                         </form>
                                         
                                   

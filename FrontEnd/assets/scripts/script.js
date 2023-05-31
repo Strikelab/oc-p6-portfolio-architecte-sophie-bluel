@@ -311,8 +311,8 @@ if (loggedIn) {
   portFolioButtonModifier.addEventListener("click", () => {
     callModal("Galerie photo");
     const modalContent = document.querySelector(".modal__content");
-    const modalContentPage1 = document.querySelector(".modal__content__page-1");
-    const modalContentPage2 = document.querySelector(".modal__content__page-2");
+    const modalContentPage1 = document.querySelector(".modal__content__page1");
+    const modalContentPage2 = document.querySelector(".modal__content__page2");
 
     const modalContentContainer1 = document.querySelector(
       ".modal__content__container1"
@@ -343,7 +343,6 @@ if (loggedIn) {
       modalContentPage1.style.transform = "translateX(-101%)";
       modalContentPage2.style.transform = "translateX(0)";
       modalContentPage2.style.position = "relative";
-     
     });
   });
 }

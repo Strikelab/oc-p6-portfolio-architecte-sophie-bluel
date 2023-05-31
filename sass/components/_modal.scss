@@ -1,5 +1,6 @@
 /* --- Modal --- */
 // credit: https://www.w3schools.com/howto/howto_css_modals.asp
+
 // The Modal (background)
 .modal {
   color: black;
@@ -37,196 +38,7 @@
       cursor: pointer;
     }
   }
-
-  &__content {
-    overflow: hidden;
-    position: relative; // for animation
-    @include flex($direction: column);
-    width: 50%; // Could be more or less, depending on screen size
-    max-width: 630px;
-    max-width: 630px;
-    position: absolute;
-    height: fit-content;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    margin: auto;
-    // margin: 5% auto; // 15% from the top and centered
-    // padding: 26px 30px 55px 30px;
-    border-radius: 10px;
-    background-color: transparent;
-    animation-name: animatetop;
-    animation-duration: 0.5s;
-
-    &__page-1 {
-      width: 100%;
-      border-radius: 10px;
-      height: fit-content;
-      background-color: $modal-background-color;
-      padding-bottom: 53px;
-    }
-    &__page-2 {
-      position: absolute;
-      height: 0px;
-      width: 100%;
-      border-radius: 10px;
-      background-color: $modal-background-color;
-      height: fit-content;
-      transform: translateX(100%);
-    }
-    &__title1,
-    &__title2 {
-      width: 100%;
-      margin-top: 55px;
-      margin-bottom: 46px;
-      font-family: "Work Sans";
-      font-size: 26px;
-      font-weight: 400;
-      line-height: 30.5px;
-      color: black;
-      text-align: center;
-    }
-    &_title2{
-      margin-top:60px;
-    }
-    &__container1 {
-      display: grid;
-      margin: 0 auto;
-      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-      grid-column-gap: 9px;
-      grid-row-gap: 12px;
-      width: calc((2 / 3) * 100%);
-      padding-bottom: 47px;
-      border-bottom: 1px solid $modal-border_color;
-    }
-
-    //page2
-    &__container2 {
-      width: calc((2 / 3) * 100%);
-      margin: 22px auto 55px auto;
-
-      &__send-pic {
-        @include flex($direction: column, $align: center);
-        background-color: $background-color2;
-        padding: 22px 0 19px 0;
-      }
-      img {
-        width: 58px;
-        height: 58px;
-      }
-      #add-pic-btn {
-        width: 178px;
-        margin: 15px 0 7px 0;
-        border: none;
-        background-color: $background-color3;
-        color: $send-pic-btn_color;
-        &:hover {
-          background-color: darken($background-color3, 5);
-        }
-      }
-      p {
-        font-size: 10px;
-      }
-      .borderline {
-        margin-top: 47px;
-
-        border-top: 1px solid $modal-border_color;
-      }
-      button {
-        display: block;
-        height: 36px;
-        width: 237px;
-        margin-top: 32px;
-        font-size: 14px;
-        border: none;
-        background-color: $background-color4;
-        color: $modal-background-color;
-
-        &:hover {
-          background-color: darken($background-color4, 5);
-        }
-      }
-      form {
-        @extend %form;
-        margin-bottom: 47px;
-        margin-top: 9px;
-      }
-      label {
-        margin: 21px 0 10px 0;
-      }
-      .select-div {
-        position: relative;
-
-        &::after {
-          content: url("../icons/select-arrow.svg");
-          display: inline-block;
-          position: absolute;
-          right: 23px;
-          top: 18px;
-        }
-        select {
-          padding-left: 16px;
-          font-family: "Work Sans";
-          font-size: 1em;
-          width: 100%;
-          appearance: none;
-        }
-      }
-    }
-    &__picture {
-      width:100%;
-      &:hover {
-        cursor: pointer;
-      }
-      &:hover + span {
-        cursor: pointer;
-        display: inline-block;
-        opacity: 100%;
-      }
-    }
-    &__move-btn {
-      opacity: 0;
-      // display: none;
-      position: absolute;
-      top: 6px;
-      right: 25px;
-      width: 17px;
-      height: 17px;
-      background-size: 100%;
-      background-image: url(../icons/move.svg);
-      transition: all 0.1s;
-      &:hover {
-        cursor: pointer;
-        opacity: 1;
-      }
-    }
-    &__trash-btn {
-      display: inline-block;
-      position: absolute;
-      top: 6px;
-      right: 5px;
-      width: 17px;
-      height: 17px;
-      background-image: url(../icons/trash.svg);
-      &:hover {
-        cursor: pointer;
-      }
-    }
-    &__edit-btn {
-      height: 14px;
-      line-height: 14px;
-      font-size: 0.84vw;
-      &:hover {
-        color: $secondary_color;
-        cursor: pointer;
-      }
-    }
-    figure {
-      position: relative;
-    }
-  }
-
+  // The add picture button
   &__add-picture-btn {
     @extend %submit-input;
     display: block;
@@ -235,7 +47,7 @@
     margin: 38px auto 0 auto;
     width: 237px;
   }
-
+  // The remove gallery button
   &__remove-gallery-btn {
     display: block;
     background-color: $modal-background-color;
@@ -249,20 +61,219 @@
     transition: all 0.2s;
     &:hover {
       color: $danger-hover_color;
-
       cursor: pointer;
     }
   }
+  // ---  modal pages container --- //
+  &__content {
+    @include flex($direction: column);
+    width: 50%; // Could be more or less, depending on screen size
+    max-width: 630px;
+    max-width: 630px;
+    position: absolute;
+    height: fit-content;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: auto;
+    overflow: hidden; // hide page 2
+    border-radius: 10px;
+    background-color: transparent;
+    animation-name: animatetop;
+    animation-duration: 0.5s;
 
-  //  Add Animation
-  @keyframes animatetop {
-    from {
-      top: -800px;
+    // --- page 1 --- //
+    &__page1 {
+      width: 100%;
+      height: fit-content;
+      border-radius: 10px;
+      padding-bottom: 53px;
+      background-color: $modal-background-color;
+    }
+
+    &__title1 {
+      width: 100%;
+      margin-top: 55px;
+      margin-bottom: 46px;
+      font-family: "Work Sans";
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 30.5px;
+      color: black;
+      text-align: center;
+    }
+    //pictures container
+    &__container1 {
+      display: grid;
+      margin: 0 auto;
+      grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+      grid-column-gap: 9px;
+      grid-row-gap: 12px;
+      width: calc((2 / 3) * 100%);
+      padding-bottom: 47px;
+      border-bottom: 1px solid $modal-border_color;
+    }
+
+    &__picture {
+      width: 100%;
+      &:hover {
+        cursor: pointer;
+      }
+      &:hover + span {
+        cursor: pointer;
+        display: inline-block;
+        opacity: 100%;
+      }
+    }
+    // The move picture button
+    &__move-btn {
       opacity: 0;
+      position: absolute;
+      top: 6px;
+      right: 25px;
+      width: 17px;
+      height: 17px;
+      background-size: 100%;
+      background-image: url(../icons/move.svg);
+      transition: all 0.1s;
+      &:hover {
+        cursor: pointer;
+        opacity: 1;
+      }
     }
-    to {
-      top: 0px;
-      opacity: 1;
+    figure {
+      position: relative; // for trash and move button positionning.
     }
+    // The trash picture button
+    &__trash-btn {
+      display: inline-block;
+      position: absolute;
+      top: 6px;
+      right: 5px;
+      width: 17px;
+      height: 17px;
+      background-image: url(../icons/trash.svg);
+      &:hover {
+        cursor: pointer;
+      }
+    }
+    // The edit picture button
+    &__edit-btn {
+      height: 14px;
+      line-height: 14px;
+      font-size: 0.84vw;
+      &:hover {
+        color: $secondary_color;
+        cursor: pointer;
+      }
+    }
+
+    // --- Page 2 --- //
+    &__page2 {
+      position: absolute;
+      height: 0px;
+      width: 100%;
+      border-radius: 10px;
+      background-color: $modal-background-color;
+      height: fit-content;
+      transform: translateX(100%);
+    }
+    &__title2 {
+      @extend .modal__content__title1;
+      margin-top: 60px;
+    }
+    &__container2 {
+      width: calc((2 / 3) * 100%);
+      margin: 22px auto 55px auto;
+    }
+  }
+  // --- Page 2 form --- //
+  &__form {
+    @extend %form;
+    margin-bottom: 47px;
+    margin-top: 9px;
+
+    &__preview {
+      @include flex($direction: column, $align: center);
+      background-color: $background-color2;
+      padding: 22px 0 19px 0;
+    }
+
+    //input type file
+    #image_uploads {
+      visibility: hidden;
+      height: 0;
+    }
+
+    &__upload-picture-btn {
+      @extend %submit-input;
+      display: block;
+      height: 36px;
+      width: 178px;
+      margin: 15px 0 7px 0;
+      line-height: 36px;
+      border: none;
+      background-color: $background-color3;
+      color: $send-pic-btn_color;
+      &:hover {
+        background-color: darken($background-color3, 5);
+        color: darken($send-pic-btn_color, 5);
+      }
+    }
+    &__info-format {
+      font-size: 10px;
+    }
+    &__label {
+      margin: 21px 0 10px 0;
+    }
+    &__select-container {
+      position: relative;
+
+      &::after {
+        content: url("../icons/select-arrow.svg");
+        display: inline-block;
+        position: absolute;
+        right: 23px;
+        top: 18px;
+      }
+      select {
+        padding-left: 16px;
+        font-family: "Work Sans";
+        font-size: 1em;
+        width: 100%;
+        appearance: none;
+      }
+    }
+    &__submit-btn-container {
+      margin-top: 47px;
+
+      border-top: 1px solid $modal-border_color;
+    }
+    &__submit-btn {
+      display: block;
+      height: 36px;
+      width: 237px;
+      margin-top: 32px;
+      font-size: 14px;
+      border: none;
+      background-color: $background-color4;
+      color: $modal-background-color;
+
+      &:hover {
+        background-color: darken($background-color4, 5);
+      }
+    }
+  }
+}
+// --- Add Animation --- //
+@keyframes animatetop {
+  from {
+    top: -800px;
+    opacity: 0;
+  }
+  to {
+    top: 0px;
+    opacity: 1;
   }
 }

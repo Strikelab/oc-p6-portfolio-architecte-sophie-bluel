@@ -95,16 +95,16 @@ h2 {
   color: #1d6154;
 }
 
-.modal__content__container2 form, #contact form, #login form,
+.modal__form, #contact form, #login form,
 .login form {
   text-align: left;
   margin-top: 30px;
   display: flex;
   flex-direction: column;
 }
-.modal__content__container2 form input, #contact form input, #login form input,
+.modal__form input, #contact form input, #login form input,
 .login form input,
-.modal__content__container2 form select,
+.modal__form select,
 #contact form select,
 #login form select,
 .login form select {
@@ -114,35 +114,35 @@ h2 {
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
   background-color: white;
 }
-.modal__content__container2 form input[type=text]:focus, #contact form input[type=text]:focus, #login form input[type=text]:focus,
-.login form input[type=text]:focus, .modal__content__container2 form input[type=email]:focus, #contact form input[type=email]:focus, #login form input[type=email]:focus,
-.login form input[type=email]:focus, .modal__content__container2 form input[type=password]:focus, #contact form input[type=password]:focus, #login form input[type=password]:focus,
+.modal__form input[type=text]:focus, #contact form input[type=text]:focus, #login form input[type=text]:focus,
+.login form input[type=text]:focus, .modal__form input[type=email]:focus, #contact form input[type=email]:focus, #login form input[type=email]:focus,
+.login form input[type=email]:focus, .modal__form input[type=password]:focus, #contact form input[type=password]:focus, #login form input[type=password]:focus,
 .login form input[type=password]:focus,
-.modal__content__container2 form select[type=text]:focus,
+.modal__form select[type=text]:focus,
 #contact form select[type=text]:focus,
 #login form select[type=text]:focus,
 .login form select[type=text]:focus,
-.modal__content__container2 form select[type=email]:focus,
+.modal__form select[type=email]:focus,
 #contact form select[type=email]:focus,
 #login form select[type=email]:focus,
 .login form select[type=email]:focus,
-.modal__content__container2 form select[type=password]:focus,
+.modal__form select[type=password]:focus,
 #contact form select[type=password]:focus,
 #login form select[type=password]:focus,
 .login form select[type=password]:focus {
   outline: 1px solid #b1663c;
 }
-.modal__content__container2 form label, #contact form label, #login form label,
+.modal__form label, #contact form label, #login form label,
 .login form label {
   font-weight: 500;
 }
-.modal__content__container2 form textarea, #contact form textarea, #login form textarea,
+.modal__form textarea, #contact form textarea, #login form textarea,
 .login form textarea {
   border: none;
   box-shadow: 0px 4px 14px rgba(0, 0, 0, 0.09);
   background-color: white;
 }
-.modal__content__container2 form textarea:focus, #contact form textarea:focus, #login form textarea:focus,
+.modal__form textarea:focus, #contact form textarea:focus, #login form textarea:focus,
 .login form textarea:focus {
   outline: 1px solid #b1663c;
 }
@@ -420,8 +420,8 @@ button.btn-filter-selected {
   cursor: default;
 }
 
-.modal__add-picture-btn, .modal__content__container2 form input[type=submit],
-.modal__content__container2 form select[type=submit], #contact form input[type=submit],
+.modal__form__upload-picture-btn, .modal__add-picture-btn, .modal__form input[type=submit],
+.modal__form select[type=submit], #contact form input[type=submit],
 #contact form select[type=submit], #login form input[type=submit],
 .login form input[type=submit],
 #login form select[type=submit],
@@ -436,8 +436,8 @@ button.btn-filter-selected {
   border-radius: 60px;
   transition: 0.2s;
 }
-.modal__add-picture-btn:hover, .modal__content__container2 form input[type=submit]:hover,
-.modal__content__container2 form select[type=submit]:hover, #contact form input[type=submit]:hover,
+.modal__form__upload-picture-btn:hover, .modal__add-picture-btn:hover, .modal__form input[type=submit]:hover,
+.modal__form select[type=submit]:hover, #contact form input[type=submit]:hover,
 #contact form select[type=submit]:hover, #login form input[type=submit]:hover,
 .login form input[type=submit]:hover,
 #login form select[type=submit]:hover,
@@ -481,9 +481,30 @@ button.btn-filter-selected {
 .modal__previous-btn:hover {
   cursor: pointer;
 }
+.modal__add-picture-btn {
+  display: block;
+  border: none;
+  height: 37px;
+  margin: 38px auto 0 auto;
+  width: 237px;
+}
+.modal__remove-gallery-btn {
+  display: block;
+  background-color: #fefefe;
+  border: none;
+  color: #d65353;
+  font-family: "Syne";
+  font-size: 14px;
+  font-weight: 400;
+  margin: 23px auto 0 auto;
+  width: 230px;
+  transition: all 0.2s;
+}
+.modal__remove-gallery-btn:hover {
+  color: #ff5353;
+  cursor: pointer;
+}
 .modal__content {
-  overflow: hidden;
-  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: initial;
@@ -500,28 +521,19 @@ button.btn-filter-selected {
   right: 0;
   bottom: 0;
   margin: auto;
+  overflow: hidden;
   border-radius: 10px;
   background-color: transparent;
   animation-name: animatetop;
   animation-duration: 0.5s;
 }
-.modal__content__page-1 {
+.modal__content__page1 {
   width: 100%;
-  border-radius: 10px;
   height: -moz-fit-content;
   height: fit-content;
-  background-color: #fefefe;
+  border-radius: 10px;
   padding-bottom: 53px;
-}
-.modal__content__page-2 {
-  position: absolute;
-  height: 0px;
-  width: 100%;
-  border-radius: 10px;
   background-color: #fefefe;
-  height: -moz-fit-content;
-  height: fit-content;
-  transform: translateX(100%);
 }
 .modal__content__title1, .modal__content__title2 {
   width: 100%;
@@ -534,9 +546,6 @@ button.btn-filter-selected {
   color: black;
   text-align: center;
 }
-.modal__content_title2 {
-  margin-top: 60px;
-}
 .modal__content__container1 {
   display: grid;
   margin: 0 auto;
@@ -546,79 +555,6 @@ button.btn-filter-selected {
   width: 66.6666666667%;
   padding-bottom: 47px;
   border-bottom: 1px solid #b3b3b3;
-}
-.modal__content__container2 {
-  width: 66.6666666667%;
-  margin: 22px auto 55px auto;
-}
-.modal__content__container2__send-pic {
-  display: flex;
-  flex-direction: column;
-  justify-content: initial;
-  align-items: center;
-  gap: initial;
-  background-color: #e8f1f6;
-  padding: 22px 0 19px 0;
-}
-.modal__content__container2 img {
-  width: 58px;
-  height: 58px;
-}
-.modal__content__container2 #add-pic-btn {
-  width: 178px;
-  margin: 15px 0 7px 0;
-  border: none;
-  background-color: #c8d6dc;
-  color: #306685;
-}
-.modal__content__container2 #add-pic-btn:hover {
-  background-color: #b8cad2;
-}
-.modal__content__container2 p {
-  font-size: 10px;
-}
-.modal__content__container2 .borderline {
-  margin-top: 47px;
-  border-top: 1px solid #b3b3b3;
-}
-.modal__content__container2 button {
-  display: block;
-  height: 36px;
-  width: 237px;
-  margin-top: 32px;
-  font-size: 14px;
-  border: none;
-  background-color: #A7A7A7;
-  color: #fefefe;
-}
-.modal__content__container2 button:hover {
-  background-color: #9a9a9a;
-}
-.modal__content__container2 form {
-  margin-bottom: 47px;
-  margin-top: 9px;
-}
-.modal__content__container2 label {
-  margin: 21px 0 10px 0;
-}
-.modal__content__container2 .select-div {
-  position: relative;
-}
-.modal__content__container2 .select-div::after {
-  content: url("../icons/select-arrow.svg");
-  display: inline-block;
-  position: absolute;
-  right: 23px;
-  top: 18px;
-}
-.modal__content__container2 .select-div select {
-  padding-left: 16px;
-  font-family: "Work Sans";
-  font-size: 1em;
-  width: 100%;
-  -webkit-appearance: none;
-     -moz-appearance: none;
-          appearance: none;
 }
 .modal__content__picture {
   width: 100%;
@@ -646,6 +582,9 @@ button.btn-filter-selected {
   cursor: pointer;
   opacity: 1;
 }
+.modal__content figure {
+  position: relative;
+}
 .modal__content__trash-btn {
   display: inline-block;
   position: absolute;
@@ -667,32 +606,97 @@ button.btn-filter-selected {
   color: #b1663c;
   cursor: pointer;
 }
-.modal__content figure {
+.modal__content__page2 {
+  position: absolute;
+  height: 0px;
+  width: 100%;
+  border-radius: 10px;
+  background-color: #fefefe;
+  height: -moz-fit-content;
+  height: fit-content;
+  transform: translateX(100%);
+}
+.modal__content__title2 {
+  margin-top: 60px;
+}
+.modal__content__container2 {
+  width: 66.6666666667%;
+  margin: 22px auto 55px auto;
+}
+.modal__form {
+  margin-bottom: 47px;
+  margin-top: 9px;
+}
+.modal__form__preview {
+  display: flex;
+  flex-direction: column;
+  justify-content: initial;
+  align-items: center;
+  gap: initial;
+  background-color: #e8f1f6;
+  padding: 22px 0 19px 0;
+}
+.modal__form #image_uploads {
+  visibility: hidden;
+  height: 0;
+}
+.modal__form__upload-picture-btn {
+  display: block;
+  height: 36px;
+  width: 178px;
+  margin: 15px 0 7px 0;
+  line-height: 36px;
+  border: none;
+  background-color: #c8d6dc;
+  color: #306685;
+}
+.modal__form__upload-picture-btn:hover {
+  background-color: #b8cad2;
+  color: #295872;
+}
+.modal__form__info-format {
+  font-size: 10px;
+}
+.modal__form__label {
+  margin: 21px 0 10px 0;
+}
+.modal__form__select-container {
   position: relative;
 }
-.modal__add-picture-btn {
+.modal__form__select-container::after {
+  content: url("../icons/select-arrow.svg");
+  display: inline-block;
+  position: absolute;
+  right: 23px;
+  top: 18px;
+}
+.modal__form__select-container select {
+  padding-left: 16px;
+  font-family: "Work Sans";
+  font-size: 1em;
+  width: 100%;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+.modal__form__submit-btn-container {
+  margin-top: 47px;
+  border-top: 1px solid #b3b3b3;
+}
+.modal__form__submit-btn {
   display: block;
-  border: none;
-  height: 37px;
-  margin: 38px auto 0 auto;
+  height: 36px;
   width: 237px;
-}
-.modal__remove-gallery-btn {
-  display: block;
-  background-color: #fefefe;
-  border: none;
-  color: #d65353;
-  font-family: "Syne";
+  margin-top: 32px;
   font-size: 14px;
-  font-weight: 400;
-  margin: 23px auto 0 auto;
-  width: 230px;
-  transition: all 0.2s;
+  border: none;
+  background-color: #A7A7A7;
+  color: #fefefe;
 }
-.modal__remove-gallery-btn:hover {
-  color: #ff5353;
-  cursor: pointer;
+.modal__form__submit-btn:hover {
+  background-color: #9a9a9a;
 }
+
 @keyframes animatetop {
   from {
     top: -800px;
