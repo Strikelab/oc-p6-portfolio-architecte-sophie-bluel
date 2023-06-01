@@ -1,3 +1,4 @@
+import updateImageDisplay from "./updateImageDisplay.js";
 /**
  *
  * This function call a modal box
@@ -94,99 +95,13 @@ function callModal(modalTitleContent = "you must enter a title", datas = {}) {
   }
 
   //the preview
-  const preview = document.querySelector(".modal__form__preview-image");
+  // const preview = document.querySelector(".modal__form__preview-image");
   const input = document.querySelector("#image_uploads");
-  if(input != null) {
+
+  if (input != null) {
     input.addEventListener("change", updateImageDisplay);
   }
 
-  function updateImageDisplay() {
-    const defaultPicturePreview = document.createElement("img");
-    defaultPicturePreview.src = "./assets/icons/send-pic.png";
-    defaultPicturePreview.classList.add("modal__form__default-picture-preview");
-
-    while (preview.firstChild) {
-      preview.removeChild(preview.firstChild);
-    }
-
-    const curFiles = input.files;
-    if (curFiles.lenth !== 0) {
-      console.log(curFiles);
-    }
-    if (curFiles.length === 0) {
-      const para = document.createElement("p");
-      para.textContent = "No files currently selected for upload";
-      preview.appendChild(para);
-    } else {
-      const list = document.createElement("ol");
-      preview.appendChild(list);
-
-      for (const file of curFiles) {
-        const listItem = document.createElement("li");
-        const para = document.createElement("p");
-        console.log(validFileSize(file));
-        if (validFileType(file) && validFileSize(file)) {
-          para.textContent = `${file.name}, file size ${returnFileSize(
-            file.size
-          )}.`;
-          const image = document.createElement("img");
-          image.classList.add("modal__form__picture-preview");
-          image.src = URL.createObjectURL(file);
-          listItem.appendChild(image);
-          listItem.appendChild(para);
-        } else if (!validFileSize(file)) {
-          para.textContent = `${returnFileSize(
-            file.size
-          )}File size exceeds the limit.`;
-          listItem.appendChild(defaultPicturePreview);
-          listItem.appendChild(para);
-          input.value = "";
-        } else {
-          para.textContent = `File name ${file.name}: Not a valid file type. Update your selection.`;
-          listItem.appendChild(defaultPicturePreview);
-          listItem.appendChild(para);
-          input.value = "";
-        }
-
-        list.appendChild(listItem);
-      }
-    }
-  }
-
-  // https://developer.mozilla.org/en-US/docs/Web/Media/Formats/Image_types
-  const fileTypes = [
-    "image/apng",
-    // "image/bmp",
-    // "image/gif",
-    "image/jpeg",
-    "image/pjpeg",
-    "image/png",
-    // "image/svg+xml",
-    // "image/tiff",
-    // "image/webp",
-    // `image/x-icon`,
-  ];
-
-  function validFileSize(file) {
-    //www.mindgems.com/info/file-size/
-    return file.size < 4194304;
-  }
-
-  function validFileType(file) {
-    return fileTypes.includes(file.type);
-  }
-
-  function returnFileSize(number) {
-    if (number < 1024) {
-      return number + "bytes";
-    } else if (number > 1024 && number < 1048576) {
-      return (number / 1024).toFixed(1) + "KB";
-    } else if (number > 1048576) {
-      return (number / 1048576).toFixed(1) + "MB";
-    }
-  }
-
-  //##########################################################
 
   // When the user clicks on <span> (x), remove the modal
   // When the user clicks anywhere outside of the modal__content, remove the modal

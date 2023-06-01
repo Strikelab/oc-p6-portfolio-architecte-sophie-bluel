@@ -197,7 +197,7 @@
     &__preview {
       @include flex($direction: column, $align: center);
       background-color: $background-color2;
-      padding: 22px 0 19px 0;
+      padding: 22px 20px 19px 20px;
     }
     li {
       @include flex($direction: column, $align:center);
