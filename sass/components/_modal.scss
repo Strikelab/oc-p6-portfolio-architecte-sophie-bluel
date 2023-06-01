@@ -199,7 +199,13 @@
       background-color: $background-color2;
       padding: 22px 0 19px 0;
     }
-
+    li {
+      @include flex($direction: column, $align:center);
+    }
+    &__picture-preview {
+      width: 30%;
+      align-self: center;
+    }
     //input type file
     #image_uploads {
       visibility: hidden;

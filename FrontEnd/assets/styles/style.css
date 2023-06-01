@@ -636,6 +636,17 @@ button.btn-filter-selected {
   background-color: #e8f1f6;
   padding: 22px 0 19px 0;
 }
+.modal__form li {
+  display: flex;
+  flex-direction: column;
+  justify-content: initial;
+  align-items: center;
+  gap: initial;
+}
+.modal__form__picture-preview {
+  width: 30%;
+  align-self: center;
+}
 .modal__form #image_uploads {
   visibility: hidden;
   height: 0;
