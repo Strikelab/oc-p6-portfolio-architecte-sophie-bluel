@@ -81,7 +81,7 @@ function callModal(modalTitleContent = "you must enter a title", datas = {}) {
                                                 <select>
                                             </div>
                                             <div class="modal__form__submit-btn-container">
-                                                <button class="modal__form__submit-btn" type="submit" >Valider</button>
+                                                <button class="modal__form__submit-btn" type="submit" disabled >Valider</button>
                                             </div>
                                         </form>                       
   `;

@@ -420,7 +420,7 @@ button.btn-filter-selected {
   cursor: default;
 }
 
-.modal__form__upload-picture-btn, .modal__add-picture-btn, .modal__form input[type=submit],
+.modal__form__submit-btn, .modal__form__upload-picture-btn, .modal__add-picture-btn, .modal__form input[type=submit],
 .modal__form select[type=submit], #contact form input[type=submit],
 #contact form select[type=submit], #login form input[type=submit],
 .login form input[type=submit],
@@ -436,7 +436,7 @@ button.btn-filter-selected {
   border-radius: 60px;
   transition: 0.2s;
 }
-.modal__form__upload-picture-btn:hover, .modal__add-picture-btn:hover, .modal__form input[type=submit]:hover,
+.modal__form__submit-btn:hover, .modal__form__upload-picture-btn:hover, .modal__add-picture-btn:hover, .modal__form input[type=submit]:hover,
 .modal__form select[type=submit]:hover, #contact form input[type=submit]:hover,
 #contact form select[type=submit]:hover, #login form input[type=submit]:hover,
 .login form input[type=submit]:hover,
@@ -702,11 +702,18 @@ button.btn-filter-selected {
   margin-top: 32px;
   font-size: 14px;
   border: none;
+}
+.modal__form__submit-btn:disabled {
   background-color: #A7A7A7;
   color: #fefefe;
 }
+.modal__form__submit-btn:disabled:hover {
+  background-color: #A7A7A7;
+  color: #fefefe;
+  cursor: default;
+}
 .modal__form__submit-btn:hover {
-  background-color: #9a9a9a;
+  background-color: #0e2f28;
 }
 
 @keyframes animatetop {

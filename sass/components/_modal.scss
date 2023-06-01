@@ -200,7 +200,7 @@
       padding: 22px 20px 19px 20px;
     }
     li {
-      @include flex($direction: column, $align:center);
+      @include flex($direction: column, $align: center);
     }
     &__picture-preview {
       width: 30%;
@@ -258,17 +258,26 @@
       border-top: 1px solid $modal-border_color;
     }
     &__submit-btn {
+      @extend %submit-input;
       display: block;
       height: 36px;
       width: 237px;
       margin-top: 32px;
       font-size: 14px;
       border: none;
-      background-color: $background-color4;
-      color: $modal-background-color;
-
+      // background-color: $background-color4;
+      // color: $modal-background-color;
+      &:disabled {
+        background-color: $background-color4;
+        color: $modal-background-color;
+        &:hover {
+          background-color: $background-color4;
+          color: $modal-background-color;
+          cursor: default;
+        }
+      }
       &:hover {
-        background-color: darken($background-color4, 5);
+        background-color: $btn-hover_color;
       }
     }
   }
