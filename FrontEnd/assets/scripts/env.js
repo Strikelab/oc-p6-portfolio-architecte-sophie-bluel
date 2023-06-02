@@ -16,5 +16,6 @@ export {
     CATEGORIES_PATH,
     LOGIN_PATH,
     currentUserId,
+    currentToken,
     loggedIn
 }

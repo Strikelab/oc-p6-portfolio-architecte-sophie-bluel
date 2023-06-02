@@ -3,7 +3,6 @@ function generateModalGallery(datas) {
   const modalContentContainer1 = document.querySelector(
     ".modal__content__container1"
   );
-
   if (datas && datas.length > 0) {
     datas.forEach((data) => {
       modalContentContainer1.innerHTML += `<figure>

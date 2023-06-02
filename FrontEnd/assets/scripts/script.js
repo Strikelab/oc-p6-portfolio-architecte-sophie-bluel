@@ -23,7 +23,6 @@ let currentPageIsLogin = currentPage.includes("login.html");
 let categories;
 let works;
 
-
 //--------------------------------//
 //          API REQUESTS          //
 //--------------------------------//
@@ -45,7 +44,6 @@ const myHeader = document.querySelector("header");
 const introductionFigure = document.querySelector("#introduction figure");
 const portFolioTitle = document.querySelector("#portfolio > h2");
 const navLogin = document.querySelector("nav li:nth-child(3) a");
-
 
 //--------------------------------//
 //  FIRST INDEX PAGE GENERATION   //
@@ -173,6 +171,4 @@ if (loggedIn) {
 //--------------------------------//
 //           TESTS SECTION        //
 //--------------------------------//
-function removeItem(){
-  
-}
+function removeItem() {}
