@@ -1,4 +1,4 @@
-import updateImageDisplay from "./updateImageDisplay.js";
+import updateImageDisplay from "./previewUpdate.js";
 import generateModalGallery from "./generateModalGallery.js";
 /**
  *

@@ -12,7 +12,7 @@ import returnFileSize from "./returnFileSize.js";
  *
  */
 
-function updateImageDisplay() {
+function previewUpdate() {
   const fileSizeMax = 4194304;
   const preview = document.querySelector(".modal__form__preview-image");
   const input = document.querySelector("#image_uploads");
@@ -71,4 +71,4 @@ function updateImageDisplay() {
   }
 }
 
-export default updateImageDisplay;
+export default previewUpdate;

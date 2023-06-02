@@ -9,7 +9,6 @@ async function deleteWork(e) {
   const modalContentContainer1 = document.querySelector(
     ".modal__content__container1"
   );
-
   //the delete request to the API
   let request = {
     method: "DELETE",
@@ -18,7 +17,7 @@ async function deleteWork(e) {
       Authorization: `Bearer: ${currentToken}`,
     },
   };
-  //send request to the API
+  //send delete request to the API
   fetch(API_URL + WORKS_PATH + id, request);
   // ask api new works list
   let works = await callAPI(API_URL + WORKS_PATH);
