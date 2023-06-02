@@ -12,17 +12,19 @@
  */
 
 async function callAPI(url) {
-    return fetch(url)
-      .then((response) => {
-        //shorthand for status != 200
-        if (response.ok) {
-          return response.json();
-        }
-        throw Error(response.statusText);
-      })
-      .catch((error) => {
-        console.error(`Une erreur est survenue : ${error.message}`);
-      });
-  }
+  return fetch(url)
+    .then((response) => {
+      //shorthand for status != 200
+      if (response.ok) {
+        return response.json();
+      }
+      throw Error(response.statusText);
+    })
+    .catch((error) => {
+      console.error(
+        `Une erreur est survenue lors de l'appel API: ${error.message}`
+      );
+    });
+}
 
-  export default callAPI;
+export default callAPI;

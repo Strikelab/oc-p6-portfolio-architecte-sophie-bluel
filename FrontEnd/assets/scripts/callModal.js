@@ -1,122 +1,104 @@
 import updateImageDisplay from "./updateImageDisplay.js";
+import generateModalGallery from "./generateModalGallery.js";
 /**
  *
- * This function call a modal box
- * it takes the Title of the modal as parameter.
- * @param {array} datas
- * @param {string} modalTitle
+ * This function generate a modal box
+ * it takes categories object and works object as parameters
+ * @param {array} categories
+ * @param {array} works
  *
  */
 
-function callModal(modalTitleContent = "you must enter a title", datas = {}) {
-  let categories = datas;
+function callModal(categories = {}, works = {}) {
+  // let categories = datas;
   let editionMenu = document.querySelector("#edition-menu");
-  let modal = document.createElement("div");
-  modal.id = "myModal";
-  modal.classList.add("modal");
-  //Modal content
-  let modalContent = document.createElement("div");
-  modalContent.classList.add("modal__content");
-  //buttons
-  // (x)
-  let modalCloseButton1 = document.createElement("span");
-  modalCloseButton1.classList.add("modal__close-btn");
-  modalCloseButton1.innerHTML = "&times;";
-  let modalCloseButton2 = document.createElement("span");
-  modalCloseButton2.classList.add("modal__close-btn");
-  modalCloseButton2.innerHTML = "&times;";
-  // (<-)
-  let modalPreviousButton = document.createElement("span");
-  modalPreviousButton.classList.add("modal__previous-btn");
-  // modalPreviousButton.innerHTML = "←";
-  //titres
-  let modalTitle1 = document.createElement("h2");
-  modalTitle1.classList.add("modal__content__title1");
-  modalTitle1.innerText = "Galerie photo";
-  let modalTitle2 = document.createElement("h2");
-  modalTitle2.classList.add("modal__content__title2");
-  modalTitle2.innerText = "Ajout photo";
-  //pages
-  let modalContentPage1 = document.createElement("div");
-  modalContentPage1.classList.add("modal__content__page1");
-  let modalContentPage2 = document.createElement("div");
-  modalContentPage2.classList.add("modal__content__page2");
-  modal.innerHTML = "";
-  let modalContentContainer1 = document.createElement("div");
-  modalContentContainer1.classList.add("modal__content__container1");
-  let modalContentContainer2 = document.createElement("div");
-  modalContentContainer2.classList.add("modal__content__container2");
-  //create fragment and add modal to DOM
-  //page1
-  const fragment = document.createDocumentFragment();
-  fragment.appendChild(modal);
-  modal.appendChild(modalContent);
-  modalContent.appendChild(modalContentPage1);
-  modalContentPage1.appendChild(modalCloseButton1);
-  modalContentPage1.appendChild(modalTitle1);
-  modalContentPage1.appendChild(modalContentContainer1);
-  modalContent.appendChild(modalContentPage2);
-  modalContentPage2.appendChild(modalPreviousButton);
-  modalContentPage2.appendChild(modalCloseButton2);
-  modalContentPage2.appendChild(modalTitle2);
-  modalContentPage2.appendChild(modalContentContainer2);
-  editionMenu.appendChild(fragment);
-  // other way to add elements to DOM
-  //page 2
-  modalContentContainer2.innerHTML += `<form class ="modal__form">
-                                           <div class="modal__form__preview">
-                                                <div class="modal__form__preview-image">
-                                                    <img class=modal__form__default-picture-preview src="./assets/icons/send-pic.png">
+
+  editionMenu.innerHTML += `<div id="myModal" class="modal">
+                                <div class="modal__content">
+                                    <div class="modal__content__page1">
+                                        <span class="modal__close-btn">&times;</span>
+                                        <h2 class="modal__content__title1">Galerie photo</h2>
+                                        <div class="modal__content__container1"></div>
+                                        <input type="submit" class="modal__add-picture-btn" value="Ajouter une photo">
+                                        <input type="submit" class="modal__remove-gallery-btn" value="Supprimer la galerie">
+                                    </div>
+
+                                    <div class="modal__content__page2">
+                                        <span class="modal__previous-btn"></span>
+                                        <span class="modal__close-btn">&times;</span>
+                                        <h2 class="modal__content__title2">Ajout photo</h2>
+                                        <div class="modal__content__container2">
+                                            <form class="modal__form">
+                                                <div class="modal__form__preview">
+                                                    <div class="modal__form__preview-image">
+                                                        <img class="modal__form__default-picture-preview" src="./assets/icons/send-pic.png">
+                                                    </div>
+                                                    <label class="modal__form__upload-picture-btn" for="image_uploads">+ Ajouter Photo</label>
+                                                    <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple="">
+                                                    <p class="modal__form__info-format">jpg, png: 4mo max</p>
                                                 </div>
-                                                <label class="modal__form__upload-picture-btn" for="image_uploads">+ Ajouter Photo</label>
-                                                <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple>
-                                                <p class="modal__form__info-format">jpg, png: 4mo max</p>
-                                            </div> 
-                                            <label class="modal__form__label" for "titre">Titre</label>
-                                            <input type="text" id="titre" name="titre">
-                                            <label class="modal__form__label" for "categorie" name="categorie">Catégorie</label>
-                                            <div class="modal__form__select-container">
-                                                <select id="categorie" name="categorie"> 
-                                                    <option value = ""></option>
-                                                <select>
-                                            </div>
-                                            <div class="modal__form__submit-btn-container">
-                                                <button class="modal__form__submit-btn" type="submit" disabled >Valider</button>
-                                            </div>
-                                        </form>                       
-  `;
+                                                <label class="modal__form__label" for="titre">Titre</label>
+                                                <input type="text" id="titre" name="titre">
+                                                <label class="modal__form__label" for="categorie" name="categorie">Catégorie</label>
+                                                <div class="modal__form__select-container">
+                                                    <select id="categorie" name="categorie">
+                                                        <option value=""></option>
+                                                    </select>
+                                                </div>
+                                                <div class="modal__form__submit-btn-container">
+                                                    <button class="modal__form__submit-btn" type="submit" disabled="">Valider</button>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
 
-  //append list of categories.
-  for (let categorie of categories) {
-    let { id, name } = categorie;
-    document.querySelector(
-      "#categorie"
-    ).innerHTML += ` <option value = "${id}">${name}</option>`;
+    `;
+  //Append select list of categories
+  if (categories.length > 0) {
+    for (let categorie of categories) {
+      let { id, name } = categorie;
+      document.querySelector(
+        "#categorie"
+      ).innerHTML += ` <option value = "${id}">${name}</option>`;
+    }
   }
+  generateModalGallery(works);
+  // --- Events listener on modal
 
-  //the preview
-  // const preview = document.querySelector(".modal__form__preview-image");
+  // The preview
   const input = document.querySelector("#image_uploads");
-
   if (input != null) {
     input.addEventListener("change", updateImageDisplay);
   }
 
-
-  // When the user clicks on <span> (x), remove the modal
-  // When the user clicks anywhere outside of the modal__content, remove the modal
+  //buttons
   window.addEventListener("click", (e) => {
-    if (
-      e.target == modal ||
-      e.target == modalCloseButton1 ||
-      e.target == modalCloseButton2
-    ) {
+    const modal = document.querySelector(".modal");
+    const modalCloseButton = document.querySelector(".modal__close-btn");
+    const modalPreviousButton = document.querySelector(".modal__previous-btn");
+    const modalContentPage1 = document.querySelector(".modal__content__page1");
+    const modalContentPage2 = document.querySelector(".modal__content__page2");
+    const modalButtonAjouterPhoto = document.querySelector(
+      ".modal__add-picture-btn"
+    );
+    // When the user clicks on <span> (x) or outside, remove the modal
+    if (e.target == modal || e.target == modalCloseButton) {
       modal.remove();
     }
+    // show page2 and hide page 1
+    if (e.target == modalButtonAjouterPhoto) {
+      modalContentPage1.style.position = "absolute";
+      modalContentPage1.style.transform = "translateX(-101%)";
+      modalContentPage2.style.transform = "translateX(0)";
+      modalContentPage2.style.position = "relative";
+    }
+    // show page1 and hide page 2
     if (e.target == modalPreviousButton) {
       modalContentPage1.style.transform = "translateX(0)";
-      modalContentPage2.style.transform = "translateX(101%)";
       modalContentPage1.style.position = "relative";
+      modalContentPage2.style.transform = "translateX(101%)";
       modalContentPage2.style.position = "absolute";
     }
   });
