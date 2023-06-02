@@ -19,9 +19,6 @@ const currentPage = window.location.href;
 let currentPageIsIndex = currentPage.includes("index.html");
 let currentPageIsLogin = currentPage.includes("login.html");
 
-
-
-
 //others
 let categories;
 let works;
@@ -57,16 +54,16 @@ const navLogin = document.querySelector("nav li:nth-child(3) a");
 if (loggedIn) {
   //edition menu
   navLogin.innerText = "logout";
-  const divEdition = document.createElement("div");
-  divEdition.id = "edition-menu";
-  myHeader.parentNode.insertBefore(divEdition, myHeader);
+  const editionHeader = document.createElement("div");
+  editionHeader.id = "edition-menu";
+  myHeader.parentNode.insertBefore(editionHeader, myHeader);
   const editionParagraph = document.createElement("p");
   editionParagraph.innerHTML =
     '<i class="fa-regular fa-pen-to-square"></i>Mode édition';
   const editionButton = document.createElement("button");
   editionButton.innerText = "publier les changements";
-  divEdition.appendChild(editionParagraph);
-  divEdition.appendChild(editionButton);
+  editionHeader.appendChild(editionParagraph);
+  editionHeader.appendChild(editionButton);
   //buttons modifier
   const buttonModifier = '<span class = "modifier-button">modifier</span>';
   //button "modifier introduction"
@@ -127,7 +124,6 @@ if (currentPageIsIndex) {
 //--------------------------------//
 
 if (currentPageIsLogin) {
-  
   login();
 }
 
@@ -177,3 +173,6 @@ if (loggedIn) {
 //--------------------------------//
 //           TESTS SECTION        //
 //--------------------------------//
+function removeItem(){
+  
+}

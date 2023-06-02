@@ -40,5 +40,6 @@ function generateWorks(datas) {
       }
     });
   }
+  console.log(`Le portFolio a été régénéré`);
 }
 export default generateWorks;
