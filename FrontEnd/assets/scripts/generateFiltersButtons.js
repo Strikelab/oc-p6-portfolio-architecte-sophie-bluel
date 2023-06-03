@@ -1,3 +1,5 @@
+import { API_URL, CATEGORIES_PATH } from "./env.js";
+import callAPI from "./callAPI.js";
 /**
  *
  * This function takes an array of object as argument and add elements to DOM.
@@ -7,8 +9,9 @@
  *
  */
 
-function generateFiltersButtons(datas) {
-  if (datas && datas.length > 0) {
+async function generateFiltersButtons() {
+  let categories = await callAPI(API_URL + CATEGORIES_PATH);
+  if (categories && categories.length > 0) {
     const divButtonsContainer = document.querySelector(".filters-container");
     // default button for all categories
     const categorieButton = document.createElement("button");
@@ -16,9 +19,9 @@ function generateFiltersButtons(datas) {
     divButtonsContainer.appendChild(categorieButton);
 
     //categories buttons
-    for (const data of datas) {
+    for (const categorie of categories) {
       const categorieButton = document.createElement("button");
-      categorieButton.innerText = data.name;
+      categorieButton.innerText = categorie.name;
       divButtonsContainer.appendChild(categorieButton);
     }
     let buttonFilterActive = document.querySelector(

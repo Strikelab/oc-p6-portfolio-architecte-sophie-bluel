@@ -1,13 +1,9 @@
 //env variables
-import { API_URL } from "./env.js";
-import { CATEGORIES_PATH } from "./env.js";
-import { WORKS_PATH } from "./env.js";
 import { loggedIn } from "./env.js";
 //functions
-import callAPI from "./callAPI.js";
 import callModal from "./callModal.js";
 import generateFiltersButtons from "./generateFiltersButtons.js";
-import generateWorks from "./generateWorks.js";
+import generatePortFolioGallery from "./generatePortFolioGallery.js";
 import login from "./login.js";
 
 //--------------------------------//
@@ -19,21 +15,8 @@ const currentPage = window.location.href;
 let currentPageIsIndex = currentPage.includes("index.html");
 let currentPageIsLogin = currentPage.includes("login.html");
 
-//others
-let categories;
-let works;
 
-//--------------------------------//
-//          API REQUESTS          //
-//--------------------------------//
 
-if (currentPageIsIndex) {
-  //list of categories
-  categories = await callAPI(API_URL + CATEGORIES_PATH);
-
-  //list of works
-  works = await callAPI(API_URL + WORKS_PATH);
-}
 
 //--------------------------------//
 //     DOM ELEMENTS SELECTION     //
@@ -75,9 +58,10 @@ if (loggedIn) {
 
 if (currentPageIsIndex) {
   //First Filters buttons generation
-  generateFiltersButtons(categories);
+  generateFiltersButtons();
+
   //First gallery generation
-  generateWorks(works);
+  generatePortFolioGallery();
 
   //--------------------------------//
   //             FILTERS            //
@@ -112,7 +96,7 @@ if (currentPageIsIndex) {
         // worksFiltered = works.filter(({ categoryId }) => categoryId === i);
       }
       //and finally refresh gallery by calling function.
-      generateWorks(worksFiltered);
+      generatePortFolioGallery(worksFiltered);
     });
   }
 }

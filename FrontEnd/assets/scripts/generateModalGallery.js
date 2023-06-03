@@ -24,6 +24,7 @@ async function generateModalGallery() {
   }
   // add event listener on delete gallery button
   const deleteGallery = document.querySelectorAll(".modal__remove-gallery-btn");
+  
 }
 
 export default generateModalGallery;

@@ -2,13 +2,10 @@ import updateImageDisplay from "./previewUpdate.js";
 import generateModalGallery from "./generateModalGallery.js";
 import { API_URL, CATEGORIES_PATH } from "./env.js";
 import callAPI from "./callAPI.js";
+import deleteWork from "./deleteWork.js";
+
 /**
- *
  * This function generate a modal box
- * it takes categories object and works object as parameters
- * @param {array} categories
- * @param {array} works
- *
  */
 
 async function callModal() {
@@ -76,6 +73,10 @@ async function callModal() {
   if (input != null) {
     input.addEventListener("change", updateImageDisplay);
   }
+  // add event listener on delete gallery button
+
+  const deleteGallery = document.querySelector(".modal__remove-gallery-btn");
+  deleteGallery.addEventListener("click", deleteWork);
 
   //buttons
   window.addEventListener("click", (e) => {
