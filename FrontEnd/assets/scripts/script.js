@@ -163,7 +163,7 @@ if (loggedIn) {
     }
     //portFolio Modification
     if (e.target == portFolioButtonModifier) {
-      callModal(categories, works);
+      callModal();
     }
   });
 }

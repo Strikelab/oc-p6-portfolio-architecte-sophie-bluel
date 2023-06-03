@@ -11,7 +11,7 @@ import { API_URL, currentUserId } from "./env.js";
  */
 
 function generateWorks(datas) {
-  if (datas && datas.length > 0) {
+  if (datas) {
     const divGallery = document.querySelector(".gallery");
     divGallery.innerHTML = "";
     // Add works to DOM

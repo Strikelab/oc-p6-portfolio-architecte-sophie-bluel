@@ -1,5 +1,7 @@
 import updateImageDisplay from "./previewUpdate.js";
 import generateModalGallery from "./generateModalGallery.js";
+import { API_URL, CATEGORIES_PATH } from "./env.js";
+import callAPI from "./callAPI.js";
 /**
  *
  * This function generate a modal box
@@ -9,7 +11,9 @@ import generateModalGallery from "./generateModalGallery.js";
  *
  */
 
-function callModal(categories = {}, works = {}) {
+async function callModal() {
+  let categories = await callAPI(API_URL + CATEGORIES_PATH);
+  // works = await callAPI(API_URL + WORKS_PATH);
   // let categories = datas;
   let editionMenu = document.querySelector("#edition-menu");
 
@@ -64,7 +68,7 @@ function callModal(categories = {}, works = {}) {
       ).innerHTML += ` <option value = "${id}">${name}</option>`;
     }
   }
-  generateModalGallery(works);
+  generateModalGallery();
   // --- Events listener on modal
 
   // The preview
