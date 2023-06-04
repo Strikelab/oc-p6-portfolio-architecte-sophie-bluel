@@ -1,5 +1,5 @@
-import { API_URL, WORKS_PATH, currentUserId } from "./env.js";
-import callAPI from "./callAPI.js";
+import { API_URL, currentUserId } from "./env.js";
+import Api from "./Api.js";
 
 /**
  *
@@ -8,7 +8,7 @@ import callAPI from "./callAPI.js";
  */
 
 async function generatePortFolioGallery() {
-  let works = await callAPI(API_URL + WORKS_PATH);
+  let works = await Api.getWorks();
   if (works) {
     const divGallery = document.querySelector(".gallery");
     divGallery.innerHTML = "";
@@ -38,6 +38,5 @@ async function generatePortFolioGallery() {
       }
     });
   }
-  console.log(`Le portFolio a été régénéré`);
 }
 export default generatePortFolioGallery;

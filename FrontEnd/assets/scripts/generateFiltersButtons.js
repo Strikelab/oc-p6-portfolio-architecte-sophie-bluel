@@ -1,5 +1,4 @@
-import { API_URL, CATEGORIES_PATH } from "./env.js";
-import callAPI from "./callAPI.js";
+import Api from "./Api.js";
 
 /**
  *
@@ -8,7 +7,7 @@ import callAPI from "./callAPI.js";
  */
 
 async function generateFiltersButtons() {
-  let categories = await callAPI(API_URL + CATEGORIES_PATH);
+  let categories = await Api.getCategories();
   if (categories && categories.length > 0) {
     const divButtonsContainer = document.querySelector(".filters-container");
     // default button for all categories

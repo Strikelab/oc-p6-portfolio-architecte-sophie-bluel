@@ -1,7 +1,7 @@
 import updateImageDisplay from "./previewUpdate.js";
 import generateModalGallery from "./generateModalGallery.js";
-import { API_URL, CATEGORIES_PATH } from "./env.js";
-import callAPI from "./callAPI.js";
+
+import Api from "./Api.js";
 import deleteWork from "./deleteWork.js";
 
 /**
@@ -9,7 +9,7 @@ import deleteWork from "./deleteWork.js";
  */
 
 async function callModal() {
-  let categories = await callAPI(API_URL + CATEGORIES_PATH);
+  let categories = await Api.getCategories();
   let editionMenu = document.querySelector("#edition-menu");
 
   editionMenu.innerHTML += `<div id="myModal" class="modal">
@@ -55,7 +55,7 @@ async function callModal() {
 
     `;
   //Append select list of categories
-  if (categories.length > 0) {
+  if (categories && categories.length > 0) {
     for (let categorie of categories) {
       let { id, name } = categorie;
       document.querySelector(

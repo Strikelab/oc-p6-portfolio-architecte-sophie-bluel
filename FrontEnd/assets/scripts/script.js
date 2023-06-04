@@ -15,9 +15,6 @@ const currentPage = window.location.href;
 let currentPageIsIndex = currentPage.includes("index.html");
 let currentPageIsLogin = currentPage.includes("login.html");
 
-
-
-
 //--------------------------------//
 //     DOM ELEMENTS SELECTION     //
 //--------------------------------//
@@ -134,16 +131,7 @@ if (loggedIn) {
   window.addEventListener("click", (e) => {
     //intro Modification
     if (e.target == introButtonModifier) {
-      callModal();
-      const modal = document.querySelector(".modal");
-      modal.innerHTML = `
-                        <div class="modal__content">
-                            <div class="modal__content__page1">
-                                <span class="modal__close-btn">&times;</span>
-                                <h2 class="modal__content__title1">Coming soon...</h2>
-                            </div>
-                        </div>
-       `;
+      alert("not implented yet!");
     }
     //portFolio Modification
     if (e.target == portFolioButtonModifier) {
@@ -155,4 +143,3 @@ if (loggedIn) {
 //--------------------------------//
 //           TESTS SECTION        //
 //--------------------------------//
-function removeItem() {}
