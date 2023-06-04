@@ -1,8 +1,7 @@
-import updateImageDisplay from "./previewUpdate.js";
-import generateModalGallery from "./generateModalGallery.js";
-
 import Api from "./Api.js";
 import deleteWork from "./deleteWork.js";
+import updateImageDisplay from "./previewUpdate.js";
+import generateModalGallery from "./generateModalGallery.js";
 
 /**
  * This function generate a modal box
@@ -66,7 +65,7 @@ async function callModal() {
   generateModalGallery();
   // --- Events listener on modal
 
-  // The preview
+  // The preview input
   const input = document.querySelector("#image_uploads");
   if (input != null) {
     input.addEventListener("change", updateImageDisplay);

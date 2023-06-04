@@ -1,5 +1,5 @@
-import { API_URL, currentUserId } from "./env.js";
 import Api from "./Api.js";
+import { API_URL, currentUserId } from "./env.js";
 
 /**
  *
@@ -7,8 +7,15 @@ import Api from "./Api.js";
  *
  */
 
-async function generatePortFolioGallery() {
-  let works = await Api.getWorks();
+async function generatePortFolioGallery(worksFiltered) {
+  let works = null;
+
+  if (worksFiltered && worksFiltered.length > 0) {
+    works = worksFiltered;
+  } else {
+    works = await Api.getWorks();
+  }
+
   if (works) {
     const divGallery = document.querySelector(".gallery");
     divGallery.innerHTML = "";

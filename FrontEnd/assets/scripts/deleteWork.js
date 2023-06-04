@@ -1,5 +1,5 @@
-import generateModalGallery from "./generateModalGallery.js";
 import Api from "./Api.js";
+import generateModalGallery from "./generateModalGallery.js";
 import generatePortFolioGallery from "./generatePortFolioGallery.js";
 
 /**

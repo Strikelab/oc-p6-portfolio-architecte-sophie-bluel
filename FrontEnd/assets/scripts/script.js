@@ -1,4 +1,4 @@
-//env variables
+//variables
 import { loggedIn } from "./env.js";
 //functions
 import callModal from "./callModal.js";
@@ -23,15 +23,18 @@ let currentPageIsLogin = currentPage.includes("login.html");
 const myHeader = document.querySelector("header");
 const introductionFigure = document.querySelector("#introduction figure");
 const portFolioTitle = document.querySelector("#portfolio > h2");
-const navLogin = document.querySelector("nav li:nth-child(3) a");
+const navloginButton = document.querySelector("nav li:nth-child(3) a");
 
 //--------------------------------//
 //  FIRST INDEX PAGE GENERATION   //
 //--------------------------------//
 
 if (loggedIn) {
-  //edition menu
-  navLogin.innerText = "logout";
+  //--------------------------------//
+  //   LOGGED IN HEADER & BUTTONS   //
+  //--------------------------------//
+
+  navloginButton.innerText = "logout";
   const editionHeader = document.createElement("div");
   editionHeader.id = "edition-menu";
   myHeader.parentNode.insertBefore(editionHeader, myHeader);
@@ -46,82 +49,13 @@ if (loggedIn) {
   const buttonModifier = '<span class = "modifier-button">modifier</span>';
   //button "modifier introduction"
   introductionFigure.innerHTML += buttonModifier;
-
   //button "modifier portFolio"
   portFolioTitle.innerHTML += buttonModifier;
-} else {
-  navLogin.innerText = "login";
-}
-
-if (currentPageIsIndex) {
-  //First Filters buttons generation
-  generateFiltersButtons();
-
-  //First gallery generation
-  generatePortFolioGallery();
 
   //--------------------------------//
-  //             FILTERS            //
+  //   ADD EVENTS TO CALL MODALE    //
   //--------------------------------//
 
-  // get the list of filter buttons
-  const filterButtons = document.querySelectorAll(".filters-container button");
-
-  // add an event listener for each button
-  for (let i = 0; i < filterButtons.length; i++) {
-    const filterButton = document.querySelector(
-      `.filters-container button:nth-child(${i + 1})`
-    );
-    //define action for each filter button
-    filterButton.addEventListener("click", function () {
-      let worksFiltered;
-
-      //deselect and select button to change its style if selected
-      let filterButtonActive = document.querySelector(".btn-filter-selected");
-      filterButtonActive.classList.remove("btn-filter-selected");
-      filterButton.classList.add("btn-filter-selected");
-
-      //first button must return works in all categories
-      if (i === 0) {
-        worksFiltered = works;
-      }
-      //other buttons must return specific works according to categorie
-      else {
-        worksFiltered = works.filter(function (work) {
-          return work.categoryId === i;
-        });
-        // worksFiltered = works.filter(({ categoryId }) => categoryId === i);
-      }
-      //and finally refresh gallery by calling function.
-      generatePortFolioGallery(worksFiltered);
-    });
-  }
-}
-
-//--------------------------------//
-//             LOGIN              //
-//--------------------------------//
-
-if (currentPageIsLogin) {
-  login();
-}
-
-//log the user out and clean local storage
-
-navLogin.addEventListener("click", (e) => {
-  if (loggedIn) {
-    e.preventDefault();
-    window.localStorage.removeItem("userId");
-    window.localStorage.removeItem("token");
-    window.location.href = "./index.html";
-  }
-});
-
-//--------------------------------//
-//          CALL MODALE           //
-//--------------------------------//
-
-if (loggedIn) {
   // Get the buttons that opens the modal
   const introButtonModifier =
     introductionFigure.querySelector(".modifier-button");
@@ -138,6 +72,28 @@ if (loggedIn) {
       callModal();
     }
   });
+  //--------------------------------//
+  //          LOG OUT               //
+  //--------------------------------//
+  //log the user out and clean local storage
+
+  navloginButton.addEventListener("click", (e) => {
+    e.preventDefault();
+    window.localStorage.removeItem("userId");
+    window.localStorage.removeItem("token");
+    window.location.href = "./index.html";
+  });
+} else {
+  navloginButton.innerText = "login";
+}
+
+if (currentPageIsIndex) {
+  //First Filters buttons generation
+  generateFiltersButtons();
+  //First gallery generation
+  generatePortFolioGallery();
+} else if (currentPageIsLogin) {
+  login();
 }
 
 //--------------------------------//

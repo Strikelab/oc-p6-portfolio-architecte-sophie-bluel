@@ -1,5 +1,5 @@
-import deleteWork from "./deleteWork.js";
 import Api from "./Api.js";
+import deleteWork from "./deleteWork.js";
 
 /**
  *
