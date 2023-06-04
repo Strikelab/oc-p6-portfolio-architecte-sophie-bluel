@@ -1,6 +1,12 @@
 import deleteWork from "./deleteWork.js";
-import { API_URL, WORKS_PATH, CATEGORIES_PATH } from "./env.js";
+import { API_URL, WORKS_PATH } from "./env.js";
 import callAPI from "./callAPI.js";
+
+/**
+ *
+ * This function ask for user works to API and add preview gallery to the modal box 
+ *
+ */
 
 async function generateModalGallery() {
   let works = await callAPI(API_URL + WORKS_PATH);
@@ -23,7 +29,7 @@ async function generateModalGallery() {
     trashButton.addEventListener("click", deleteWork);
   }
   // add event listener on delete gallery button
-  const deleteGallery = document.querySelectorAll(".modal__remove-gallery-btn");
+  // const deleteGallery = document.querySelectorAll(".modal__remove-gallery-btn");
   
 }
 

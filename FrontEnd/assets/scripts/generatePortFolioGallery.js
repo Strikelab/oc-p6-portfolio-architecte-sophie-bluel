@@ -1,13 +1,9 @@
 import { API_URL, WORKS_PATH, currentUserId } from "./env.js";
-
 import callAPI from "./callAPI.js";
+
 /**
  *
- * This function takes an array of object as argument.
- * It add elements to DOM, and generate portfolio gallery
- *
- *
- * @param {array} datas
+ * This function ask for user works to API and add user works gallery to portFolio
  *
  */
 

@@ -6,7 +6,7 @@ import returnFileSize from "./returnFileSize.js";
  *
  * this function updates preview picture in modal box and check
  * if size and type of the file uploaded are valid.
- * it returns some information to the user
+ * it returns some information to the user about the file uploaded
  *
  * @param {arrray} file
  *

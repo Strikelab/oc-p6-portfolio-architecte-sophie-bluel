@@ -3,6 +3,12 @@ import generateModalGallery from "./generateModalGallery.js";
 import generateWorks from "./generatePortFolioGallery.js";
 import callAPI from "./callAPI.js";
 
+/**
+ *
+ * This function wait for event on buttons and delete work or entire gallery
+ *
+ */
+
 async function deleteWork(e) {
   //get the item id by interrogating dataset
   const modalContentContainer1 = document.querySelector(

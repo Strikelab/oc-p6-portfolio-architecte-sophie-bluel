@@ -10,7 +10,7 @@
  */
 
 function validFileSize(file, fileSize=4194304) {
-  //www.mindgems.com/info/file-size/
+  //www.mindgems.com/info/file-size/ => 4mo = 4194304 bytes
   return file.size < fileSize;
 }
 

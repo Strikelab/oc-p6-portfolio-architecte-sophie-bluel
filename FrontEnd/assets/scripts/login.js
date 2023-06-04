@@ -14,6 +14,15 @@ const divLoginPasswordMessage = document.querySelector(
 );
 const recoveryPassword = document.querySelector("#login a ");
 
+/**
+ *
+ * This function check login form and give user informations about errors.
+ * If mail and password are correct it log in the user , and redirect him
+ * to index page.
+ * user's token and id are placed in local storage.
+ *
+ */
+
 function login() {
   const loginForm = document.getElementById("login__form");
   const emailField = loginForm.elements["login__email"];

@@ -10,8 +10,6 @@ import deleteWork from "./deleteWork.js";
 
 async function callModal() {
   let categories = await callAPI(API_URL + CATEGORIES_PATH);
-  // works = await callAPI(API_URL + WORKS_PATH);
-  // let categories = datas;
   let editionMenu = document.querySelector("#edition-menu");
 
   editionMenu.innerHTML += `<div id="myModal" class="modal">

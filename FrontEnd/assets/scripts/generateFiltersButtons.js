@@ -1,11 +1,9 @@
 import { API_URL, CATEGORIES_PATH } from "./env.js";
 import callAPI from "./callAPI.js";
+
 /**
  *
- * This function takes an array of object as argument and add elements to DOM.
- * and generate filters buttons
- *
- * @param {array} datas
+ * This function ask for categories to API and add filters buttons to DOM
  *
  */
 
