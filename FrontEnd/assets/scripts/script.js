@@ -28,6 +28,14 @@ const navloginButton = document.querySelector("nav li:nth-child(3) a");
 //--------------------------------//
 //  FIRST INDEX PAGE GENERATION   //
 //--------------------------------//
+if (currentPageIsIndex) {
+  //First Filters buttons generation
+  generateFiltersButtons();
+  //First gallery generation
+  generatePortFolioGallery();
+} else if (currentPageIsLogin) {
+  login();
+}
 
 if (loggedIn) {
   //--------------------------------//
@@ -85,15 +93,6 @@ if (loggedIn) {
   });
 } else {
   navloginButton.innerText = "login";
-}
-
-if (currentPageIsIndex) {
-  //First Filters buttons generation
-  generateFiltersButtons();
-  //First gallery generation
-  generatePortFolioGallery();
-} else if (currentPageIsLogin) {
-  login();
 }
 
 //--------------------------------//
