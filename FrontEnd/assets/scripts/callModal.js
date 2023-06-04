@@ -1,7 +1,9 @@
 import Api from "./Api.js";
+import createWork from "./createWork.js";
 import deleteWork from "./deleteWork.js";
-import updateImageDisplay from "./previewUpdate.js";
+import previewUpdate from "./previewUpdate.js";
 import generateModalGallery from "./generateModalGallery.js";
+
 
 /**
  * This function generate a modal box
@@ -31,15 +33,15 @@ async function callModal() {
                                                     <div class="modal__form__preview-image">
                                                         <img class="modal__form__default-picture-preview" src="./assets/icons/send-pic.png">
                                                     </div>
-                                                    <label class="modal__form__upload-picture-btn" for="image_uploads">+ Ajouter Photo</label>
-                                                    <input type="file" id="image_uploads" name="image_uploads" accept=".jpg, .jpeg, .png" multiple="">
+                                                    <label class="modal__form__upload-picture-btn" for="image">+ Ajouter Photo</label>
+                                                    <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png" multiple="">
                                                     <p class="modal__form__info-format">jpg, png: 4mo max</p>
                                                 </div>
-                                                <label class="modal__form__label" for="titre">Titre</label>
-                                                <input type="text" id="titre" name="titre">
-                                                <label class="modal__form__label" for="categorie" name="categorie">Catégorie</label>
+                                                <label class="modal__form__label" for="title">Titre</label>
+                                                <input type="text" id="title" name="title">
+                                                <label class="modal__form__label" for="category" name="category">Catégorie</label>
                                                 <div class="modal__form__select-container">
-                                                    <select id="categorie" name="categorie">
+                                                    <select id="category" name="category">
                                                         <option value=""></option>
                                                     </select>
                                                 </div>
@@ -58,7 +60,7 @@ async function callModal() {
     for (let categorie of categories) {
       let { id, name } = categorie;
       document.querySelector(
-        "#categorie"
+        "#category"
       ).innerHTML += ` <option value = "${id}">${name}</option>`;
     }
   }
@@ -66,9 +68,9 @@ async function callModal() {
   // --- Events listener on modal
 
   // The preview input
-  const input = document.querySelector("#image_uploads");
+  const input = document.querySelector("#image");
   if (input != null) {
-    input.addEventListener("change", updateImageDisplay);
+    input.addEventListener("change", previewUpdate);
   }
   // add event listener on delete gallery button
 
@@ -95,6 +97,7 @@ async function callModal() {
       modalContentPage1.style.transform = "translateX(-101%)";
       modalContentPage2.style.transform = "translateX(0)";
       modalContentPage2.style.position = "relative";
+      createWork();
     }
     // show page1 and hide page 2
     if (e.target == modalPreviousButton) {

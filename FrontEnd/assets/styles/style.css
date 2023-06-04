@@ -647,7 +647,7 @@ button.btn-filter-selected {
   width: 30%;
   align-self: center;
 }
-.modal__form #image_uploads {
+.modal__form #image {
   visibility: hidden;
   height: 0;
 }

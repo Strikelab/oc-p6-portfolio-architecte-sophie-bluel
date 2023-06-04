@@ -7,7 +7,7 @@ import { API_URL, currentUserId } from "./env.js";
  *
  */
 
-async function generatePortFolioGallery(worksFiltered) {
+async function generatePortFolioGallery(worksFiltered = null) {
   let works = null;
 
   if (worksFiltered && worksFiltered.length > 0) {

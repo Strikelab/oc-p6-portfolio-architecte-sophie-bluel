@@ -9,7 +9,7 @@ class Api {
       .then((response) => response.json())
       .catch((error) =>
         console.log(
-          "une erreur est survenue lors de la récupération des Travaux :" +
+          "une erreur est survenue lors de la récupération des Travaux : " +
             error.message
         )
       );
@@ -20,7 +20,7 @@ class Api {
       .then((response) => response.json())
       .catch((error) =>
         console.log(
-          "Une erreur est survenue lors de la récupération des catégories" +
+          "Une erreur est survenue lors de la récupération des Catégories : " +
             error.message
         )
       );

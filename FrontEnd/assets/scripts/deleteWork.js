@@ -10,9 +10,7 @@ import generatePortFolioGallery from "./generatePortFolioGallery.js";
 
 async function deleteWork(e) {
   //get the item id by interrogating dataset
-  const modalContentContainer1 = document.querySelector(
-    ".modal__content__container1"
-  );
+ 
   if (e.target.matches(".modal__remove-gallery-btn")) {
     Api.deleteGallery();
   } else if (e.target.matches(".modal__content__trash-btn")) {

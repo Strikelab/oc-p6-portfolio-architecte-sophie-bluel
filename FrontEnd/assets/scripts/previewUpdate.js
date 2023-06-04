@@ -15,7 +15,7 @@ import returnFileSize from "./returnFileSize.js";
 function previewUpdate() {
   const fileSizeMax = 4194304;
   const preview = document.querySelector(".modal__form__preview-image");
-  const input = document.querySelector("#image_uploads");
+  const input = document.querySelector("#image");
   const defaultPicturePreview = document.createElement("img");
   defaultPicturePreview.src = "./assets/icons/send-pic.png";
   defaultPicturePreview.classList.add("modal__form__default-picture-preview");
@@ -25,7 +25,7 @@ function previewUpdate() {
   }
   //get input file
   const curFiles = input.files;
-  if (curFiles.lenth !== 0) {
+  if (curFiles.length !== 0) {
   }
   //get informations about the file uploaded and append the DOM according to the file informations
   if (curFiles.length === 0) {

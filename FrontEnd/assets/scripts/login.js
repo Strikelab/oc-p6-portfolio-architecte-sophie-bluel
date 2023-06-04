@@ -38,7 +38,6 @@ function login() {
     let userInput = e.target.value;
     //email format verification
     if (userInput.match(mailFormat)) {
-      // e.preventDefault();
       emailField.style.outlineColor = primaryColor;
       divLoginMailMessage.style.color = primaryColor;
 
