@@ -1,4 +1,5 @@
-import { currentToken, currentUserId } from "./env.js";
+import Api from "./Api.js";
+
 function createWork() {
   let pictureIsValid = null;
   let titleIsValid = null;
@@ -32,23 +33,20 @@ function createWork() {
   modalForm.addEventListener("submit", handleFormSubmit);
 }
 
-function handleFormSubmit(e) {
+async function handleFormSubmit(e) {
   e.preventDefault();
-  console.log("form is submit");
-let modalForm = e.currentTarget;
-const pictureField = modalForm.elements["image"];
+  let modalForm = e.currentTarget;
+  const pictureField = modalForm.elements["image"];
+  const image = pictureField.files[0];
   const title = e.target.elements["title"].value;
   const category = e.target.elements["category"].value;
-  const picture = e.target.elements["image"].value;
-  const id = currentUserId;
-  const token = currentToken;
-
   let formData = new FormData();
-  formData.append("category", category);
   formData.append("image", image);
-  formData.append("title", title)
-  console.log(formData);
-  console.log(pictureField.files[0])
+  formData.append("title", title);
+  formData.append("category", category);
+
+  let apiResp = await Api.setWork(formData);
+  console.log(apiResp);
 }
 
 export default createWork;

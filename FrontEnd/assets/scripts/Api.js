@@ -54,5 +54,35 @@ class Api {
     }
     generateModalGallery();
   }
+
+  //CREATE WORK
+
+  static async setWork(formData) {
+    let request = {
+      method: "POST",
+      headers: {
+        Accept: "application/json",
+        Authorization: "Bearer " + currentToken,
+      },
+      body: formData,
+    };
+
+    //send create work request to the API
+
+    return fetch(API_URL + WORKS_PATH, request)
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        let e = new Error("Bad request");
+        throw e;
+      })
+      .then((jsonData) => {
+        return jsonData;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
 }
 export default Api;

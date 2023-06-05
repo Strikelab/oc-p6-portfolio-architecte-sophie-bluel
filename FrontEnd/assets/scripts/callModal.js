@@ -4,7 +4,6 @@ import deleteWork from "./deleteWork.js";
 import previewUpdate from "./previewUpdate.js";
 import generateModalGallery from "./generateModalGallery.js";
 
-
 /**
  * This function generate a modal box
  */
@@ -80,7 +79,7 @@ async function callModal() {
   //buttons
   window.addEventListener("click", (e) => {
     const modal = document.querySelector(".modal");
-    const modalCloseButton = document.querySelector(".modal__close-btn");
+    const modalCloseButtons = document.querySelectorAll(".modal__close-btn");
     const modalPreviousButton = document.querySelector(".modal__previous-btn");
     const modalContentPage1 = document.querySelector(".modal__content__page1");
     const modalContentPage2 = document.querySelector(".modal__content__page2");
@@ -88,7 +87,11 @@ async function callModal() {
       ".modal__add-picture-btn"
     );
     // When the user clicks on <span> (x) or outside, remove the modal
-    if (e.target == modal || e.target == modalCloseButton) {
+    if (
+      e.target == modal ||
+      e.target == modalCloseButtons[0] ||
+      e.target == modalCloseButtons[1]
+    ) {
       modal.remove();
     }
     // show page2 and hide page 1
