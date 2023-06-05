@@ -1,6 +1,6 @@
 import { API_URL, WORKS_PATH, CATEGORIES_PATH, currentToken } from "./env.js";
 import generateModalGallery from "./generateModalGallery.js";
-
+import generatePortFolioGallery from "./generatePortFolioGallery.js";
 class Api {
   constructor() {}
   // return API list of works
@@ -72,6 +72,8 @@ class Api {
     return fetch(API_URL + WORKS_PATH, request)
       .then((response) => {
         if (response.ok) {
+          document.querySelector(".modal").remove();
+          generatePortFolioGallery();
           return response.json();
         }
         let e = new Error("Bad request");
