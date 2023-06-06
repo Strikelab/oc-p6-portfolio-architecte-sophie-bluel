@@ -10,9 +10,10 @@ import { API_URL, currentUserId } from "./env.js";
 async function generatePortFolioGallery(worksFiltered = null) {
   let works = null;
 
-  if (worksFiltered && worksFiltered.length > 0) {
+  if (worksFiltered ) {
     works = worksFiltered;
-  } else {
+  } 
+  else {
     works = await Api.getWorks();
   }
 
@@ -46,4 +47,5 @@ async function generatePortFolioGallery(worksFiltered = null) {
     });
   }
 }
+
 export default generatePortFolioGallery;

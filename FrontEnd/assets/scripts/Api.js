@@ -1,6 +1,7 @@
 import { API_URL, WORKS_PATH, CATEGORIES_PATH, currentToken } from "./env.js";
 import generateModalGallery from "./generateModalGallery.js";
 import generatePortFolioGallery from "./generatePortFolioGallery.js";
+
 class Api {
   constructor() {}
   // return API list of works
@@ -55,8 +56,7 @@ class Api {
     generateModalGallery();
   }
 
-  //CREATE WORK
-
+  //Create Work method
   static async setWork(formData) {
     let request = {
       method: "POST",
