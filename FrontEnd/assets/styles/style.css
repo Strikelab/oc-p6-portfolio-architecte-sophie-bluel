@@ -643,6 +643,12 @@ button.btn-filter-selected {
   margin-bottom: 47px;
   margin-top: 0;
 }
+.modal__form input#title {
+  font-size: 14px;
+  padding-left: 16px;
+  font-weight: 400;
+  font-family: "Work Sans";
+}
 .modal__form__preview {
   display: flex;
   flex-direction: column;

@@ -47,6 +47,7 @@ function previewUpdate() {
         const image = document.createElement("img");
         image.classList.add("modal__form__picture-preview");
         image.src = URL.createObjectURL(file);
+        image.setAttribute("alt", "preview picture");
         listItem.appendChild(image);
         listItem.appendChild(para);
       } else if (!validFileSize(file, fileSizeMax)) {

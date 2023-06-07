@@ -19,7 +19,7 @@ async function generateModalGallery() {
     if (works && works.length > 0) {
       works.forEach((work) => {
         modalContentContainer1.innerHTML += `<figure>
-                                              <img class = modal__content__picture src=${work.imageUrl} alt =${work.title}>
+                                              <img class = modal__content__picture src='${work.imageUrl}' alt ='${work.title}'>
                                               <span class = modal__content__move-btn></span>
                                               <span data-id=${work.id} class = modal__content__trash-btn></span>
                                               <p class = modal__content__edit-btn>éditer</p>

@@ -31,7 +31,7 @@ async function callModal() {
                                             <form class="modal__form">
                                                 <div class="modal__form__preview">
                                                     <div class="modal__form__preview-image">
-                                                        <img class="modal__form__default-picture-preview" src="./assets/icons/send-pic.png">
+                                                        <img class="modal__form__default-picture-preview" src="./assets/icons/send-pic.png" alt="default picture preview">
                                                     </div>
                                                     <label class="modal__form__upload-picture-btn" for="image">+ Ajouter Photo</label>
                                                     <input type="file" id="image" name="image" accept=".jpg, .jpeg, .png" multiple="">
@@ -39,10 +39,10 @@ async function callModal() {
                                                 </div>
                                                 <label class="modal__form__label" for="title">Titre</label>
                                                 <input type="text" id="title" name="title">
-                                                <label class="modal__form__label" for="category" name="category">Catégorie</label>
+                                                <label class="modal__form__label" for="category">Catégorie</label>
                                                 <div class="modal__form__select-container">
                                                     <select id="category" name="category">
-                                                        <option value=""></option>
+                                                        <option label=" "></option>
                                                     </select>
                                                 </div>
                                                 <div class="modal__form__submit-btn-container">
@@ -59,9 +59,8 @@ async function callModal() {
   if (categories && categories.length > 0) {
     for (let categorie of categories) {
       let { id, name } = categorie;
-      document.querySelector(
-        "#category"
-      ).innerHTML += ` <option value = "${id}">${name}</option>`;
+      document.querySelector("#category").innerHTML += `
+      <option value = "${id}">${name}</option>`;
     }
   }
   generateModalGallery();

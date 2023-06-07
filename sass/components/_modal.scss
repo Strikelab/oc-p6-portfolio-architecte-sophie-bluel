@@ -207,7 +207,12 @@
     @extend %form;
     margin-bottom: 47px;
     margin-top: 0;
-
+    input#title{
+      font-size:14px;
+      padding-left:16px;
+      font-weight:400;
+      font-family: "Work Sans";
+    }
     &__preview {
       @include flex($direction: column, $align: center);
       background-color: $background-color2;
