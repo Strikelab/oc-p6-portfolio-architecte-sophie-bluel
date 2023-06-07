@@ -1,5 +1,5 @@
 import validFileSize from "./validFileSize.js";
-import validFileType from "./validFiletype.js";
+import validFileType from "./validFileType.js";
 import returnFileSize from "./returnFileSize.js";
 
 /**
