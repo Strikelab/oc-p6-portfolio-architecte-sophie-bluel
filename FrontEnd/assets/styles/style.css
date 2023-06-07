@@ -273,7 +273,8 @@ footer nav ul {
   height: 872px;
 }
 #login__message,
-.login__message {
+.login__message,
+.modal__content__message {
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -282,11 +283,13 @@ footer nav ul {
   height: 30px;
 }
 #login__message .brown,
-.login__message .brown {
+.login__message .brown,
+.modal__content__message .brown {
   color: #b1663c;
 }
 #login__message .fa-info,
-.login__message .fa-info {
+.login__message .fa-info,
+.modal__content__message .fa-info {
   display: flex;
   flex-direction: initial;
   justify-content: center;
@@ -361,7 +364,7 @@ footer nav ul {
   background-color: black;
   color: white;
 }
-#edition-menu i {
+#edition-menu .fa-pen-to-square {
   padding-right: 9px;
 }
 #edition-menu > button {
@@ -618,14 +621,27 @@ button.btn-filter-selected {
 }
 .modal__content__title2 {
   margin-top: 60px;
+  margin-bottom: 0;
+}
+.modal__content__message {
+  width: 66.6666666667%;
+  color: #93532f;
+  margin: 3px auto;
+}
+.modal__content .info {
+  background-color: lightblue;
+  color: black;
+}
+.modal__content .info .fa-info {
+  color: black;
 }
 .modal__content__container2 {
   width: 66.6666666667%;
-  margin: 22px auto 55px auto;
+  margin: 0 auto 55px auto;
 }
 .modal__form {
   margin-bottom: 47px;
-  margin-top: 9px;
+  margin-top: 0;
 }
 .modal__form__preview {
   display: flex;
@@ -704,11 +720,11 @@ button.btn-filter-selected {
   border: none;
 }
 .modal__form__submit-btn:disabled {
-  background-color: #A7A7A7;
+  background-color: #a7a7a7;
   color: #fefefe;
 }
 .modal__form__submit-btn:disabled:hover {
-  background-color: #A7A7A7;
+  background-color: #a7a7a7;
   color: #fefefe;
   cursor: default;
 }

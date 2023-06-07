@@ -26,6 +26,7 @@ async function callModal() {
                                         <span class="modal__previous-btn"></span>
                                         <span class="modal__close-btn">&times;</span>
                                         <h2 class="modal__content__title2">Ajout photo</h2>
+                                        <div class="modal__content__message"></div>
                                         <div class="modal__content__container2">
                                             <form class="modal__form">
                                                 <div class="modal__form__preview">

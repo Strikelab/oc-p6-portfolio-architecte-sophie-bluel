@@ -67,8 +67,8 @@ function login() {
   //form submit
   loginForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    const newLocal = (divLoginMessage.innerHTML =
-      '<p class="brown">A few moments later...</p><i class="brown fa-solid fa-hourglass-start">');
+    divLoginMessage.innerHTML =
+      '<p class="brown">A few moments later...</p><i class="brown fa-solid fa-hourglass-start">';
     divLoginMessage.style.backgroundColor = "transparent";
     email = emailField.value;
     password = passwordField.value;

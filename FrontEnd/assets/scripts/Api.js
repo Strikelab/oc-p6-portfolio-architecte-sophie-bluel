@@ -2,6 +2,8 @@ import { API_URL, WORKS_PATH, CATEGORIES_PATH, currentToken } from "./env.js";
 import generateModalGallery from "./generateModalGallery.js";
 import generatePortFolioGallery from "./generatePortFolioGallery.js";
 
+const modalContentMessage = document.querySelector(".modal__content__message");
+
 class Api {
   constructor() {}
   // return API list of works
@@ -58,6 +60,7 @@ class Api {
 
   //Create Work method
   static async setWork(formData) {
+    let serverDown = true;
     let request = {
       method: "POST",
       headers: {
@@ -72,6 +75,7 @@ class Api {
     return fetch(API_URL + WORKS_PATH, request)
       .then((response) => {
         if (response.ok) {
+          serverDown = false;
           document.querySelector(".modal").remove();
           generatePortFolioGallery();
           return response.json();
@@ -83,7 +87,15 @@ class Api {
         return jsonData;
       })
       .catch((err) => {
-        console.log(err);
+        const modalContentMessage = document.querySelector(
+          ".modal__content__message"
+        );
+        if (serverDown) {
+          modalContentMessage.classList.add("info");
+          err =
+            '<i class="fa-solid fa-info"></i><p>Service momentanément indisponible.</p>';
+        }
+        modalContentMessage.innerHTML = `<p class="brown">${err}</p>`;
       });
   }
 }

@@ -182,17 +182,31 @@
     &__title2 {
       @extend .modal__content__title1;
       margin-top: 60px;
+      margin-bottom: 0;
+    }
+    &__message {
+      @extend .login__message;
+      width: calc((2 / 3) * 100%);
+      color: $tertiary_color;
+      margin: 3px auto;
+    }
+    .info {
+      background-color: $info_color;
+      color: black;
+      .fa-info {
+        color: black;
+      }
     }
     &__container2 {
       width: calc((2 / 3) * 100%);
-      margin: 22px auto 55px auto;
+      margin: 0 auto 55px auto;
     }
   }
   // --- Page 2 form --- //
   &__form {
     @extend %form;
     margin-bottom: 47px;
-    margin-top: 9px;
+    margin-top: 0;
 
     &__preview {
       @include flex($direction: column, $align: center);

@@ -35,6 +35,11 @@ function createWork() {
 
 async function handleFormSubmit(e) {
   e.preventDefault();
+  const modalContentMessage = document.querySelector(
+    ".modal__content__message"
+  );
+  modalContentMessage.innerHTML =
+    '<p class="brown">En cours d\'envoi au serveur... Veuillez patienter.</p><i class="brown fa-solid fa-hourglass-start">';
   let modalForm = e.currentTarget;
   const pictureField = modalForm.elements["image"];
   const image = pictureField.files[0];
