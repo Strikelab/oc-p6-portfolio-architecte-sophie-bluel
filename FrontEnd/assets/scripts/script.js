@@ -30,7 +30,9 @@ const navloginButton = document.querySelector("nav li:nth-child(3) a");
 //--------------------------------//
 if (currentPageIsIndex) {
   //First Filters buttons generation
-  generateFiltersButtons();
+  if(!loggedIn){
+    generateFiltersButtons();
+  }
   //First gallery generation
   generatePortFolioGallery();
 } else if (currentPageIsLogin) {
