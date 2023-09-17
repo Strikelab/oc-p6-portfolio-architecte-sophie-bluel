@@ -1,8 +1,8 @@
 # OC-P6-Portfolio-architecte-sophie-bluel
  Projet N°6 parcours intégrateur web OpenClassrooms
-## Lien GitHub
+## Lien
 
-https://github.com/Strikelab/OC-P6-Portfolio-architecte-sophie-bluel
+[https://sophie-bluel.strikelab.fr/](https://sophie-bluel.strikelab.fr/index.html)
 
 ## Technologies
 
